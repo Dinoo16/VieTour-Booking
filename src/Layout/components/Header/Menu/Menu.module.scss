@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    
+}
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin-right: 40px;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 300;
+    transition: background-color ease-in-out 200ms;
+
+    &.active {
+        border-bottom: 1px solid var(--primary);
+    }
+
+    &:hover {
+        border-bottom: 1px solid var(--primary);
+    }
+}

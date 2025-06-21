@@ -1,0 +1,121 @@
+.wrapper {
+    width: var(--default-layout-width);
+    margin: 0 auto;
+    margin-top: 66px;
+}
+
+.subscribe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+
+    h2 {
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--header-color);
+        font-family: var(--font-family-header);
+    }
+
+    .form {
+        display: flex;
+        gap: 12px;
+
+        input {
+            padding: 12px 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 250px;
+        }
+
+        
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 32px 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 40px 0;
+
+    .column {
+        h3.logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0d1b2a;
+
+            span {
+                color: #f75c3c;
+            }
+        }
+
+        p {
+            font-size: 14px;
+            margin: 12px 0;
+            color: #444;
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+
+            .social-item {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-color: transparent;
+                border: 1px solid var(--primary);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                font-size: 14px;
+                margin-bottom: 10px;
+                color: #444;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+
+    .terms {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

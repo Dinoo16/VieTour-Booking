@@ -1,0 +1,87 @@
+// destination
+.destination {
+    text-align: center;
+    padding-top: 120px;
+    margin: 0 auto;
+    overflow: visible;
+
+    .destination-label {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    .destination-title {
+        font-size: 48px;
+        font-family: var(--font-family-header);
+        color: var(--header-color);
+        margin-bottom: 56px;
+    }
+
+    .swiper {
+        width: 100%;
+        max-width: 1200px;
+        padding-bottom: 120px;
+
+        .slide {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            width: 340px;
+            height: 500px;
+            position: relative;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+
+            .info {
+                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 32px 24px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+                color: white;
+                z-index: 2;
+
+                .info-duration {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    .duration {
+                        font-size: 14px;
+                    }
+                }
+
+                .location {
+                    font-size: 20px;
+                }
+            }
+
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+}
+
+// Swiper pagination styling
+
+:global(.swiper-pagination-bullet) {
+    background-color: transparent;
+    border: 1px solid var(--header-color);
+    opacity: 1;
+    margin: 0 6px;
+    width: 14px;
+    height: 14px;
+    transition: background 0.2s, border 0.2s;
+}
+
+:global(.swiper-pagination-bullet-active) {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+}

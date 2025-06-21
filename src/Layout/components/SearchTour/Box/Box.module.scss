@@ -1,0 +1,92 @@
+.dropdown {
+    margin: 35px 0;
+    padding: 8px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    min-width: 250px;
+}
+
+.dropdown-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #222;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    color: var(--title-color);
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background-color: #EDEDED;
+        border-radius: 8px;
+    }
+    &.daysbox:hover {
+        color: var(--primary);
+        background-color: transparent;
+    }
+
+    img {
+        width: 45px;
+        height: 45px;
+        margin: 0 12px; 
+        object-fit: cover;
+        border-radius: 4px;
+        flex-shrink: 0;
+    }
+
+    p {
+        margin: 0;
+        font-weight: 500;
+        font-size: 15px;
+    }
+
+    small {
+        color: #888;
+        font-size: 13px;
+    }
+}
+
+
+// Calendar box
+
+//Budget box
+.slider-wrapper {
+  margin: 12px 0 8px;
+  padding: 0 6px;
+}
+
+.budget-values {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 4px;
+  color: black;
+}
+
+.budget-box {
+  min-width: 80px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 6px 16px;
+  font-weight: 500;
+  color: var(--title-color);
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 6px 0;
+  margin: 8px 0;
+  background-color: var(--primary);
+  font-weight: 500;
+}
