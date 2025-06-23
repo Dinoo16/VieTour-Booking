@@ -10,6 +10,9 @@ const images = {
     destination_3: require('~/assets/images/destination_3.png'),
     promotion_banner: require('~/assets/images/promotion_banner.png'),
     gallery: require('~/assets/images/gallery.png'),
+    whyus: require('~/assets/images/why-us.png'),
+    aboutus: require('~/assets/images/about-us.png'),
+    avatar: require('~/assets/images/avatar.png'),
 };
 
 export default images;

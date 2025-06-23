@@ -1,0 +1,47 @@
+.label {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5em;
+}
+
+.title {
+    font-size: 48px;
+    font-family: var(--font-family-header);
+    color: var(--header-color);
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+}
+
+.content-2 {
+    margin-top: 120px;
+    display: flex;
+    justify-content: space-between;
+    gap: 200px;
+
+    .who-we-are {
+        flex: 1;
+
+    }
+
+    .why-us {
+        flex: 1;
+        margin-top: 100px;
+    }
+}
+
+.img-container {
+    margin-top: 32px;
+    width: 100%;
+    height: 528px;
+    border: 12px solid #E5E5E5;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.content-2-img {
+    width: 101%;
+    height: 100%;
+    object-fit: cover;
+}

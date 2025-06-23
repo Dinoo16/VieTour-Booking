@@ -1,29 +1,52 @@
 .wrapper {}
 
-.label {
-    color: var(--primary);
-    font-weight: 700;
-    font-size: 24px;
-    margin-bottom: 14px;
-    text-transform: uppercase;
-}
+.gallery {
+    margin-top: 120px;
+    width: 100vw;
+    height: 550px;
+    overflow: visible;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
 
-.title {
-    font-size: 48px;
-    font-family: var(--font-family-header);
-    color: var(--header-color);
-    letter-spacing: 0.5px;
-}
-
-.content {
-    display: flex;
-    justify-content: space-between;
-
-    img {
-        border-radius: 32px 0 32px 0;
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(30, 30, 30, 0.24);
+        z-index: 1;
     }
 
-    p {
-        max-width: 700px;
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: none;
+        z-index: 2;
+        background-color: var(--primary);
+        width: 65px;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px; // Slight offset to center the triangle
+        }
+
     }
 }

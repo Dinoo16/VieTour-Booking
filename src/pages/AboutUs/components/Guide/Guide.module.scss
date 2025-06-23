@@ -1,0 +1,95 @@
+.wrapper {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.label {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 48px;
+    font-family: var(--font-family-header);
+    color: var(--header-color);
+    padding-bottom: 56px;
+}
+
+
+//Guide Card
+.card {
+    border-radius: 20px;
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--secondary);
+    margin-top: 20px;
+    margin-bottom: -70px;
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.info {
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    width: 100%;
+    padding: 120px 16px 16px 16px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: var(--secondary);
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.name {
+    font-family: var(--font-family-header);
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.role {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.social-link {
+    background-color: transparent !important;
+    border: 2px solid var(--primary) !important;
+}
+
+.slider {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}

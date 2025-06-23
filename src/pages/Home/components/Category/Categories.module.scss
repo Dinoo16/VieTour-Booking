@@ -64,24 +64,4 @@
         letter-spacing: 0.2px;
         text-align: center;
     }
-
-    // Swiper pagination styling
-    :global(.swiper-pagination-bullet) {
-        background-color: transparent;
-        border: 1px solid var(--header-color);
-        opacity: 1;
-        margin: 0 6px;
-        width: 14px;
-        height: 14px;
-        transition: background 0.2s, border 0.2s;
-    }
-
-    :global(.swiper-pagination-bullet-active) {
-        background-color: var(--primary);
-        border: 2px solid var(--primary);
-    }
-
-    :global(.swiper-slide) {
-        padding: 16px 0;
-    }
 }
