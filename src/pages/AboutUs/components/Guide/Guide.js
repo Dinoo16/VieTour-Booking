@@ -18,6 +18,7 @@ function Guide({ items = [] }) {
                 modules={[Pagination]}
                 spaceBetween={24}
                 slidesPerView={4}
+                loop={true}
                 pagination={{ clickable: true }}
                 breakpoints={{
                     640: { slidesPerView: 2 },

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
+import Button from '~/components/Button/Button';
 const cx = classNames.bind(styles);
 
 const FEEDBACKS = [
@@ -52,16 +52,19 @@ const Feedback = () => {
                             </div>
                             <div className={cx('content')}>
                                 <div className={cx('stars')}>{'★'.repeat(feedback.stars)}</div>
-                                <p className={cx('quote')}>“{feedback.content}”</p>
-                                <p className={cx('author')}>{feedback.name}</p>
+                                <p className={cx('feedback')}>“{feedback.content}”</p>
+                                <p className={cx('author')}>
+                                    {feedback.name} - {feedback.role}
+                                </p>
                             </div>
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className={cx('view-more')}>
-                <a href="#!">View More</a>
-            </div>
+
+            <Button text href="#!" className={cx('view-more')}>
+                View More
+            </Button>
         </div>
     );
 };
