@@ -14,7 +14,10 @@ import { ReactComponent as FacebookIcon } from './facebook.svg';
 import { ReactComponent as TwitterIcon } from './twitter.svg';
 import { ReactComponent as InstagramIcon } from './instagram.svg';
 import { ReactComponent as YoutubeIcon } from './youtube.svg';
-
+import { ReactComponent as UpIcon } from './upIcon.svg';
+import { ReactComponent as DownIcon } from './downIcon.svg';
+import { ReactComponent as PenIcon } from './pen.svg';
+import { ReactComponent as SearchIcon } from './search.svg';
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -32,6 +35,10 @@ const icons = {
     twitter: TwitterIcon,
     instagram: InstagramIcon,
     youtube: YoutubeIcon,
+    upIcon: UpIcon,
+    downIcon: DownIcon,
+    penIcon: PenIcon,
+    search: SearchIcon,
 };
 
 export default icons;

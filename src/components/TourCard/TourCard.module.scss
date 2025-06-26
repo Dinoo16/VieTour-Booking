@@ -1,0 +1,124 @@
+
+
+.card {
+    background: #FEFCFB;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(102, 102, 102, 0.08);
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-6px);
+    }
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 260px;
+
+    &:hover {
+        .overlay {
+            opacity: 1;
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        padding-bottom: 24px;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .book-now {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.info {
+    padding: 24px 16px;
+
+    .title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+    }
+
+    .tour-name {
+        font-size: 18px;
+        color: var(--title-color);
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+    .meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+
+        .destination {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+    }
+
+    .price {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .old-price {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .new-price {
+            background-color: rgba(223, 105, 81, 0.25);
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
+}

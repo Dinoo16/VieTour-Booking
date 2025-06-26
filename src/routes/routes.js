@@ -69,7 +69,7 @@ const publicRoutes = [
         ),
     },
     {
-        path: routesConfig.tour,
+        path: routesConfig.tourdetail,
         component: TourDetail,
         layout: (page) => (
             <DefaultLayout

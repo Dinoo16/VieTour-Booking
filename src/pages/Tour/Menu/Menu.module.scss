@@ -1,0 +1,29 @@
+.menu {
+    height: 141px;
+    background-color: #EDEDED;
+    display: flex;
+    align-items: center;
+
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 14px;
+    cursor: pointer;
+
+    .icon {
+        color: black;
+        width: 24px;
+        height: 24px;
+    }
+
+    .title {
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+}
