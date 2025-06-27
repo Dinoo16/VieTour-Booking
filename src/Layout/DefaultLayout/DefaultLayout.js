@@ -8,7 +8,7 @@ import Footer from '../components/Footer/Footer';
 
 const cx = classNames.bind(styles);
 
-function DefaultLayout({ children, banner }) {
+function DefaultLayout({ children, banner, hideSearchTour = false, noContentSpacing = false }) {
     return (
         <div className={cx('wrapper')}>
             {banner && (
@@ -28,12 +28,12 @@ function DefaultLayout({ children, banner }) {
                                 Expore Tours
                             </Button>
                         </div>
-                        <SearchTour />
+                        {!hideSearchTour && <SearchTour />}
                     </div>
                 </div>
             )}
-            <div className={cx('content')}>{children}</div>
-            <Footer />  
+            <div className={cx('content', { 'no-padding': noContentSpacing })}>{children}</div>
+            <Footer />
         </div>
     );
 }
@@ -41,5 +41,6 @@ function DefaultLayout({ children, banner }) {
 DefaultLayout.propTypes = {
     children: PropTypes.node.isRequired,
     banner: PropTypes.node.isRequired,
+    hideSearchTour: PropTypes.bool,
 };
 export default DefaultLayout;

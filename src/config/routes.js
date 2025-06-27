@@ -2,7 +2,7 @@ const routes = {
     home: '/',
     aboutus: '/aboutus',
     tour: '/tour',
-    tourdetail: 'tour/detail',
+    tourdetail: 'tour/:id',
     destination: '/destination',
     payment: '/payment',
     blog: '/blog',

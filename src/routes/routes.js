@@ -78,6 +78,8 @@ const publicRoutes = [
                     title: 'Landscaper',
                     subtitle: 'EXPLORE',
                 }}
+                hideSearchTour
+                noContentSpacing
             >
                 {page}
             </DefaultLayout>

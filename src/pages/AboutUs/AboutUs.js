@@ -9,14 +9,13 @@ import Guide from './components/Guide/Guide';
 import Feedback from './components/Feedback/Feedback';
 const cx = classNames.bind(styles);
 
-
 const ACHIEVEMENTS = [
     { number: '12', label: 'Years Experience' },
     { number: '97%', label: 'Retention Rate' },
     { number: '8k', label: 'Tour Completed' },
     { number: '19k', label: 'Happy Travellers' },
-  ];
-  const GUIDES = [
+];
+const GUIDES = [
     {
         name: 'Jane Cooper',
         avatar: images.avatar,
@@ -72,7 +71,7 @@ const ACHIEVEMENTS = [
             youtube: 'https://www.youtube.com/jane.cooper',
         },
     },
-]
+];
 function AboutUs() {
     return (
         <div className={cx('wrapper')}>
@@ -82,9 +81,8 @@ function AboutUs() {
 
             <div className={cx('gallery')}>
                 <img src={images.gallery} alt="aboutus" className={cx('gallery-img')} />
-                <div className = {cx('overlay')}> </div>
-                <Button iconButton className={cx('play-btn')}>
-                </Button>
+                <div className={cx('overlay')}> </div>
+                <Button iconButton className={cx('play-btn')}></Button>
             </div>
 
             <Achievement items={ACHIEVEMENTS} />

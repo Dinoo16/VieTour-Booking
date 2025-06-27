@@ -18,6 +18,8 @@ import { ReactComponent as UpIcon } from './upIcon.svg';
 import { ReactComponent as DownIcon } from './downIcon.svg';
 import { ReactComponent as PenIcon } from './pen.svg';
 import { ReactComponent as SearchIcon } from './search.svg';
+import { ReactComponent as InfoIcon } from './info.svg';
+import { ReactComponent as GalleryIcon } from './gallery.svg';
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -39,6 +41,8 @@ const icons = {
     downIcon: DownIcon,
     penIcon: PenIcon,
     search: SearchIcon,
+    info: InfoIcon,
+    gallery: GalleryIcon,
 };
 
 export default icons;

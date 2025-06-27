@@ -4,8 +4,10 @@ import icons from '~/assets/icons';
 import Menu from './Menu/Menu';
 import TourCard from '~/components/TourCard/TourCard';
 import images from '~/assets/images';
-import React, { useState } from 'react';
 import Button from '~/components/Button/Button';
+import PriceFilter from '~/components/PriceFilter/PriceFilter';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -29,62 +31,370 @@ const MENU_ITEMS = [
 
 const TOURS = [
     {
+        id: 1,
         image: images.halongbay,
         title: 'Ha Long',
         destination: 'Quang Ninh',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        departure: 'Hanoi',
+        departureTime: 'Approximately 08 : 10 AM',
+        returnTime: 'Approximately 07 : 20 PM',
+        category: 'Cruise, nature and romantic',
         rating: 4.8,
         oldPrice: 950,
         price: 850,
+        duration: '4 days',
+        tourPlans: [
+            {
+                day: 1,
+                title: 'Departure',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 2,
+                title: 'Visiting Zurich, Geneva and Zermatt',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 3,
+                title: 'Rest',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 4,
+                title: 'Historical Tour',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 5,
+                title: 'Return',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        review: [
+            {
+                name: 'John Doe',
+                rating: 5,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                name: 'Jane Smith',
+                rating: 4.8,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        gallery: [
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+        ],
     },
     {
+        id: 2,
         image: images.hanoi,
         title: 'Guom Lake',
         destination: 'Hanoi',
-        rating: 4.5,
-        oldPrice: 950,
-        price: 850,
-    },
-    {
-        image: images.halongbay,
-        title: 'Ha Long',
-        destination: 'Quang Ninh',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        departure: 'Hanoi',
+        departureTime: 'Approximately 08 : 10 AM',
+        returnTime: 'Approximately 07 : 20 PM',
+        category: 'Cruise, nature and romantic',
         rating: 4.8,
         oldPrice: 950,
         price: 850,
+        duration: '4 days',
+        tourPlans: [
+            {
+                day: 1,
+                title: 'Departure',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 2,
+                title: 'Visiting Zurich, Geneva and Zermatt',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 3,
+                title: 'Rest',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 4,
+                title: 'Historical Tour',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 5,
+                title: 'Return',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        review: [
+            {
+                name: 'John Doe',
+                rating: 5,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                name: 'Jane Smith',
+                rating: 4.8,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        gallery: [images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi],
     },
     {
+        id: 3,
         image: images.hanoi,
-        title: 'Guom Lake',
-        destination: 'Hanoi',
-        rating: 4.5,
-        oldPrice: 950,
-        price: 850,
-    },
-    {
-        image: images.halongbay,
-        title: 'Ha Long',
-        destination: 'Quang Ninh',
+        title: 'Hoi An',
+        destination: 'Hoi An',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        departure: 'Hanoi',
+        departureTime: 'Approximately 08 : 10 AM',
+        returnTime: 'Approximately 07 : 20 PM',
+        category: 'Cruise, nature and romantic',
         rating: 4.8,
         oldPrice: 950,
         price: 850,
+        duration: '4 days',
+        tourPlans: [
+            {
+                day: 1,
+                title: 'Departure',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 2,
+                title: 'Visiting Zurich, Geneva and Zermatt',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 3,
+                title: 'Rest',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 4,
+                title: 'Historical Tour',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 5,
+                title: 'Return',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        review: [
+            {
+                name: 'John Doe',
+                rating: 5,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                name: 'Jane Smith',
+                rating: 4.8,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        gallery: [
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+        ],
     },
     {
-        image: images.halongbay,
-        title: 'Ha Long',
-        destination: 'Quang Ninh',
+        id: 4,
+        image: images.hanoi,
+        title: 'Hoi An',
+        destination: 'Hoi An',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        departure: 'Hanoi',
+        departureTime: 'Approximately 08 : 10 AM',
+        returnTime: 'Approximately 07 : 20 PM',
+        category: 'Cruise, nature and romantic',
         rating: 4.8,
         oldPrice: 950,
         price: 850,
+        duration: '4 days',
+        tourPlans: [
+            {
+                day: 1,
+                title: 'Departure',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 2,
+                title: 'Visiting Zurich, Geneva and Zermatt',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 3,
+                title: 'Rest',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 4,
+                title: 'Historical Tour',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 5,
+                title: 'Return',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        review: [
+            {
+                name: 'John Doe',
+                rating: 5,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                name: 'Jane Smith',
+                rating: 4.8,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        gallery: [images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi],
+    },
+    {
+        id: 5,
+        image: images.hanoi,
+        title: 'Hoi An',
+        destination: 'Hoi An',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        departure: 'Hanoi',
+        departureTime: 'Approximately 08 : 10 AM',
+        returnTime: 'Approximately 07 : 20 PM',
+        category: 'Cruise, nature and romantic',
+        rating: 4.8,
+        oldPrice: 950,
+        price: 850,
+        duration: '4 days',
+        tourPlans: [
+            {
+                day: 1,
+                title: 'Departure',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 2,
+                title: 'Visiting Zurich, Geneva and Zermatt',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 3,
+                title: 'Rest',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 4,
+                title: 'Historical Tour',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 5,
+                title: 'Return',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        review: [
+            {
+                name: 'John Doe',
+                rating: 5,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                name: 'Jane Smith',
+                rating: 4.8,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        gallery: [
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+            images.halongbay,
+        ],
+    },
+    {
+        id: 6,
+        image: images.hanoi,
+        title: 'Hoi An',
+        destination: 'Hoi An',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        departure: 'Hanoi',
+        departureTime: 'Approximately 08 : 10 AM',
+        returnTime: 'Approximately 07 : 20 PM',
+        category: 'Cruise, nature and romantic',
+        rating: 4.8,
+        oldPrice: 950,
+        price: 850,
+        duration: '4 days',
+        tourPlans: [
+            {
+                day: 1,
+                title: 'Departure',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 2,
+                title: 'Visiting Zurich, Geneva and Zermatt',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 3,
+                title: 'Rest',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 4,
+                title: 'Historical Tour',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                day: 5,
+                title: 'Return',
+                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        review: [
+            {
+                name: 'John Doe',
+                rating: 5,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+            {
+                name: 'Jane Smith',
+                rating: 4.8,
+                comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            },
+        ],
+        gallery: [images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi, images.hanoi],
     },
 ];
-
-function handleTourClick(item) {
-    console.log(item);
-}
 
 function Tour() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1200);
+
+    const navigate = useNavigate();
+
+    function handleTourClick(item) {
+        navigate(`/tour/${item.id}`);
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -133,29 +443,12 @@ function Tour() {
 
                     <div className={cx('price-filter')}>
                         <h2 className={cx('price-filter-title')}>Filter By Price</h2>
-                        <div className={cx('price-filter-bar')}>
-                            <input
-                                type="range"
-                                min={0}
-                                max={1200}
-                                value={minPrice}
-                                onChange={(e) => setMinPrice(Number(e.target.value))}
-                                className={cx('slider')}
-                                style={{ zIndex: minPrice > 1200 - 100 ? 5 : 3 }}
-                            />
-                            <input
-                                type="range"
-                                min={0}
-                                max={1200}
-                                value={maxPrice}
-                                onChange={(e) => setMaxPrice(Number(e.target.value))}
-                                className={cx('slider')}
-                                style={{ zIndex: 4 }}
-                            />
-                        </div>
-                        <div className={cx('price-filter-value')}>
-                            Price: ${minPrice} – ${maxPrice}
-                        </div>
+                        <PriceFilter
+                            minPrice={minPrice}
+                            setMinPrice={setMinPrice}
+                            maxPrice={maxPrice}
+                            setMaxPrice={setMaxPrice}
+                        />
                     </div>
 
                     <Button primary>Book Now</Button>

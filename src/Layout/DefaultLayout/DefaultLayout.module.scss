@@ -92,4 +92,9 @@
   padding-top: 120px;
   display: flex;
   flex-direction: column;
+
+  &.no-padding {
+    margin: 0 auto;
+    padding-top: 0;
+  }
 }
