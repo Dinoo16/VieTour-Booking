@@ -485,12 +485,16 @@ function TourDetail() {
                 {activeMenu.title === 'Tour Plan' && (
                     <>
                         <div className={cx('tour-plan')}>
+                            <h1 className={cx('tour-plan-title')}>Tour Plan</h1>
                             {tour.tourPlans.map((plan, idx) => (
-                                <div key={idx} className={cx('day')}>
-                                    <h4>
-                                        Day {plan.day}: {plan.title}
-                                    </h4>
-                                    <p>{plan.content}</p>
+                                <div key={idx} className={cx('day-item')}>
+                                    <div className={cx('day-number')}>{plan.day}</div>
+                                    <div className={cx('day-content')}>
+                                        <h3>
+                                            Day {plan.day}: {plan.title}
+                                        </h3>
+                                        <p className={cx('day-description')}>{plan.content}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -501,7 +505,22 @@ function TourDetail() {
                 {activeMenu.title === 'Location' && (
                     <>
                         <div className={cx('location')}>
-                            <p>Map or location info here (if any)</p>
+                            <h1 className={cx('location-title')}>Location</h1>
+                            <p className={cx('location-description')}>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                            </p>
+                            <img src={images.mapdemo} alt="map" className={cx('map-demo')} />
+                            <p className={cx('location-description')}>
+                                Sit quasi soluta non temporibus voluptas non necessitatibus tempore sit deleniti
+                                praesentium aut velit nostrum ut itaque atque ad expedita veniam. Hic deleniti officiis
+                                est sapiente explicabo non eaque corporis aut voluptatum iusto At facere enim id
+                                voluptas reprehenderit. Ut voluptas laudantium et molestias voluptatem ex doloremque
+                                omnis est ipsum nihil.
+                            </p>
+                            <div className={cx('view')}>
+                                <span>Click the image below for a 360-degree tour of Ha Long Bay</span>
+                                <img src={images.halongbay} alt="halongbay" />
+                            </div>
                         </div>
                         <BookTour />
                     </>
@@ -510,10 +529,41 @@ function TourDetail() {
                 {activeMenu.title === 'Gallery' && (
                     <>
                         <div className={cx('gallery')}>
-                            {tour.gallery.map((img, idx) => (
-                                <img key={idx} src={img} alt={`Gallery ${idx}`} className={cx('gallery-img')} />
-                            ))}
+                            <div className={cx('gallery-box-1')}>
+                                <div className={cx('gallery-box-1-left')}>
+                                    {tour.gallery.slice(0, 3).map((img, idx) => (
+                                        <img key={idx} src={img} alt={`Gallery ${idx}`} className={cx('gallery-img')} />
+                                    ))}
+                                </div>
+                                <div className={cx('gallery-box-1-right')}>
+                                    <img src={tour.gallery[3]} alt="Gallery 3" className={cx('gallery-img')} />
+                                </div>
+                            </div>
+
+                            <div className={cx('gallery-box-2')}>
+                                <div className={cx('gallery-box-2-top')}>
+                                    {tour.gallery.slice(4, 6).map((img, idx) => (
+                                        <img
+                                            key={idx + 4}
+                                            src={img}
+                                            alt={`Gallery ${idx + 4}`}
+                                            className={cx('gallery-img')}
+                                        />
+                                    ))}
+                                </div>
+                                <div className={cx('gallery-box-2-bottom')}>
+                                    <img src={tour.gallery[6]} alt="Gallery 6" className={cx('gallery-img')} />
+                                </div>
+                            </div>
+
+                            {/* Optional bottom banner image (8th image) */}
+                            {tour.gallery[7] && (
+                                <div className={cx('gallery-banner')}>
+                                    <img src={tour.gallery[7]} alt="Gallery 7" className={cx('gallery-img')} />
+                                </div>
+                            )}
                         </div>
+
                         <BookTour />
                     </>
                 )}

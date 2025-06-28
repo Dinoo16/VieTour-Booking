@@ -13,6 +13,7 @@ const images = {
     whyus: require('~/assets/images/why-us.png'),
     aboutus: require('~/assets/images/about-us.png'),
     avatar: require('~/assets/images/avatar.png'),
+    mapdemo: require('~/assets/images/mapdemo.png'),
 };
 
 export default images;
