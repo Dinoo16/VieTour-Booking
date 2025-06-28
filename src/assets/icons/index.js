@@ -20,6 +20,12 @@ import { ReactComponent as PenIcon } from './pen.svg';
 import { ReactComponent as SearchIcon } from './search.svg';
 import { ReactComponent as InfoIcon } from './info.svg';
 import { ReactComponent as GalleryIcon } from './gallery.svg';
+import { ReactComponent as UserIcon } from './avatar.svg';
+import { ReactComponent as Email } from './email.svg';
+import { ReactComponent as Phone } from './phone.svg';
+import { ReactComponent as Tag } from './tag.svg';
+import { ReactComponent as Message } from './message.svg';
+
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -43,6 +49,11 @@ const icons = {
     search: SearchIcon,
     info: InfoIcon,
     gallery: GalleryIcon,
+    user: UserIcon,
+    email: Email,
+    phone: Phone,
+    tag: Tag,
+    message: Message,
 };
 
 export default icons;

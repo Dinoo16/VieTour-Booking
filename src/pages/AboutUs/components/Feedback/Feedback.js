@@ -6,6 +6,7 @@ import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Button from '~/components/Button/Button';
+import FeedBack from '~/components/FeedBack/FeedBack';
 const cx = classNames.bind(styles);
 
 const FEEDBACKS = [
@@ -46,18 +47,7 @@ const Feedback = () => {
             <Swiper modules={[Navigation, Pagination]} slidesPerView={1} loop={true} className={cx('slider')}>
                 {FEEDBACKS.map((feedback) => (
                     <SwiperSlide key={feedback.id}>
-                        <div className={cx('card')}>
-                            <div className={cx('avatar')}>
-                                <img src={feedback.avatar} alt={feedback.name} />
-                            </div>
-                            <div className={cx('content')}>
-                                <div className={cx('stars')}>{'★'.repeat(feedback.stars)}</div>
-                                <p className={cx('feedback')}>“{feedback.content}”</p>
-                                <p className={cx('author')}>
-                                    {feedback.name} - {feedback.role}
-                                </p>
-                            </div>
-                        </div>
+                        <FeedBack item={feedback} />
                     </SwiperSlide>
                 ))}
             </Swiper>

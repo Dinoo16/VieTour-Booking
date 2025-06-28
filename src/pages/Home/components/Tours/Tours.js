@@ -7,7 +7,7 @@ import TourCard from '~/components/TourCard/TourCard';
 
 const cx = classNames.bind(styles);
 
-function Tours({items = [], onclick }) {
+function Tours({ items = [], onclick }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -20,15 +20,22 @@ function Tours({items = [], onclick }) {
                         See More Tours <icons.arrow_right />
                     </Button>
                 </div>
-
-                
             </div>
             {/* TOURS LIST */}
             <div className={cx('list')}>
-                    {items.map((item, index) => (
-                        <TourCard key={index} images={item.image} title={item.title} destination={item.destination} rating={item.rating} oldPrice={item.oldPrice} price={item.price} onclick={onclick} />
-                    ))}
-                </div>
+                {items.map((item, index) => (
+                    <TourCard
+                        key={index}
+                        images={item.image}
+                        title={item.title}
+                        destination={item.destination}
+                        rating={item.rating}
+                        oldPrice={item.oldPrice}
+                        price={item.price}
+                        onclick={onclick}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

@@ -11,10 +11,14 @@ function Footer() {
         <div className={cx('wrapper')}>
             {/* Subscribe Section */}
             <div className={cx('subscribe')}>
-                <h2>Subscribe and get exclusive <br /> deals & offer</h2>
+                <h2>
+                    Subscribe and get exclusive <br /> deals & offer
+                </h2>
                 <form className={cx('form')}>
                     <input type="email" placeholder="Enter your mail" />
-                    <Button primary small>Subscribe</Button>
+                    <Button primary small>
+                        Subscribe
+                    </Button>
                 </form>
             </div>
 
@@ -26,7 +30,9 @@ function Footer() {
                     <div className={cx('logo')}>
                         <img src={images.logo_black} alt="logo" />
                     </div>
-                    <p>Travel helps companies <br /> manage payments easily.</p>
+                    <p>
+                        Travel helps companies <br /> manage payments easily.
+                    </p>
                     <div className={cx('socials')}>
                         <div className={cx('social-item')}>
                             <icons.facebook />
