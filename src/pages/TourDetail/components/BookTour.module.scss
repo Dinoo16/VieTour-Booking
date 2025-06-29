@@ -1,6 +1,6 @@
 .wrapper {
     width: 444px;
-    min-height: 800px;
+    max-height: 860px;
     background-color: #EDEDED;
     display: flex;
     flex-direction: column;
@@ -40,6 +40,7 @@
 
 .input-box {
     width: 100%;
+
     &:focus-within .input-icon {
         opacity: 1;
     }

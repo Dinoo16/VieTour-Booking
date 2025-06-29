@@ -14,6 +14,15 @@ const images = {
     aboutus: require('~/assets/images/about-us.png'),
     avatar: require('~/assets/images/avatar.png'),
     mapdemo: require('~/assets/images/mapdemo.png'),
+    applepay: require('~/assets/images/applepay.png'),
+    paypal: require('~/assets/images/paypal.png'),
+    gallery_1: require('~/assets/images/gallery_1.png'),
+    gallery_2: require('~/assets/images/gallery_2.png'),
+    gallery_3: require('~/assets/images/gallery_3.png'),
+    gallery_4: require('~/assets/images/gallery_4.png'),
+    gallery_5: require('~/assets/images/gallery_5.png'),
+    gallery_6: require('~/assets/images/gallery_6.png'),
+    gallery_7: require('~/assets/images/gallery_7.png'),
 };
 
 export default images;

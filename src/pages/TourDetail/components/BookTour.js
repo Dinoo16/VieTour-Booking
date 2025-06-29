@@ -3,10 +3,18 @@ import classNames from 'classnames/bind';
 import styles from './BookTour.module.scss';
 import icons from '~/assets/icons';
 import Button from '~/components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import routes from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
-function BookTour() {
+function BookTour({item}) {
+    const navigate = useNavigate();
+
+    const handleBookTour = () => {
+        navigate(`/payment/${item.id}`);    
+    };
+
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>Book This Tour</h1>
@@ -42,7 +50,7 @@ function BookTour() {
                     <input type="text" id="message" placeholder="Message" className={cx('input')} />
                 </div>
 
-                <Button primary className={cx('button')}>
+                <Button primary className={cx('button')} onClick={handleBookTour}>
                     Book Now
                 </Button>
             </div>

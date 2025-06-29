@@ -32,7 +32,7 @@ function Tours({ items = [], onclick }) {
                         rating={item.rating}
                         oldPrice={item.oldPrice}
                         price={item.price}
-                        onclick={onclick}
+                        onclick={() => onclick(item)}   
                     />
                 ))}
             </div>

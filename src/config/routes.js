@@ -4,7 +4,7 @@ const routes = {
     tour: '/tour',
     tourdetail: 'tour/:id',
     destination: '/destination',
-    payment: '/payment',
+    payment: '/payment/:id',
     blog: '/blog',
     admin: '/admin',
     profile: '/:nickname',

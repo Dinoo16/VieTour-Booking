@@ -5,10 +5,12 @@ import Button from '~/components/Button/Button';
 import Header from '../components/Header/Header';
 import SearchTour from '../components/SearchTour/SearchTour';
 import Footer from '../components/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children, banner, hideSearchTour = false, noContentSpacing = false }) {
+    const navigate = useNavigate();
     return (
         <div className={cx('wrapper')}>
             {banner && (
@@ -24,7 +26,7 @@ function DefaultLayout({ children, banner, hideSearchTour = false, noContentSpac
                         <div className={cx('banner-content', { 'start-title': banner.startTitle })}>
                             {banner.subtitle && <span className={cx('subtitle')}>{banner.subtitle}</span>}
                             <h1>{banner.title}</h1>
-                            <Button rounded transparent>
+                            <Button rounded transparent onClick={() => navigate('/tour')}>
                                 Expore Tours
                             </Button>
                         </div>

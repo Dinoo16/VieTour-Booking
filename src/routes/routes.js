@@ -9,6 +9,7 @@ import DefaultLayout from '~/Layout/DefaultLayout/DefaultLayout';
 import images from '~/assets/images';
 import classNames from 'classnames/bind';
 import styles from './routes.module.scss';
+import Payment from '~/pages/Payment/Payment';
 
 const cx = classNames.bind(styles);
 //Anonymous User
@@ -112,6 +113,23 @@ const publicRoutes = [
                     title: 'Blog',
                     subtitle: 'READ',
                 }}
+            >
+                {page}
+            </DefaultLayout>
+        ),
+    },
+    {
+        path: routesConfig.payment,
+        component: Payment,
+        layout: (page) => (
+            <DefaultLayout
+                banner={{
+                    image: images.aboutusbg,
+                    title: 'Thanks For Choosing Us',
+                    subtitle: 'READ',
+                }}
+                hideSearchTour
+                noContentSpacing
             >
                 {page}
             </DefaultLayout>

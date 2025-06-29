@@ -12,7 +12,7 @@ function TourCard({ images, title, destination, rating, oldPrice, price, onclick
             <div className={cx('image-wrapper')}>
                 <img src={images} alt={title} />
                 <div className={cx('overlay')}>
-                    <Button primary small>
+                    <Button primary small >
                         Book Now
                     </Button>
                 </div>

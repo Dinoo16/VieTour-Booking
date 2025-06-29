@@ -25,6 +25,10 @@ import { ReactComponent as Email } from './email.svg';
 import { ReactComponent as Phone } from './phone.svg';
 import { ReactComponent as Tag } from './tag.svg';
 import { ReactComponent as Message } from './message.svg';
+import { ReactComponent as PaypalIcon } from './PayPal.svg';
+import { ReactComponent as ApplePayIcon } from './applepay.svg';
+import { ReactComponent as CardIcon } from './card.svg';
+import { ReactComponent as CategoryIcon } from './category.svg';
 
 const icons = {
     location: LocationIcon,
@@ -54,6 +58,10 @@ const icons = {
     phone: Phone,
     tag: Tag,
     message: Message,
+    paypal: PaypalIcon,
+    applepay: ApplePayIcon,
+    card: CardIcon,
+    category: CategoryIcon,
 };
 
 export default icons;

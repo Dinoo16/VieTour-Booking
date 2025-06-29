@@ -4,6 +4,7 @@
     padding: 12px 24px 12px 0;
 
 }
+
 //menu item
 .menu-item {
     display: flex;
@@ -15,9 +16,10 @@
     flex: 1;
     border-right: 1px solid #E1E4E5;
     cursor: pointer;
-    .icon {
-        width: 22px;
-        height: 22px;
+
+    svg {
+        width: 21px;
+        height: 21px;
         color: var(--primary);
     }
 }

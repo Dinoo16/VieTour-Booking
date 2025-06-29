@@ -21,8 +21,8 @@ const SEARCH_ITEMS = [
         title: '0 Days - 6 Days',
     },
     {
-        icon: icons.calendar,
-        title: 'Select your date',
+        icon: icons.category,
+        title: 'Choose Category',
     },
     {
         icon: icons.dollar,

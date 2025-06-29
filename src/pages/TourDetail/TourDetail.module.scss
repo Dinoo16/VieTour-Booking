@@ -8,7 +8,7 @@
 .header {
     width: 100%;
     height: 141px;
-    background-color: #EDEDED;
+    background-color: #ededed;
 }
 
 .content {
@@ -16,6 +16,10 @@
     display: flex;
     justify-content: space-between;
     gap: 40px;
+
+    &:has(.gallery) {
+        gap: 24px;
+    }
 }
 
 //info tab
@@ -40,7 +44,6 @@
         .price {
             font-size: 28px;
             color: var(--primary);
-
         }
 
         .per-person {
@@ -57,7 +60,7 @@
         .star {
             width: 18px;
             height: 18px;
-            color: #FFBA0A;
+            color: #ffba0a;
         }
 
         span {
@@ -65,7 +68,6 @@
             font-size: 16px;
         }
     }
-
 }
 
 .description {
@@ -90,7 +92,6 @@
     }
 }
 
-
 // Tour plan
 .tour-plan-title {
     font-size: 36px;
@@ -113,7 +114,7 @@
 
         // Vertical dashed line
         &::before {
-            content: "";
+            content: '';
             position: absolute;
             left: 0;
             top: 0;
@@ -171,7 +172,6 @@
 
 // Location
 .location {
-
     .location-title {
         font-size: 42px;
         font-family: var(--font-family-header);
@@ -206,7 +206,6 @@
             object-fit: cover;
         }
     }
-
 }
 
 // Gallery
@@ -242,6 +241,7 @@
 }
 
 .gallery-box-2 {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -251,7 +251,6 @@
         gap: 24px;
 
         img:first-child {
-            width: 100%;
             height: 215px;
             object-fit: cover;
         }
@@ -259,6 +258,7 @@
         img:last-child {
             width: 215px;
             height: 215px;
+            object-fit: cover;
         }
     }
 
