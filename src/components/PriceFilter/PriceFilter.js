@@ -10,20 +10,18 @@ function PriceFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }) {
                 <input
                     type="range"
                     min={0}
-                    max={1200}
+                    max={maxPrice}
                     value={minPrice}
-                    onChange={(e) => setMinPrice(Number(e.target.value))}
+                    onChange={(e) => setMinPrice(Math.min(Number(e.target.value), maxPrice))}
                     className={cx('slider')}
-                    style={{ zIndex: minPrice > 1200 - 100 ? 5 : 3 }}
                 />
                 <input
                     type="range"
-                    min={0}
+                    min={minPrice}
                     max={1200}
                     value={maxPrice}
-                    onChange={(e) => setMaxPrice(Number(e.target.value))}
+                    onChange={(e) => setMaxPrice(Math.max(Number(e.target.value), minPrice))}
                     className={cx('slider')}
-                    style={{ zIndex: 4 }}
                 />
             </div>
             <div className={cx('price-filter-value')}>

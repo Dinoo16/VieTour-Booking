@@ -1,12 +1,12 @@
 import DestinationBox from './DestinationBox';
 import DaysBox from './DaysBox';
 import BudgetBox from './BudgetBox';
-import CalendarBox from './CalendarBox';
+import CategoryBox from './CategoryBox';
 
 const boxMapping = [
     (props) => <DestinationBox {...props} />,
     (props) => <DaysBox {...props} />,
-    (props) => <CalendarBox {...props} />,
+    (props) => <CategoryBox {...props} />,
     (props) => <BudgetBox {...props} />,
 ];
 

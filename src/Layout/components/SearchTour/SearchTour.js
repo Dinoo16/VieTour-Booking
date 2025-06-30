@@ -7,7 +7,7 @@ import Button from '~/components/Button/Button';
 import Menu from './Menu/Menu';
 import MenuItem from './Menu/MenuItem';
 import boxMapping from './Box/BoxMapping';
-import { format } from 'date-fns';
+
 
 const cx = classNames.bind(styles);
 
@@ -39,12 +39,7 @@ function SearchTour() {
     };
     const handleSelect = (index, value) => {
         const updatedTitles = [...searchTitles];
-
-        if (value instanceof Date) {
-            updatedTitles[index] = format(value, 'MMM d, yyyy');
-        } else {
-            updatedTitles[index] = value;
-        }
+        updatedTitles[index] = value;
         setSearchTitles(updatedTitles);
         setVisibleIndex(null);
     };
