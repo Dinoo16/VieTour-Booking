@@ -1,0 +1,69 @@
+.wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+
+
+
+    .notification {
+        width: 60px;
+        height: 60px;
+        // background-color: #EDEDED;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            color: #999999;
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+        }
+
+        .user-name {
+            display: flex;
+            flex-direction: column;
+            padding: 0 24px 0 4px;
+
+            .name {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .role {
+                font-size: 12px;
+            }
+        }
+
+        .arrow-down {
+            color: white;
+            width: 14px;
+            height: 10px;
+            cursor: pointer;
+        }
+    }
+}

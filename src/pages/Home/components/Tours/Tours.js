@@ -16,8 +16,8 @@ function Tours({ items = [], onclick }) {
                     <h1 className={cx('title')}>Our Trending Tour Packages</h1>
                 </div>
                 <div className={cx('button')}>
-                    <Button outline rounded to="/tour">
-                        See More Tours <icons.arrow_right />
+                    <Button outline rounded to="/tour" rightIcon={<icons.arrow_right />}>
+                        See More Tours  
                     </Button>
                 </div>
             </div>

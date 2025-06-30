@@ -167,13 +167,13 @@
     .tour-info {
         width: 100%;
         height: 100%;
-        background-color: #EDEDED;
 
         .tour-info-top {
             display: flex;
             align-items: center;
             gap: 24px;
-
+            padding-bottom: 42px;
+            border-bottom: 1px solid #999999;
             img {
                 width: 140px;
                 height: 140px;
@@ -182,6 +182,10 @@
         }
 
         .tour-info-bottom {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
     }
 }

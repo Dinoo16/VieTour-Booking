@@ -22,7 +22,6 @@ const paymentMethods = [
     },
 ];
 
-
 function Payment() {
     const [selected, setSelected] = useState('applepay');
     const { id } = useParams();
@@ -53,60 +52,62 @@ function Payment() {
                         ))}
                     </div>
                     <form className={cx('card-form')}>
-                    <div className={cx('form-group')}>
-                        <label>
-                            Cardholder name <span className={cx('required')}>*</span>
-                            <div className={cx('input-icon')}>
-                                <icons.user />
-                                <input type="text" placeholder="Cardholder name" required />
-                            </div>
-                        </label>
-                    </div>
-                    <div className={cx('form-group')}>
-                        <label>
-                            Card number <span className={cx('required')}>*</span>
-                            <div className={cx('input-icon')}>
-                                <icons.card />
-                                <input type="text" placeholder="Card number" required />
-                            </div>
-                        </label>
-                    </div>
-                    <div className={cx('form-row')}>
-                        <div className={cx('form-group', 'half')}>
+                        <div className={cx('form-group')}>
                             <label>
-                                Expiration date <span className={cx('required')}>*</span>
+                                Cardholder name <span className={cx('required')}>*</span>
                                 <div className={cx('input-icon')}>
-                                    <icons.calendar />
-                                    <input type="text" placeholder="MM/YY" required />
+                                    <icons.user />
+                                    <input type="text" placeholder="Cardholder name" required />
                                 </div>
                             </label>
                         </div>
-                        <div className={cx('form-group', 'half')}>
+                        <div className={cx('form-group')}>
                             <label>
-                                CVC <span className={cx('required')}>*</span>
+                                Card number <span className={cx('required')}>*</span>
                                 <div className={cx('input-icon')}>
                                     <icons.card />
-                                    <input type="text" placeholder="CVC" required />
+                                    <input type="text" placeholder="Card number" required />
                                 </div>
                             </label>
                         </div>
-                    </div>
-                    <Button primary>Complete order</Button>
-                </form>
+                        <div className={cx('form-row')}>
+                            <div className={cx('form-group', 'half')}>
+                                <label>
+                                    Expiration date <span className={cx('required')}>*</span>
+                                    <div className={cx('input-icon')}>
+                                        <icons.calendar />
+                                        <input type="text" placeholder="MM/YY" required />
+                                    </div>
+                                </label>
+                            </div>
+                            <div className={cx('form-group', 'half')}>
+                                <label>
+                                    CVC <span className={cx('required')}>*</span>
+                                    <div className={cx('input-icon')}>
+                                        <icons.card />
+                                        <input type="text" placeholder="CVC" required />
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <Button primary>Complete order</Button>
+                    </form>
                 </div>
 
                 <div className={cx('tour-info')}>
                     <div className={cx('tour-info-top')}>
                         <img src={tour.image} alt="tour-info" />
                         <div className={cx('tour-info-content')}>
-                        <h2>{tour.title}</h2>
-                            
+                            <h2>{tour.title}</h2>
+                            <p>{tour.description}</p>
                         </div>
                     </div>
                     <div className={cx('tour-info-bottom')}>
-
+                        <span>Number of tickets: <strong>1</strong></span>
+                        <span>Total price: <strong>{tour.price}</strong></span>
+                        <span>Prices include VAT</span>
+                        
                     </div>
-                    
                 </div>
             </div>
         </div>

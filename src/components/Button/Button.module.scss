@@ -1,3 +1,10 @@
+.a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .wrapper {
     display: inline-flex;
     align-items: center;
@@ -29,9 +36,14 @@
 }
 
 .icon {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     width: 24px;
-    text-align: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
 }
 
 // Button types
@@ -69,6 +81,7 @@
 .text {
     font-size: 16px;
     font-weight: bold;
+
     &:hover {
         text-decoration: underline var(--primary);
     }
@@ -95,6 +108,8 @@
 
     .title {
         font-size: 0;
+        display: flex;
+        align-items: center;
     }
 }
 

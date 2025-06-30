@@ -7,10 +7,37 @@ import images from '~/assets/images';
 import icons from '~/assets/icons';
 import MenuItem from './Menu/MenuItem';
 import Menu from './Menu/menu';
+import HeaderMenu from '~/components/HeaderMenu/HeaderMenu';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+
+    const currentUser = true;
+    const userMenu = [
+        {
+            icon: icons.user,
+            title: 'View profile',
+            to: '/@dino',
+        },
+        {
+            icon: icons.dollar,
+            title: 'Get coins',
+            to: '/coin',
+        },
+        {
+            icon: icons.info,
+            title: 'Settings',
+            to: '/settings',
+        },
+        {
+            icon: icons.logout,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ];
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('top')}>
@@ -42,8 +69,7 @@ function Header() {
                     <MenuItem title="Blog" to={config.blog} />
                     <MenuItem title="About Us" to={config.aboutus} />
                 </Menu>
-
-                <Button primary>Sign in</Button>
+                {currentUser ? <HeaderMenu /> : <Button primary>Sign in</Button>}
             </div>
         </header>
     );

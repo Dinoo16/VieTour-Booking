@@ -8,11 +8,11 @@ import routes from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
-function BookTour({item}) {
+function BookTour({ item }) {
     const navigate = useNavigate();
 
     const handleBookTour = () => {
-        navigate(`/payment/${item.id}`);    
+        navigate(`/payment/${item.id}`);
     };
 
     return (

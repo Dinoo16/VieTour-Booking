@@ -29,6 +29,8 @@ import { ReactComponent as PaypalIcon } from './PayPal.svg';
 import { ReactComponent as ApplePayIcon } from './applepay.svg';
 import { ReactComponent as CardIcon } from './card.svg';
 import { ReactComponent as CategoryIcon } from './category.svg';
+import { ReactComponent as NotificationIcon } from './notification.svg';
+import { ReactComponent as ArrowDownIcon } from './arrow-down.svg';
 
 const icons = {
     location: LocationIcon,
@@ -62,6 +64,8 @@ const icons = {
     applepay: ApplePayIcon,
     card: CardIcon,
     category: CategoryIcon,
+    notification: NotificationIcon,
+    arrow_down: ArrowDownIcon,
 };
 
 export default icons;
