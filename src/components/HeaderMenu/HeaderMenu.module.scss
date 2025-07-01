@@ -14,12 +14,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
 
         svg {
             color: #999999;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             color: white;
+        }
+    }
+
+    .wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: #EDEDED;
+
+        svg{
+            color: #999999;
         }
     }
 
@@ -35,14 +47,19 @@
             height: 40px;
             border-radius: 8px;
 
-            img {
+            .avatar-img {
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
                 object-fit: cover;
             }
 
+            .border {
+                border-radius: 8px;
+            }
+
         }
+       
 
         .user-name {
             display: flex;
@@ -64,6 +81,9 @@
             width: 14px;
             height: 10px;
             cursor: pointer;
+        }
+        .black-color {
+            color: black;
         }
     }
 }

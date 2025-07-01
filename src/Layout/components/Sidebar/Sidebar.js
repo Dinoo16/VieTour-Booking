@@ -1,0 +1,27 @@
+import classNames from 'classnames/bind';
+import styles from './Sidebar.module.scss';
+import Menu from './Menu/Menu';
+import SIDEBAR_MENU from '../../../data/MenuItem/SidebarMenu';
+import images from '../../../assets/images';
+import { Link } from 'react-router-dom';
+import config from '../../../config/routes';
+import PropTypes from 'prop-types';
+
+
+const cx = classNames.bind(styles);
+
+function Sidebar({ onTitleChange }) {
+    return <div className={cx('wrapper')}>
+        <Link to={config.home} className={cx('logo-link')}>
+            <img src={images.logo_black} alt="VieTour" />
+        </Link> 
+        <Menu items={SIDEBAR_MENU} onTitleChange={onTitleChange} />
+    </div>;
+};
+
+Sidebar.propTypes = {
+    onTitleChange: PropTypes.func,
+};
+
+
+export default Sidebar;

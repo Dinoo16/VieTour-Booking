@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from './routes/routes';
+import { adminRoutes, publicRoutes } from './routes/routes';
 import DefaultLayout from './Layout/DefaultLayout/DefaultLayout';
+import AdminLayout from './Layout/AdminLayout/AdminLayout';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
@@ -12,6 +13,12 @@ function App() {
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
                         const Layout = route.layout || ((page) => <DefaultLayout>{page}</DefaultLayout>);
+
+                        return <Route key={index} path={route.path} element={Layout(<Page />)}></Route>;
+                    })}
+                    {adminRoutes.map((route, index) => {
+                        const Page = route.component;
+                        const Layout = route.layout || ((page) => <AdminLayout>{page}</AdminLayout>);
 
                         return <Route key={index} path={route.path} element={Layout(<Page />)}></Route>;
                     })}

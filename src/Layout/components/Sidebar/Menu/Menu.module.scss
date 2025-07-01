@@ -1,0 +1,21 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 24px;
+        border-radius: 10px;
+        margin-bottom: 24px;
+        gap: 14px;
+        font-weight: 500;
+    }
+
+    .active {
+        background-color: var(--primary);
+        color: white;
+    }
+
+
+}

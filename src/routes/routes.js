@@ -10,6 +10,9 @@ import images from '~/assets/images';
 import classNames from 'classnames/bind';
 import styles from './routes.module.scss';
 import Payment from '~/pages/Payment/Payment';
+import AdminDashboard from '~/pages/AdminDashboard/AdminDashboard';
+import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
+import AdminDestination from '~/pages/AdminDashboard/Destination/Destination';
 
 const cx = classNames.bind(styles);
 //Anonymous User
@@ -137,10 +140,29 @@ const publicRoutes = [
     },
 ];
 
-// Registered User
+// Logged in User
 const privateRoutes = [];
 
 // Admin
-const adminRoutes = [];
+const adminRoutes = [
+    {
+        path: routesConfig.admin,
+        component: AdminDashboard,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+    {
+        path: routesConfig.adminDestination,
+        component: AdminDestination,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+];
 
-export { publicRoutes, privateRoutes };
+export { publicRoutes, privateRoutes, adminRoutes };
