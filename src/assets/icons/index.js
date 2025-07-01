@@ -38,6 +38,8 @@ import { ReactComponent as GuideIcon } from './guide.svg';
 import { ReactComponent as ImageIcon } from './image.svg';
 import { ReactComponent as FeedbackIcon } from './feedback.svg';
 import { ReactComponent as Location2Icon } from './location-2.svg';
+import { ReactComponent as AddIcon } from './add.svg';
+import { ReactComponent as RemoveIcon } from './remove.svg';
 
 const icons = {
     location: LocationIcon,
@@ -80,6 +82,8 @@ const icons = {
     feedback: FeedbackIcon,
     location2: Location2Icon,
     tour2: TourIcon2,
+    add: AddIcon,
+    remove: RemoveIcon,
 };
 
 export default icons;

@@ -13,6 +13,8 @@ import Payment from '~/pages/Payment/Payment';
 import AdminDashboard from '~/pages/AdminDashboard/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
 import AdminDestination from '~/pages/AdminDashboard/Destination/Destination';
+import AdminTour from '~/pages/AdminDashboard/Tour/Tour';
+import AdminBooking from '~/pages/AdminDashboard/Booking/Booking';
 
 const cx = classNames.bind(styles);
 //Anonymous User
@@ -157,6 +159,24 @@ const adminRoutes = [
     {
         path: routesConfig.adminDestination,
         component: AdminDestination,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+    {
+        path: routesConfig.adminTour,
+        component: AdminTour,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+    {
+        path: routesConfig.adminBooking,
+        component: AdminBooking,
         layout: (page) => (
             <AdminLayout>
                 {page}

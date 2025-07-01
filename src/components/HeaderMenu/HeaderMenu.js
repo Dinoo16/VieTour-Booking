@@ -11,6 +11,7 @@ function HeaderMenu({color, border, isWrap}) {
         <div className={cx('wrapper')}>
             <div className={cx('notification', isWrap && 'wrap')}>
                 <icons.notification />
+                <span className={cx('badge')}></span>
             </div>
             <div className={cx('user-info')}>
                 <div className={cx('avatar', border && 'border')}>
@@ -18,8 +19,8 @@ function HeaderMenu({color, border, isWrap}) {
                     {/* <icons.user /> */}
                 </div>
                 <div className={cx('user-name', color && 'black-color')}>
-                    <span className={cx('name')}>Jonh Smith</span>
-                    <span className={cx('role')}>Traveler</span>
+                    <span className={cx('name')}>Dinosaur</span>
+                    <span className={cx('role')}>Admin</span>
                 </div>
                 <icons.arrow_down className={cx('arrow-down', color && 'black-color')} />
             </div>

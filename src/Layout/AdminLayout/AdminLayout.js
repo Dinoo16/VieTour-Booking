@@ -13,7 +13,6 @@ function AdminLayout({ children }) {
     return <div className={cx('wrapper')}>
         <Sidebar onTitleChange={setTitle} />
         <div className={cx('content')}>
-            {/* <Header /> */}
             <div className={cx('header')}>
                 <h2 className={cx('heading')}>{title}</h2>
                <HeaderMenu color border isWrap/>

@@ -7,20 +7,30 @@
 
 
     .notification {
-        width: 60px;
-        height: 60px;
-        // background-color: #EDEDED;
+        width: 40px;
+        height: 40px;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        position: relative;
 
         svg {
             color: #999999;
             width: 24px;
             height: 24px;
             color: white;
+        }
+
+        .badge {
+            position: absolute;
+            top: 6px;
+            right: 9px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--primary);
         }
     }
 
@@ -30,7 +40,7 @@
         border-radius: 8px;
         background-color: #EDEDED;
 
-        svg{
+        svg {
             color: #999999;
         }
     }
@@ -59,7 +69,7 @@
             }
 
         }
-       
+
 
         .user-name {
             display: flex;
@@ -82,6 +92,7 @@
             height: 10px;
             cursor: pointer;
         }
+
         .black-color {
             color: black;
         }

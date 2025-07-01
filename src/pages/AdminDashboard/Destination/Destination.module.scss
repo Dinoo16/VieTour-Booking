@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.content {
+    width: 100%;
+
+    .add-destination {
+
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            color: black;
+        }
+    }
+
+    .destination-list {
+        margin-top: 14px;
+        padding: 24px;
+        border-radius: 8px;
+        border: 1px solid #D9D9D9;
+    }
+}
+
+.recent-activities {
+    height: 250px;
+    margin-top: 24px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #D9D9D9;
+
+    .heading {
+        font-size: 14px;
+        color: black;
+        font-weight: 500;
+    }
+}
