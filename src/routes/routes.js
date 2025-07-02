@@ -10,11 +10,16 @@ import images from '~/assets/images';
 import classNames from 'classnames/bind';
 import styles from './routes.module.scss';
 import Payment from '~/pages/Payment/Payment';
-import AdminDashboard from '~/pages/AdminDashboard/AdminDashboard';
+import AdminDashboard from '~/adminpages/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
-import AdminDestination from '~/pages/AdminDashboard/Destination/Destination';
-import AdminTour from '~/pages/AdminDashboard/Tour/Tour';
-import AdminBooking from '~/pages/AdminDashboard/Booking/Booking';
+import AdminDestination from '~/adminpages/Destination/Destination';
+import AdminTour from '~/adminpages/Tour/Tour';
+import AdminBooking from '~/adminpages/Booking/Booking';
+import AdminTraveler from '~/adminpages/Traveler/Traveler';
+import AdminGuide from '~/adminpages/Guide/Guide';
+import AdminGallery from '~/adminpages/Gallery/Gallery';
+import AdminFeedback from '~/adminpages/Feedback/Feedback';
+import AdminMessage from '~/adminpages/Message/Message';
 
 const cx = classNames.bind(styles);
 //Anonymous User
@@ -183,6 +188,52 @@ const adminRoutes = [
             </AdminLayout>
         ),
     },
+    {
+        path: routesConfig.adminTraveler,
+        component: AdminTraveler,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },  
+    {
+        path: routesConfig.adminGuide,
+        component: AdminGuide,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+    {
+        path: routesConfig.adminGallery,
+        component: AdminGallery,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+    {
+        path: routesConfig.adminFeedback,
+        component: AdminFeedback,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+    {
+        path: routesConfig.adminMessage,
+        component: AdminMessage,
+        layout: (page) => (
+            <AdminLayout>
+                {page}
+            </AdminLayout>
+        ),
+    },
+
 ];
 
 export { publicRoutes, privateRoutes, adminRoutes };

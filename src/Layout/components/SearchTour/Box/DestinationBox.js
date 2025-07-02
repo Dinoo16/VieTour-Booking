@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Box.module.scss';
-import images from '~/assets/images';
 import { DESTINATIONS } from '~/data/Destination/Destination';
 
 const cx = classNames.bind(styles);

@@ -9,8 +9,8 @@ function CategoryBox({ onSelect }) {
     return (
         <div className={cx('dropdown')}>
             <p className={cx('dropdown-title')}>Choose category</p>
-            {CATEGORIES.map((category) => (
-                <div key={category.name} className={cx('dropdown-item')} onClick={() => onSelect && onSelect(category.title)}>
+            {CATEGORIES.map((category, index) => (
+                <div key={index} className={cx('dropdown-item')} onClick={() => onSelect && onSelect(category.title)}>
                     <img src={category.image} alt={category.title} />
                     <div>
                         <p className={cx('dropdown-title')}>{category.title}</p>

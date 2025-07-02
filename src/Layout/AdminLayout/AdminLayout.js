@@ -15,7 +15,7 @@ function AdminLayout({ children }) {
         <div className={cx('content')}>
             <div className={cx('header')}>
                 <h2 className={cx('heading')}>{title}</h2>
-               <HeaderMenu color border isWrap/>
+                <HeaderMenu color border isWrap />
             </div>
             {children}
         </div>

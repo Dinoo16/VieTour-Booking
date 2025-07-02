@@ -3,7 +3,6 @@ import styles from './Tour.module.scss';
 import icons from '~/assets/icons';
 import Menu from './Menu/Menu';
 import TourCard from '~/components/TourCard/TourCard';
-import images from '~/assets/images';
 import Button from '~/components/Button/Button';
 import PriceFilter from '~/components/PriceFilter/PriceFilter';
 import { useState } from 'react';

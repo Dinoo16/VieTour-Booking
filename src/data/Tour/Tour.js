@@ -137,7 +137,7 @@ export const TOURS = [
     },
     {
         id: 3,
-        image: images.hanoi,
+        image: images.destination_1,
         title: 'Hoi An',
         destination: 'Hoi An',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
@@ -208,7 +208,7 @@ export const TOURS = [
     },
     {
         id: 4,
-        image: images.hanoi,
+        image: images.gallery_3,
         title: 'Hoi An',
         destination: 'Hoi An',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
@@ -279,7 +279,7 @@ export const TOURS = [
     },
     {
         id: 5,
-        image: images.hanoi,
+        image: images.gallery_2,
         title: 'Hoi An',
         destination: 'Hoi An',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
@@ -350,7 +350,7 @@ export const TOURS = [
     },
     {
         id: 6,
-        image: images.hanoi,
+        image: images.gallery_1,
         title: 'Hoi An',
         destination: 'Hoi An',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
