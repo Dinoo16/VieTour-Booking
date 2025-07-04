@@ -52,11 +52,34 @@ function Tour() {
                         <span className={cx('label')}>Duration</span>
                         <span className={cx('value')}>{activeTour.duration}</span>
                     </div> 
+                    <div className={cx('meta-item')}>
+                        <span className={cx('label')}>Price</span>
+                        <span className={cx('value')}>${activeTour.price}/person</span>
+                    </div> 
 
                 </div>
+
+                <div className={cx('about')}>
+                    <h3>About</h3>
+                    <p>{activeTour.description}</p>
+                </div>
+
             </div>
 
-            <div className={cx('tour-plan')}></div>
+            <div className={cx('tour-plan')}>
+                <h3>Tour Plan</h3>
+                {activeTour.tourPlans.map((plan, idx) => (
+                                <div key={idx} className={cx('day-item')}>
+                                    <div className={cx('day-number')}>{plan.day}</div>
+                                    <div className={cx('day-content')}>
+                                        <h3>
+                                            Day {plan.day}: {plan.title}
+                                        </h3>
+                                        <p className={cx('day-description')}>{plan.content}</p>
+                                    </div>
+                                </div>
+                            ))}
+            </div>
         </div>
         
     </div>;

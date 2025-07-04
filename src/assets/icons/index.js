@@ -41,6 +41,8 @@ import { ReactComponent as Location2Icon } from './location-2.svg';
 import { ReactComponent as AddIcon } from './add.svg';
 import { ReactComponent as RemoveIcon } from './remove.svg';
 import { ReactComponent as LogoutIcon } from './logout.svg';
+import { ReactComponent as ExpandIcon } from './expand-close.svg';
+import { ReactComponent as ExpandOpenIcon } from './expand-open.svg';
 
 const icons = {
     location: LocationIcon,
@@ -86,6 +88,8 @@ const icons = {
     add: AddIcon,
     remove: RemoveIcon,
     logout: LogoutIcon,
+    expand: ExpandIcon,
+    expandOpen: ExpandOpenIcon,
 };
 
 export default icons;

@@ -1,7 +1,10 @@
 .wrapper {
-    max-width: 300px;
-    padding: 32px;
-    border-right: 2px solid #999999;
+    max-width: 260px;
+    width: 100%;
+    padding: 12px 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: max-width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 
     .logo-link {
         pointer-events: none;
@@ -11,4 +14,12 @@
         margin-bottom: 24px;
         pointer-events: auto;
     }
+}
+
+.hidden {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+    padding: 0;
+    border-right: none;
 }
