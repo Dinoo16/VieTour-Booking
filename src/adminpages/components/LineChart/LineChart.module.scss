@@ -1,0 +1,73 @@
+.dashboardCard {
+  background: #fff;
+  border-radius: 12px;
+
+  margin: 0 auto;
+  box-shadow: -1px 1px 10px 2px rgba(123, 123, 123, 0.1);
+}
+
+.statsRow {
+  background-color: #F8F8F8;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.statBox {
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+.active {
+  border-bottom: 2px solid #5E72E4;
+  background-color: #Fff;
+}
+
+.statTitle {
+  font-size: 14px;
+  color: var(--header-color);
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--header-color);
+}
+
+.statChange {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.up {
+  color: #1B9736;
+}
+
+.down {
+  color: var(--primary);
+}
+
+.footerSelect {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+  padding: 16px 32px;
+}
+
+.selectBtn {
+    background-color: #fff;
+  border: 1px solid #d1d5db;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chartContainer {
+    padding: 0 32px;
+}

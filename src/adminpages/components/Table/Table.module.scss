@@ -1,63 +1,82 @@
 .wrapper {
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: -1px 1px 10px 2px rgba(123, 123, 123, 0.1);
+  overflow-x: auto;
 }
 
 .table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-family: inherit;
-    border-radius: 8px 8px 0 0;
-    border: 1px solid #D9D9D9;
+  width: 100%;
+  border-collapse: collapse;
+  text-align:left;
+  // table-layout: fixed;
 }
+
 
 .th {
-    background: var(--secondary);
-    color: white;
-    font-weight: 500;
-    padding: 12px 16px;
-    text-align: left;
-
-    &:first-child {
-        border-top-left-radius: 8px;
-    }
-
-    &:last-child {
-        border-top-right-radius: 8px;
-    }
-}
-
-.tr:not(:first-child) {
-    border-top: 1px solid #eee;
-}
-
-.td {
-    padding: 14px 16px;
-    font-size: 16px;
-    color: black;
-    font-weight: 500;
-    vertical-align: middle;
-    background: #fff;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--header-color);
+  border-bottom: 1px solid #eee;
 }
 
 .tr {
-    transition: background 0.2s;
-
-    &:hover {
-        background: #fafafa;
-    }
+  &:hover {
+    background-color: #f9f9f9;
+  }
 }
 
-.status {
-    &.confirmed {
-        color: #1976d2;
-        font-weight: 500;
-    }
-
-    &.cancelled {
-        color: #e53935;
-        font-weight: 500;
-    }
+.td {
+  padding: 16px 12px;
+  vertical-align: middle;
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 500;
+  border-bottom: 1px solid #f0f0f0;
 }
+
+
+// Tour cell: image + name
+.tour-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+// Progress bar
+.percent-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .progress-bar {
+    height: 6px;
+    width: 100px;
+    background-color: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+
+    .fill {
+      height: 100%;
+      background-color: #4f46e5;
+      border-radius: 6px;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: #333;
+    white-space: nowrap;
+  }
+}
+
+

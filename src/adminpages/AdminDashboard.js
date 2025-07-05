@@ -2,9 +2,9 @@ import classNames from 'classnames/bind';
 import styles from './AdminDashboard.module.scss';
 import icons from '~/assets/icons';
 import Table from './components/Table/Table';
-import { BOOKINGS, BOOKING_COLUMNS } from '~/data/Dashboard/Booking';
+import { TOPTOUR_DATA, TOPTOUR_COLUMNS } from '~/data/Dashboard/TopTour';
 import Calendar from './components/Calendar/Calendar';
-
+import LineChart from './components/LineChart/LineChart';
 const cx = classNames.bind(styles);
 
 const SUMMARY_ITEMS = [
@@ -23,34 +23,38 @@ const SUMMARY_ITEMS = [
         title: 'Total Earnings',
         value: '$1234.5',
     },
-
 ];
 
 const AdminDashboard = () => {
-    return <div className={cx('wrapper')}>
-        <div className={cx('content')}>
-            <div className={cx('summary')}>
-                {SUMMARY_ITEMS.map((item, index) => (
-                    <div className={cx('summary-item')} key={index}>
-                        <icons.booking />
-                        <div className={cx('summary-item-info')}>
-                            <span className={cx('summary-item-title')}>{item.title}</span>
-                            <span className={cx('summary-item-value')}><strong>{item.value}</strong></span>
+    return (
+        <div className={cx('wrapper')}>
+            <div className={cx('content')}>
+                <div className={cx('summary')}>
+                    {SUMMARY_ITEMS.map((item, index) => (
+                        <div className={cx('summary-item')} key={index}>
+                            <icons.booking />
+                            <div className={cx('summary-item-info')}>
+                                <span className={cx('summary-item-title')}>{item.title}</span>
+                                <span className={cx('summary-item-value')}>
+                                    <strong>{item.value}</strong>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
 
-            <div className={cx('recent-bookings')}>
-                <h2 className={cx('heading')}>Recent Bookings</h2>
-                <Table columns={BOOKING_COLUMNS} data={BOOKINGS} />
+                <div className={cx('chart')}>
+                    <LineChart />
+                </div>
+                <div className={cx('table')}>
+                    <Table data={TOPTOUR_DATA} columns={TOPTOUR_COLUMNS} />
+                </div>
             </div>
-            
+            <div className={cx('calendar')}>
+                <Calendar />
+            </div>
         </div>
-        <div className={cx('calendar')}>
-            <Calendar />
-        </div>
-    </div>;
+    );
 };
 
 export default AdminDashboard;

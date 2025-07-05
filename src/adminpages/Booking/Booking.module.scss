@@ -1,0 +1,26 @@
+.wrapper {
+    width: 100%;
+
+    .title {
+        font-size: 24px;
+        color: black;
+        font-weight: 500;
+        margin-bottom: 24px;
+    }
+
+    .content {
+        display: flex;
+        gap: 24px;
+    }
+
+    .recent-bookings {
+        width: 100%;
+        height: 100%;
+        
+        .heading {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 24px;
+        }
+    }
+}

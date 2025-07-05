@@ -8,20 +8,20 @@ const cx = classNames.bind(styles);
 
 /**
  * Box Component - User Menu Dropdown
- * 
+ *
  * Usage Examples:
- * 
+ *
  * // Basic usage with default menu items
  * <Box onLogout={handleLogout} />
- * 
+ *
  * // Custom user data
- * <Box 
+ * <Box
  *     user={{ name: 'John Doe', role: 'User', avatar: '/path/to/avatar.jpg' }}
  *     onLogout={handleLogout}
  * />
- * 
+ *
  * // Custom menu items
- * <Box 
+ * <Box
  *     menuItems={[
  *         { title: 'Dashboard', icon: icons.dashboard, action: 'dashboard' },
  *         { title: 'Settings', icon: icons.settings, action: 'settings' },
@@ -31,11 +31,11 @@ const cx = classNames.bind(styles);
  *     onLogout={handleLogout}
  * />
  */
-function Box({ 
+function Box({
     user = { name: 'Dinosaur', role: 'Admin', avatar: images.avatar },
     menuItems = [],
     onItemClick,
-    onLogout 
+    onLogout,
 }) {
     // Default menu items if none provided
     const defaultMenuItems = [
@@ -43,20 +43,20 @@ function Box({
             title: 'Profile',
             icon: icons.user,
             to: '/profile',
-            action: 'profile'
+            action: 'profile',
         },
         {
             title: 'Booking',
             icon: icons.booking,
             to: '/booking',
-            action: 'booking'
+            action: 'booking',
         },
         {
             title: 'Logout',
             icon: icons.logout,
             to: '/logout',
             action: 'logout',
-            className: 'logout'
+            className: 'logout',
         },
     ];
 
@@ -84,9 +84,9 @@ function Box({
                 </div>
                 <div className={cx('menu-items')}>
                     {items.map((item, index) => (
-                        <div 
-                            key={index} 
-                            className={cx('menu-item', item.className)} 
+                        <div
+                            key={index}
+                            className={cx('menu-item', item.className)}
                             onClick={() => handleItemClick(item)}
                         >
                             <item.icon />
@@ -103,17 +103,19 @@ Box.propTypes = {
     user: PropTypes.shape({
         name: PropTypes.string,
         role: PropTypes.string,
-        avatar: PropTypes.string
+        avatar: PropTypes.string,
     }),
-    menuItems: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        icon: PropTypes.elementType.isRequired,
-        to: PropTypes.string,
-        action: PropTypes.string,
-        className: PropTypes.string
-    })),
+    menuItems: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            icon: PropTypes.elementType.isRequired,
+            to: PropTypes.string,
+            action: PropTypes.string,
+            className: PropTypes.string,
+        }),
+    ),
     onItemClick: PropTypes.func,
-    onLogout: PropTypes.func
+    onLogout: PropTypes.func,
 };
 
 export default Box;

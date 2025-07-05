@@ -11,7 +11,9 @@ function Table({ columns, data }) {
                 <thead>
                     <tr>
                         {columns.map((col, idx) => (
-                            <th key={idx} className={cx('th')}>{col.header}</th>
+                            <th key={idx} className={cx('th')}>
+                                {col.header}
+                            </th>
                         ))}
                     </tr>
                 </thead>
@@ -20,9 +22,7 @@ function Table({ columns, data }) {
                         <tr key={rowIdx} className={cx('tr')}>
                             {columns.map((col, colIdx) => (
                                 <td key={colIdx} className={cx('td')}>
-                                    {col.render
-                                        ? col.render(row[col.accessor], row)
-                                        : row[col.accessor]}
+                                    {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
                                 </td>
                             ))}
                         </tr>
@@ -39,10 +39,9 @@ Table.propTypes = {
             header: PropTypes.string.isRequired,
             accessor: PropTypes.string.isRequired,
             render: PropTypes.func,
-        })
+        }),
     ).isRequired,
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Table;
-
