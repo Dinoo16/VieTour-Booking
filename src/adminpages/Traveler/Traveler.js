@@ -11,7 +11,7 @@ function Traveler() {
     return (
         <div className={cx('wrapper')}>
             <Table columns={USER_COLUMNS} data={USERS} />
-            <Pagination currentPage={page} totalPages={3} onPageChange={setPage} />
+            <Pagination currentPage={page} totalPages={5} onPageChange={setPage} />
         </div>
     );
 }
