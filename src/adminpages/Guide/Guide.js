@@ -32,7 +32,9 @@ function Guide() {
                         </Button>
                     </div>
                 </div>
-                <Menu guides={GUIDES} activeGuide={activeGuide} onGuideSelect={setActiveGuide} />
+                <div className={cx('menu-scroll')}>
+                    <Menu guides={GUIDES} activeGuide={activeGuide} onGuideSelect={setActiveGuide} />
+                </div>
             </div>
             <GuideInfo guide={activeGuide} />
         </div>

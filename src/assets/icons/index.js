@@ -48,6 +48,8 @@ import { ReactComponent as LevelIcon } from './level.svg';
 import { ReactComponent as JobStatusIcon } from './jobstatus.svg';
 import { ReactComponent as WorkIcon } from './work.svg';
 import { ReactComponent as CheckIcon } from './check.svg';
+import { ReactComponent as MoreButton } from './more.svg';
+import { ReactComponent as PlaneIcon } from './plane.svg';
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -99,6 +101,8 @@ const icons = {
     jobStatus: JobStatusIcon,
     work: WorkIcon,
     check: CheckIcon,
+    more: MoreButton,
+    plane: PlaneIcon,
 };
 
 export default icons;

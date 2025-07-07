@@ -11,7 +11,7 @@ const SIDEBAR_MENU = [
         title: 'Destinations',
         icon: icons.location2,
         to: config.adminDestination,
-    }, 
+    },
     {
         title: 'Tours',
         icon: icons.tour2,
@@ -33,7 +33,7 @@ const SIDEBAR_MENU = [
         to: config.adminGuide,
     },
     {
-        title: 'Galleries',
+        title: 'Gallery',
         icon: icons.image,
         to: config.adminGallery,
     },

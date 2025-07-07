@@ -3,8 +3,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 24px;
-
-
+    align-items: center;
 
     .notification {
         width: 40px;
@@ -15,12 +14,12 @@
         justify-content: center;
         cursor: pointer;
         position: relative;
-
+       
         svg {
-            color: #999999;
+            color: white;
             width: 24px;
             height: 24px;
-            color: white;
+            
         }
 
         .badge {
@@ -38,7 +37,7 @@
         width: 40px;
         height: 40px;
         border-radius: 8px;
-        background-color: white;
+         background-color: #EDEDED;
 
         svg {
             color: #999999;

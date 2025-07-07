@@ -1,0 +1,38 @@
+.wrapper {
+    padding: 24px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    .left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .sort {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        color: #444;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}

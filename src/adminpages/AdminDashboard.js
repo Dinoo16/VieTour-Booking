@@ -14,12 +14,12 @@ const SUMMARY_ITEMS = [
         value: 10001,
     },
     {
-        icon: icons.booking,
+        icon: icons.user,
         title: 'Total Customers',
         value: 1245,
     },
     {
-        icon: icons.booking,
+        icon: icons.dollar,
         title: 'Total Earnings',
         value: '$1234.5',
     },
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
                 <div className={cx('summary')}>
                     {SUMMARY_ITEMS.map((item, index) => (
                         <div className={cx('summary-item')} key={index}>
-                            <icons.booking />
+                            <item.icon />
                             <div className={cx('summary-item-info')}>
                                 <span className={cx('summary-item-title')}>{item.title}</span>
                                 <span className={cx('summary-item-value')}>

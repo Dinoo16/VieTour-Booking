@@ -11,18 +11,21 @@ import icons from '../../../assets/icons';
 const cx = classNames.bind(styles);
 
 function Sidebar({ onTitleChange, className }) {
-    return <div className={cx('wrapper', className)}>
+    return (
+        <div className={cx('wrapper', className)}>
             <Link to={config.home} className={cx('logo-link')}>
                 <img src={images.logo_black} alt="VieTour" />
             </Link>
-        <Menu items={SIDEBAR_MENU} onTitleChange={onTitleChange} />
-    </div>;
-};
+            <div className={cx('menu-scroll')}>
+                <Menu items={SIDEBAR_MENU} onTitleChange={onTitleChange} />
+            </div>
+        </div>
+    );
+}
 
 Sidebar.propTypes = {
     onTitleChange: PropTypes.func,
     className: PropTypes.string,
 };
-
 
 export default Sidebar;

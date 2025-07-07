@@ -13,21 +13,25 @@ function AdminLayout({ children }) {
 
     const [isExpanded, setIsExpanded] = useState(true);
 
-    return <div className={cx('wrapper')}>
-        <Sidebar onTitleChange={setTitle} className={cx({ hidden: !isExpanded })} />
-        <div className={cx('content')}>
-            <div className={cx('header')}>
-            <div className={cx('header-left')}>
-                <button className={cx('expand-button')} onClick={() => setIsExpanded(!isExpanded)}>
-                    {isExpanded ? <icons.expand /> : <icons.expandOpen />}
-                </button>
-                    <h2 className={cx('heading')}>{title}</h2>
+    return (
+        <div className={cx('layout')}>
+            <Sidebar onTitleChange={setTitle} className={cx({ hidden: !isExpanded })} />
+
+            <div className={cx('main')}>
+                <div className={cx('header')}>
+                    <div className={cx('header-left')}>
+                        <button className={cx('expand-button')} onClick={() => setIsExpanded(!isExpanded)}>
+                            {isExpanded ? <icons.expand /> : <icons.expandOpen />}
+                        </button>
+                        <h2 className={cx('heading')}>{title}</h2>
+                    </div>
+                    <HeaderMenu color border isWrap />
+                </div>
+
+                <div className={cx('content')}>{children}</div>
             </div>
-                <HeaderMenu color border isWrap />
-            </div>
-            {children}
         </div>
-    </div>;
+    );
 }
 
 AdminLayout.propTypes = {
