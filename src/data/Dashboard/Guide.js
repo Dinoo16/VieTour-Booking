@@ -11,7 +11,7 @@ export const GUIDES = [
         workExperience: '5 years',
         experienceLevel: 'Senior',
         jobStatus: 'Active',
-        jobAchievements: '1001 Tours completed',
+        jobAchievements: '1001 Tours',
         skills: [
             'Fluent in English, Italian, and French',
             'Excellent communication and storytelling',
@@ -37,7 +37,7 @@ export const GUIDES = [
         workExperience: '10 years',
         experienceLevel: 'Expert',
         jobStatus: 'Active',
-        jobAchievements: '10000 Tours completed',
+        jobAchievements: '10000 Tours',
         skills: [
             'Fluent in English, Italian, and French',
             'Excellent communication and storytelling',
@@ -63,7 +63,7 @@ export const GUIDES = [
         workExperience: '1 years',
         experienceLevel: 'Junior',
         jobStatus: 'Active',
-        jobAchievements: '100 Tours completed',
+        jobAchievements: '100 Tours',
         skills: [
             'Fluent in English, Italian, and French',
             'Excellent communication and storytelling',
@@ -89,7 +89,7 @@ export const GUIDES = [
         workExperience: '1 years',
         experienceLevel: 'Junior',
         jobStatus: 'Active',
-        jobAchievements: '100 Tours completed',
+        jobAchievements: '100 Tours',
         skills: [
             'Fluent in English, Italian, and French',
             'Excellent communication and storytelling',
@@ -115,7 +115,7 @@ export const GUIDES = [
         workExperience: '1 years',
         experienceLevel: 'Junior',
         jobStatus: 'Active',
-        jobAchievements: '100 Tours completed',
+        jobAchievements: '100 Tours',
         skills: [
             'Fluent in English, Italian, and French',
             'Excellent communication and storytelling',

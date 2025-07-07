@@ -43,7 +43,11 @@ import { ReactComponent as RemoveIcon } from './remove.svg';
 import { ReactComponent as LogoutIcon } from './logout.svg';
 import { ReactComponent as ExpandIcon } from './expand-close.svg';
 import { ReactComponent as ExpandOpenIcon } from './expand-open.svg';
-
+import { ReactComponent as CupIcon } from './cup.svg';
+import { ReactComponent as LevelIcon } from './level.svg';
+import { ReactComponent as JobStatusIcon } from './jobstatus.svg';
+import { ReactComponent as WorkIcon } from './work.svg';
+import { ReactComponent as CheckIcon } from './check.svg';
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -90,6 +94,11 @@ const icons = {
     logout: LogoutIcon,
     expand: ExpandIcon,
     expandOpen: ExpandOpenIcon,
+    cup: CupIcon,
+    level: LevelIcon,
+    jobStatus: JobStatusIcon,
+    work: WorkIcon,
+    check: CheckIcon,
 };
 
 export default icons;
