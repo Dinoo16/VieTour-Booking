@@ -31,16 +31,22 @@
             svg {
                 width: 35px;
                 height: 35px;
-                color: var(--header-color);
+                color: #343434;
             }
 
             .summary-item-info {
                 display: flex;
                 flex-direction: column;
+                .summary-item-title {
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: var(--header-color);
+                }
 
                 strong {
                     font-size: 18px;
-                    color: var(--header-color);
+                    color: #343434;
                 }
             }
         }

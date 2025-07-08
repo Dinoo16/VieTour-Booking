@@ -1,7 +1,7 @@
 .dashboardCard {
   background: #fff;
   border-radius: 12px;
-
+  overflow: hidden;
   margin: 0 auto;
   box-shadow: -1px 1px 10px 2px rgba(123, 123, 123, 0.1);
 }
@@ -69,5 +69,5 @@
 }
 
 .chartContainer {
-    padding: 0 32px;
+    padding: 24px 32px 0 32px;
 }

@@ -5,6 +5,7 @@ import Table from './components/Table/Table';
 import { TOPTOUR_DATA, TOPTOUR_COLUMNS } from '~/data/Dashboard/TopTour';
 import Calendar from './components/Calendar/Calendar';
 import LineChart from './components/LineChart/LineChart';
+
 const cx = classNames.bind(styles);
 
 const SUMMARY_ITEMS = [

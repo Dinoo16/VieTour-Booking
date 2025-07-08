@@ -31,7 +31,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
       >
-        ← Previous
+        Previous
       </button>
 
       {pages.map((page, index) => (
@@ -53,7 +53,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
       >
-        Next →
+        Next
       </button>
     </div>
   );

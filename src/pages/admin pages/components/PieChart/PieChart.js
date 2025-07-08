@@ -1,5 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { useState } from 'react';
 import styles from './PieChart.module.scss';
 import classNames from 'classnames/bind';
 
@@ -16,6 +17,8 @@ const COLORS = ['#DF6951', 'rgba(223, 105, 81, 0.7)', 'rgba(223, 105, 81, 0.5)',
 
 export default function TopTours() {
     const totalCustomers = 123;
+    const ranges = ['This Week', 'Last Week'];
+    const [selectedRange, setSelectedRange] = useState(ranges[0]);
 
     return (
         <div className={cx('wrapper')}>
@@ -40,7 +43,19 @@ export default function TopTours() {
                     </PieChart>
                 </ResponsiveContainer>
                 <div className={cx('centerText')}>
-                    <div className={cx('dropdown')}>This Week ▼</div>
+                    <select
+                        className={cx('dropdown')}
+                        value={selectedRange}
+                        onChange={(e) => {
+                            setSelectedRange(e.target.value);
+                        }}
+                    >
+                        {ranges.map((range) => (
+                            <option key={range} value={range}>
+                                {range}
+                            </option>
+                        ))}
+                    </select>
                     <div className={cx('number')}>{totalCustomers}</div>
                     <div className={cx('label')}>Total Customer</div>
                 </div>

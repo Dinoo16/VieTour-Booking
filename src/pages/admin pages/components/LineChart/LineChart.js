@@ -5,13 +5,6 @@ import styles from './LineChart.module.scss';
 import { useState } from 'react';
 const cx = classNames.bind(styles);
 
-const stats = [
-    { title: 'Users', value: '3.2K', change: '42.0%', positive: true, key: 'user' },
-    { title: 'Bookings', value: '1.2K', change: '42.0%', positive: true, key: 'booking' },
-    { title: 'Tours', value: '1.2K', change: '12.0%', positive: false, key: 'tour' },
-    { title: 'Earnings', value: '3.3K', change: '12.0%', positive: false, key: 'earning' },
-];
-
 // Last 7 days data
 const userData7 = [
     { day: 'Sun', value: 100 },
@@ -86,19 +79,34 @@ const chartMap = {
 };
 
 export default function LineChart() {
-    const [activeStat, setActiveStat] = useState(stats[0]);
+    const [activeStatKey, setActiveStatKey] = useState('user');
 
     const [selectedRange, setSelectedRange] = useState('Last 7 days');
     const ranges = ['Last 7 days', 'Last 30 days'];
+
+    const totalUsers = chartMap.user[selectedRange].reduce((sum, item) => sum + item.value, 0);
+    const totalBookings = chartMap.booking[selectedRange].reduce((sum, item) => sum + item.value, 0);
+    const totalTours = chartMap.tour[selectedRange].reduce((sum, item) => sum + item.value, 0);
+    const totalEarnings = chartMap.earning[selectedRange].reduce((sum, item) => sum + item.value, 0);
+    // Format value into short (K) string
+    const formatValue = (value) =>
+        value >= 1000 ? (value / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : value.toString();
+
+    const stats = [
+        { title: 'Users', value: formatValue(totalUsers), change: '42.0%', positive: true, key: 'user' },
+        { title: 'Bookings', value: formatValue(totalBookings), change: '42.0%', positive: true, key: 'booking' },
+        { title: 'Tours', value: formatValue(totalTours), change: '12.0%', positive: false, key: 'tour' },
+        { title: 'Earnings', value: formatValue(totalEarnings), change: '12.0%', positive: false, key: 'earning' },
+    ];
 
     return (
         <div className={cx('dashboardCard')}>
             <div className={cx('statsRow')}>
                 {stats.map((item, index) => (
                     <div
-                        className={cx('statBox', { active: activeStat.key === item.key })}
+                        className={cx('statBox', { active: activeStatKey === item.key })}
                         key={index}
-                        onClick={() => setActiveStat(item)}
+                        onClick={() => setActiveStatKey(item.key)}
                     >
                         <div className={cx('statTitle')}>{item.title}</div>
                         <div className={cx('statValue')}>{item.value}</div>
@@ -113,7 +121,7 @@ export default function LineChart() {
 
             <ResponsiveContainer width="100%" minHeight={250} className={cx('chartContainer')}>
                 <ReLineChart
-                    data={chartMap[activeStat.key][selectedRange]}
+                    data={chartMap[activeStatKey][selectedRange]}
                     margin={{ top: 0, right: 20, left: 20, bottom: 0 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />

@@ -65,6 +65,11 @@
   &::placeholder {
     color: var(--text-color);
   }
+  
+}
+.input:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
 }
 
 .rememberMe {

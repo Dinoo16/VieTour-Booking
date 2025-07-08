@@ -10,6 +10,7 @@ const routes = {
     profile: '/:nickname',
     admin: '/admin',
     adminDestination: '/admin/destination',
+    adminAddDestination: '/admin/destination/add',
     adminTour: '/admin/tour',
     adminBooking: '/admin/booking',
     adminTraveler: '/admin/traveler',
