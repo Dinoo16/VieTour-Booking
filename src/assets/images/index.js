@@ -23,6 +23,7 @@ const images = {
     gallery_5: require('~/assets/images/gallery_5.png'),
     gallery_6: require('~/assets/images/gallery_6.png'),
     gallery_7: require('~/assets/images/gallery_7.png'),
+    signup_cover: require('~/assets/images/signup-cover.jpg'),
 };
 
 export default images;

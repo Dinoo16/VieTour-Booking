@@ -1,25 +1,25 @@
 import routesConfig from '~/config/routes';
-import Home from '~/pages/Home/Home';
-import AboutUs from '~/pages/AboutUs/AboutUs';
-import Destination from '~/pages/Destination/Destination';
-import Blog from '~/pages/Blog/Blog';
-import Tour from '~/pages/Tour/Tour';
-import TourDetail from '~/pages/TourDetail/TourDetail';
+import Home from '~/pages/user pages/Home/Home';
+import AboutUs from '~/pages/user pages/AboutUs/AboutUs';
+import Destination from '~/pages/user pages/Destination/Destination';
+import Blog from '~/pages/user pages/Blog/Blog';
+import Tour from '~/pages/user pages/Tour/Tour';
+import TourDetail from '~/pages/user pages/TourDetail/TourDetail';
 import DefaultLayout from '~/Layout/DefaultLayout/DefaultLayout';
 import images from '~/assets/images';
 import classNames from 'classnames/bind';
 import styles from './routes.module.scss';
-import Payment from '~/pages/Payment/Payment';
-import AdminDashboard from '~/adminpages/AdminDashboard';
+import Payment from '~/pages/user pages/Payment/Payment';
+import AdminDashboard from '~/pages/admin pages/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
-import AdminDestination from '~/adminpages/Destination/Destination';
-import AdminTour from '~/adminpages/Tour/Tour';
-import AdminBooking from '~/adminpages/Booking/Booking';
-import AdminTraveler from '~/adminpages/Traveler/Traveler';
-import AdminGuide from '~/adminpages/Guide/Guide';
-import AdminGallery from '~/adminpages/Gallery/Gallery';
-import AdminFeedback from '~/adminpages/Feedback/Feedback';
-import AdminMessage from '~/adminpages/Message/Message';
+import AdminDestination from '~/pages/admin pages/Destination/Destination';
+import AdminTour from '~/pages/admin pages/Tour/Tour';
+import AdminBooking from '~/pages/admin pages/Booking/Booking';
+import AdminTraveler from '~/pages/admin pages/Traveler/Traveler';
+import AdminGuide from '~/pages/admin pages/Guide/Guide';
+import AdminGallery from '~/pages/admin pages/Gallery/Gallery';
+import AdminFeedback from '~/pages/admin pages/Feedback/Feedback';
+import AdminMessage from '~/pages/admin pages/Message/Message';
 
 const cx = classNames.bind(styles);
 //Anonymous User
@@ -155,85 +155,48 @@ const adminRoutes = [
     {
         path: routesConfig.admin,
         component: AdminDashboard,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminDestination,
         component: AdminDestination,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminTour,
         component: AdminTour,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminBooking,
         component: AdminBooking,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminTraveler,
         component: AdminTraveler,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
-    },  
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+    },
     {
         path: routesConfig.adminGuide,
         component: AdminGuide,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminGallery,
         component: AdminGallery,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminFeedback,
         component: AdminFeedback,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {
         path: routesConfig.adminMessage,
         component: AdminMessage,
-        layout: (page) => (
-            <AdminLayout>
-                {page}
-            </AdminLayout>
-        ),
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
-
 ];
 
 export { publicRoutes, privateRoutes, adminRoutes };

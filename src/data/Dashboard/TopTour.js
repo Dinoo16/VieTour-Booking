@@ -1,6 +1,6 @@
 import images from '~/assets/images';
 import classNames from 'classnames/bind';
-import styles from '~/adminpages/components/Table/Table.module.scss';
+import styles from '~/pages/admin pages/components/Table/Table.module.scss';
 const cx = classNames.bind(styles);
 
 export const TOPTOUR_DATA = [

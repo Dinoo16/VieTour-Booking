@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './Traveler.module.scss';
-import Table from '~/adminpages/components/Table/Table';
+import Table from '~/pages/admin pages/components/Table/Table';
 import { USERS, USER_COLUMNS } from '~/data/Dashboard/User';
-import Pagination from '~/adminpages/components/Pagination/Pagination';
+import Pagination from '~/pages/admin pages/components/Pagination/Pagination';
 import { useState } from 'react';
 const cx = classNames.bind(styles);
 
