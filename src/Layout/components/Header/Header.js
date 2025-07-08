@@ -12,7 +12,6 @@ import HeaderMenu from '~/components/HeaderMenu/HeaderMenu';
 const cx = classNames.bind(styles);
 
 function Header() {
-
     const currentUser = true;
     const userMenu = [
         {
@@ -69,7 +68,13 @@ function Header() {
                     <MenuItem title="Blog" to={config.blog} />
                     <MenuItem title="About Us" to={config.aboutus} />
                 </Menu>
-                {currentUser ? <HeaderMenu /> : <Button primary>Sign in</Button>}
+                {currentUser ? (
+                    <HeaderMenu />
+                ) : (
+                    <Button primary to={config.signin}>
+                        Sign in
+                    </Button>
+                )}
             </div>
         </header>
     );

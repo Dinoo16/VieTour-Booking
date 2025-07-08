@@ -12,21 +12,25 @@ const cx = classNames.bind(styles);
 function HeaderMenu({ color, border, isWrap }) {
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
-    
+
     const userData = {
         name: 'Dinosaur',
         role: 'Admin',
-        avatar: images.avatar
+        avatar: images.avatar,
     };
 
     // Build menu items based on role
     const menuItems = [
-        ...(userData.role === 'Admin' ? [{
-            title: 'Dashboard',
-            icon: icons.category,
-            to: '/admin',
-            action: 'dashboard',
-        }] : []),
+        ...(userData.role === 'Admin'
+            ? [
+                  {
+                      title: 'Dashboard',
+                      icon: icons.category,
+                      to: '/admin',
+                      action: 'dashboard',
+                  },
+              ]
+            : []),
         {
             title: 'Profile',
             icon: icons.user,
@@ -42,16 +46,16 @@ function HeaderMenu({ color, border, isWrap }) {
         {
             title: 'Logout',
             icon: icons.logout,
-            to: '/logout',
+            to: '/signout',
             action: 'logout',
             className: 'logout',
         },
     ];
 
-    const handleLogout = () => {
+    const handleLogout = (item) => {
         // Add logout logic here
-        console.log('Logout clicked');
         setVisible(false);
+        navigate(item.to);
     };
 
     const handleItemClick = (item) => {
@@ -74,12 +78,12 @@ function HeaderMenu({ color, border, isWrap }) {
                 placement="bottom-end"
                 render={(attrs) => (
                     <div className={cx('popover')} tabIndex="-1" {...attrs}>
-                       <Box 
-                           user={userData}
-                           menuItems={menuItems}
-                           onItemClick={handleItemClick}
-                           onLogout={handleLogout}
-                       />
+                        <Box
+                            user={userData}
+                            menuItems={menuItems}
+                            onItemClick={handleItemClick}
+                            onLogout={handleLogout}
+                        />
                     </div>
                 )}
             >

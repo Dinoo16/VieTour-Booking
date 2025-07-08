@@ -28,7 +28,9 @@ function Categories({ items = [], onclick }) {
                 {items.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className={cx('card')} onClick={() => onclick(item)}>
-                            <img src={item.image} alt={item.title} className={cx('image')} />
+                            <div className={cx('card-img-wrapper')}>
+                                <img src={item.image} alt={item.title} className={cx('image')} />
+                            </div>
                             <h3 className={cx('card-title')}>{item.title}</h3>
                         </div>
                     </SwiperSlide>

@@ -12,7 +12,8 @@ const stats = [
     { title: 'Earnings', value: '3.3K', change: '12.0%', positive: false, key: 'earning' },
 ];
 
-const userData = [
+// Last 7 days data
+const userData7 = [
     { day: 'Sun', value: 100 },
     { day: 'Mon', value: 200 },
     { day: 'Tue', value: 80 },
@@ -21,7 +22,7 @@ const userData = [
     { day: 'Fri', value: 200 },
     { day: 'Sat', value: 70 },
 ];
-const bookingData = [
+const bookingData7 = [
     { day: 'Sun', value: 200 },
     { day: 'Mon', value: 100 },
     { day: 'Tue', value: 50 },
@@ -30,7 +31,7 @@ const bookingData = [
     { day: 'Fri', value: 300 },
     { day: 'Sat', value: 60 },
 ];
-const tourData = [
+const tourData7 = [
     { day: 'Sun', value: 50 },
     { day: 'Mon', value: 100 },
     { day: 'Tue', value: 250 },
@@ -39,7 +40,7 @@ const tourData = [
     { day: 'Fri', value: 100 },
     { day: 'Sat', value: 70 },
 ];
-const earningData = [
+const earningData7 = [
     { day: 'Sun', value: 50 },
     { day: 'Mon', value: 100 },
     { day: 'Tue', value: 120 },
@@ -48,15 +49,47 @@ const earningData = [
     { day: 'Fri', value: 100 },
     { day: 'Sat', value: 70 },
 ];
+const userData30 = Array.from({ length: 30 }, (_, i) => ({
+    day: `Day ${i + 1}`,
+    value: Math.floor(Math.random() * 300),
+}));
+const bookingData30 = Array.from({ length: 30 }, (_, i) => ({
+    day: `Day ${i + 1}`,
+    value: Math.floor(Math.random() * 300),
+}));
+const tourData30 = Array.from({ length: 30 }, (_, i) => ({
+    day: `Day ${i + 1}`,
+    value: Math.floor(Math.random() * 300),
+}));
+const earningData30 = Array.from({ length: 30 }, (_, i) => ({
+    day: `Day ${i + 1}`,
+    value: Math.floor(Math.random() * 300),
+}));
+
 const chartMap = {
-    user: userData,
-    booking: bookingData,
-    tour: tourData,
-    earning: earningData,
+    user: {
+        'Last 7 days': userData7,
+        'Last 30 days': userData30,
+    },
+    booking: {
+        'Last 7 days': bookingData7,
+        'Last 30 days': bookingData30,
+    },
+    tour: {
+        'Last 7 days': tourData7,
+        'Last 30 days': tourData30,
+    },
+    earning: {
+        'Last 7 days': earningData7,
+        'Last 30 days': earningData30,
+    },
 };
 
 export default function LineChart() {
     const [activeStat, setActiveStat] = useState(stats[0]);
+
+    const [selectedRange, setSelectedRange] = useState('Last 7 days');
+    const ranges = ['Last 7 days', 'Last 30 days'];
 
     return (
         <div className={cx('dashboardCard')}>
@@ -79,9 +112,12 @@ export default function LineChart() {
             <div className={cx('content')}>{}</div>
 
             <ResponsiveContainer width="100%" minHeight={250} className={cx('chartContainer')}>
-                <ReLineChart data={chartMap[activeStat.key]} margin={{ top: 0, right: 20, left: 20, bottom: 0 }}>
+                <ReLineChart
+                    data={chartMap[activeStat.key][selectedRange]}
+                    margin={{ top: 0, right: 20, left: 20, bottom: 0 }}
+                >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis interval={0} dataKey="day" />
+                    <XAxis interval={selectedRange === 'Last 7 days' ? 0 : 2} dataKey="day" />
                     <YAxis hide />
                     <Tooltip />
                     <Line type="monotone" dataKey="value" stroke="#5E72E4" strokeWidth={2} dot={false} />
@@ -89,7 +125,17 @@ export default function LineChart() {
             </ResponsiveContainer>
 
             <div className={cx('footerSelect')}>
-                <button className={cx('selectBtn')}>Last 7 days ▼</button>
+                <select
+                    className={cx('selectDropdown')}
+                    value={selectedRange}
+                    onChange={(e) => setSelectedRange(e.target.value)}
+                >
+                    {ranges.map((range) => (
+                        <option key={range} value={range}>
+                            {range}
+                        </option>
+                    ))}
+                </select>
             </div>
         </div>
     );

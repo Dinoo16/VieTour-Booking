@@ -54,7 +54,7 @@ function Box({
         {
             title: 'Logout',
             icon: icons.logout,
-            to: '/logout',
+            to: '/signout',
             action: 'logout',
             className: 'logout',
         },
@@ -64,7 +64,7 @@ function Box({
 
     const handleItemClick = (item) => {
         if (item.action === 'logout' && onLogout) {
-            onLogout();
+            onLogout(item);
         } else if (onItemClick) {
             onItemClick(item);
         }

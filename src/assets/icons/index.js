@@ -50,6 +50,10 @@ import { ReactComponent as WorkIcon } from './work.svg';
 import { ReactComponent as CheckIcon } from './check.svg';
 import { ReactComponent as MoreButton } from './more.svg';
 import { ReactComponent as PlaneIcon } from './plane.svg';
+import { ReactComponent as FaceBookIcon2 } from './facebook2.svg';
+import { ReactComponent as IcloudIcon } from './icloud.svg';
+import { ReactComponent as GoogleIcon } from './google.svg';
+
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -103,6 +107,9 @@ const icons = {
     check: CheckIcon,
     more: MoreButton,
     plane: PlaneIcon,
+    facebook2: FaceBookIcon2,
+    icloud: IcloudIcon,
+    google: GoogleIcon,
 };
 
 export default icons;

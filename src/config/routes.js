@@ -17,6 +17,9 @@ const routes = {
     adminGallery: '/admin/gallery',
     adminFeedback: '/admin/feedback',
     adminMessage: '/admin/message',
+    signin: '/signin',
+    signup: '/signup',
+    signout: '/signout',
 };
 
 export default routes;
