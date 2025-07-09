@@ -5,12 +5,13 @@ import { TOURS } from '~/data/Tour/Tour';
 import Menu from './Menu/Menu';
 import Button from '~/components/Button/Button';
 import icons from '~/assets/icons';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
 function Tour() {
     const [activeTour, setActiveTour] = useState(TOURS[0]);
-    
+
     const handleTourClick = (tour) => {
         setActiveTour(tour);
     };
@@ -20,13 +21,22 @@ function Tour() {
             <div className={cx('tour-list')}>
                 <h3 className={cx('title')}>All Tours</h3>
                 <Menu items={TOURS} activeItem={activeTour} onItemClick={handleTourClick} />
+
+                <Button to={routesConfig.adminAddTour} className={cx('add-tour-btn')} primary leftIcon={<icons.add />}>
+                    Add Tour
+                </Button>
             </div>
             <div className={cx('tour-detail')}>
                 <div className={cx('tour-info')}>
                     <img src={activeTour.image} alt={activeTour.title} />
                     <div className={cx('info')}>
                         <h2>{activeTour.title}</h2>
-                        <Button primary small leftIcon={<icons.penIcon />}>
+                        <Button
+                            to={routesConfig.adminEditTour.replace(':id', activeTour.id)}
+                            primary
+                            small
+                            leftIcon={<icons.penIcon />}
+                        >
                             Edit Tour
                         </Button>
                     </div>

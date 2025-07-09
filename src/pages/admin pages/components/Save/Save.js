@@ -9,7 +9,7 @@ function Save() {
     return (
         <div className={cx('save-container')}>
             <h3 className={cx('title')}>Nice Job! You're almost done</h3>
-            <Button primary small>Save</Button>
+            <Button outline >Save</Button>
         </div>
     );
 }

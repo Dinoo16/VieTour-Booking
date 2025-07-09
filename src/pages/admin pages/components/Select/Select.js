@@ -10,8 +10,8 @@ function Select({ label, options, value, onChange, placeholder }) {
             <select className={cx('select')} value={value} onChange={onChange}>
                 <option value="">{placeholder}</option>
                 {options.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                        {opt.label}
+                    <option key={opt.id} value={opt.title}>
+                        {opt.title}
                     </option>
                 ))}
             </select>

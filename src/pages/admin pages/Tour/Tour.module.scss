@@ -21,6 +21,12 @@
         font-weight: 500;
         color: #000;
     }
+
+    .add-tour-btn {
+        width: 100%;
+        margin-top: 24px;
+    }
+    
 }
 
 .tour-detail {
@@ -169,4 +175,19 @@
 }
 
 
+}
+
+// Add Tour
+.timeRow {
+    display: flex;
+    gap: 24px;
+
+    > div {
+        flex: 1;
+    }
+}
+
+.add-tour-plan {
+    height: 300px;
+    width: 100%;
 }

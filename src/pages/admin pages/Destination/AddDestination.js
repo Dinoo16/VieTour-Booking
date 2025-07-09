@@ -10,9 +10,9 @@ import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 const regionOptions = [
-    { label: 'Northern', value: 'northern' },
-    { label: 'Central', value: 'central' },
-    { label: 'Southern', value: 'southern' },
+    { title: 'Northern', value: 'northern' },
+    { title: 'Central', value: 'central' },
+    { title: 'Southern', value: 'southern' },
 ];
 function AddDestination() {
     const [region, setRegion] = useState('');

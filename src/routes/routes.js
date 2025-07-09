@@ -15,6 +15,8 @@ import AdminDestination from '~/pages/admin pages/Destination/Destination';
 import AdminAddDestination from '~/pages/admin pages/Destination/AddDestination';
 import AdminEditDestination from '~/pages/admin pages/Destination/EditDestination';
 import AdminTour from '~/pages/admin pages/Tour/Tour';
+import AdminAddTour from '~/pages/admin pages/Tour/AddTour';
+import AdminEditTour from '~/pages/admin pages/Tour/EditTour';
 import AdminBooking from '~/pages/admin pages/Booking/Booking';
 import AdminTraveler from '~/pages/admin pages/Traveler/Traveler';
 import AdminGuide from '~/pages/admin pages/Guide/Guide';
@@ -227,6 +229,16 @@ const adminRoutes = [
     {
         path: routesConfig.adminTour,
         component: AdminTour,
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+    },
+    {
+        path: routesConfig.adminAddTour,
+        component: AdminAddTour,
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+    },
+    {
+        path: routesConfig.adminEditTour,
+        component: AdminEditTour,
         layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const DESTINATIONS = [
     {
         id: 1,
-        name: 'Ha noi',
+        title: 'Ha noi',
         image: images.hanoi,
         region: 'northern',
         numberOfTours: 10,
@@ -19,7 +19,7 @@ export const DESTINATIONS = [
     },
     {
         id: 2,
-        name: 'Quang Ninh',
+        title: 'Quang Ninh',
         image: images.destination_1,
         region: 'northern',
         numberOfTours: 15,
@@ -33,7 +33,7 @@ export const DESTINATIONS = [
     },
     {
         id: 3,
-        name: 'Nghe An',
+        title: 'Nghe An',
         image: images.destination_2,
         region: 'central',
         numberOfTours: 15,
@@ -47,7 +47,7 @@ export const DESTINATIONS = [
     },
     {
         id: 4,
-        name: 'Hue',
+        title: 'Hue',
         image: images.destination_3,
         region: 'central',
         numberOfTours: 15,
@@ -61,7 +61,7 @@ export const DESTINATIONS = [
     },
     {
         id: 5,
-        name: 'Hue',
+        title: 'Hue',
         image: images.destination_2,
         region: 'central',
         numberOfTours: 15,
@@ -75,7 +75,7 @@ export const DESTINATIONS = [
     },
     {
         id: 6,
-        name: 'Hue',
+        title: 'Hue',
         image: images.destination_3,
         region: 'central',
         numberOfTours: 15,
@@ -89,7 +89,7 @@ export const DESTINATIONS = [
     },
     {
         id: 7,
-        name: 'Hue',
+        title: 'Hue',
         image: images.destination_3,
         region: 'central',
         numberOfTours: 15,
@@ -116,8 +116,8 @@ export const DESTINATION_COLUMNS = [
         ),
     },
     {
-        header: 'Name',
-        accessor: 'name',
+        header: 'title',
+        accessor: 'title',
     },
     {
         header: 'Region',

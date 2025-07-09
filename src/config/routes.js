@@ -13,6 +13,8 @@ const routes = {
     adminAddDestination: '/admin/destination/add',
     adminEditDestination: '/admin/destination/edit/:id',
     adminTour: '/admin/tour',
+    adminAddTour: '/admin/tour/add',
+    adminEditTour: '/admin/tour/edit/:id',
     adminBooking: '/admin/booking',
     adminTraveler: '/admin/traveler',
     adminGuide: '/admin/guide',

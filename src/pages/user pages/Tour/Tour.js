@@ -30,7 +30,6 @@ const MENU_ITEMS = [
     },
 ];
 
-
 function Tour() {
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(1200);
