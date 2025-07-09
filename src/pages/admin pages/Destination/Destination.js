@@ -16,7 +16,6 @@ function Destination() {
                 <div className={cx('add-destination')}>
                     <h2>New Destination</h2>
                     <Button primary small leftIcon={<icons.add />} to={routesConfig.adminAddDestination}>
-                        {' '}
                         Add Destination
                     </Button>
                 </div>

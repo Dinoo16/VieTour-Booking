@@ -5,6 +5,7 @@ import icons from '~/assets/icons';
 import GalleryCard from './GalleryCard/GalleryCard';
 import SearchInput from '~/components/Search/SearchInput';
 import Button from '~/components/Button/Button';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -71,7 +72,7 @@ function Gallery() {
                         Sort By:
                         {/* <Dropdown label="Name" /> */}
                     </div>
-                    <Button leftIcon={<icons.add />} primary small>
+                    <Button leftIcon={<icons.add />} primary small to={routesConfig.adminAddGallery}>
                         Add Image
                     </Button>
                 </div>

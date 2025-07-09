@@ -21,6 +21,7 @@ import AdminBooking from '~/pages/admin pages/Booking/Booking';
 import AdminTraveler from '~/pages/admin pages/Traveler/Traveler';
 import AdminGuide from '~/pages/admin pages/Guide/Guide';
 import AdminGallery from '~/pages/admin pages/Gallery/Gallery';
+import AdminAddGallery from '~/pages/admin pages/Gallery/AddGallery';
 import AdminFeedback from '~/pages/admin pages/Feedback/Feedback';
 import AdminMessage from '~/pages/admin pages/Message/Message';
 import SignIn from '~/pages/authentication/SignIn/SignIn';
@@ -259,6 +260,11 @@ const adminRoutes = [
     {
         path: routesConfig.adminGallery,
         component: AdminGallery,
+        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+    },
+    {
+        path: routesConfig.adminAddGallery,
+        component: AdminAddGallery,
         layout: (page) => <AdminLayout>{page}</AdminLayout>,
     },
     {

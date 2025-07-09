@@ -19,6 +19,7 @@ const routes = {
     adminTraveler: '/admin/traveler',
     adminGuide: '/admin/guide',
     adminGallery: '/admin/gallery',
+    adminAddGallery: '/admin/gallery/add',
     adminFeedback: '/admin/feedback',
     adminMessage: '/admin/message',
     signin: '/signin',
