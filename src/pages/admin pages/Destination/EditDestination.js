@@ -5,7 +5,9 @@ import TextareaField from '../components/Input/TextareaField';
 import FileDropzone from '../components/FileDropzone/FileDropzone';
 import Select from '../components/Select/Select';
 import Form from '../components/Form/Form';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { DESTINATIONS } from '~/data/Dashboard/Destination';
 
 const cx = classNames.bind(styles);
 
@@ -14,15 +16,22 @@ const regionOptions = [
     { label: 'Central', value: 'central' },
     { label: 'Southern', value: 'southern' },
 ];
-function AddDestination() {
-    const [region, setRegion] = useState('');
+
+function EditDestination() {
+    const { id } = useParams();
+    const destination = DESTINATIONS.find((t) => t.id === parseInt(id));
+
+    const [name, setName] = useState(destination?.name || '');
+    const [description, setDescription] = useState(destination?.description || '');
+    const [region, setRegion] = useState(destination?.region || '');
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // Do something with the data
     };
     return (
         <Form
-            title="Add Destination"
+            title="Edit Destination"
             onSubmit={handleSubmit}
             rightPanel={
                 <Select
@@ -34,11 +43,21 @@ function AddDestination() {
                 />
             }
         >
-            <TextInput label="Destination name" placeholder="Destination name" />
-            <TextareaField label="Description" placeholder="Enter a description..." />
+            <TextInput
+                label="Destination name"
+                placeholder="Destination name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <TextareaField
+                label="Description"
+                placeholder="Enter a description..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            />
             <FileDropzone />
         </Form>
     );
 }
 
-export default AddDestination;
+export default EditDestination;
