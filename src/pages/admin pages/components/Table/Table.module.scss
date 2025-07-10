@@ -4,7 +4,17 @@
   padding: 16px;
   box-shadow: -1px 1px 10px 2px rgba(123, 123, 123, 0.1);
   overflow-x: auto;
+  max-height: 620px;
+  overflow-y: hidden;
+  scrollbar-gutter: stable;
+
+  &:hover {
+    overflow-y: auto;
+  }
+  
+
 }
+
 
 .table {
   width: 100%;
@@ -74,7 +84,6 @@
 
   span {
     font-size: 14px;
-    color: #333;
     white-space: nowrap;
   }
 }

@@ -21,7 +21,7 @@ function EditDestination() {
     const { id } = useParams();
     const destination = DESTINATIONS.find((t) => t.id === parseInt(id));
 
-    const [name, setName] = useState(destination?.name || '');
+    const [name, setName] = useState(destination?.title || '');
     const [description, setDescription] = useState(destination?.description || '');
     const [region, setRegion] = useState(destination?.region || '');
 

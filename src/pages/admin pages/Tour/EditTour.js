@@ -11,6 +11,7 @@ import { DESTINATIONS } from '~/data/Dashboard/Destination';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { TOURS } from '~/data/Tour/Tour';
+import MultiSelect from '../components/Select/MultiSelec';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +20,7 @@ function EditTour() {
     const tour = TOURS.find((t) => t.id === parseInt(id));
 
     const [destination, setDestination] = useState(tour?.destination || '');
-    const [category, setCategory] = useState(tour?.category || '');
+    const [category, setCategory] = useState(tour?.category.map((c) => c.title) || '');
     const [title, setTitle] = useState(tour?.title || '');
     const [departure, setDepature] = useState(tour?.departure || '');
     const [departureTime, setDepatureTime] = useState(tour?.departureTime || '');
@@ -45,12 +46,11 @@ function EditTour() {
                         value={destination}
                         onChange={(e) => setDestination(e.target.value)}
                     />
-                    <Select
-                        label="Category"
-                        placeholder="Select categories"
+                    <MultiSelect
+                        label={'Category'}
                         options={CATEGORIES}
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        selected={category}
+                        setSelected={setCategory}
                     />
                 </>
             }

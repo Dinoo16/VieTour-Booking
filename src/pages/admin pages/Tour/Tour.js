@@ -59,7 +59,9 @@ function Tour() {
                         </div>
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Category</span>
-                            <span className={cx('value')}>{activeTour.category}</span>
+                            <span className={cx('value')}>
+                                {activeTour.category.map((cat) => cat.title).join(', ')}
+                            </span>
                         </div>
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Duration</span>

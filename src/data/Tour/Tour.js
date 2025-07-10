@@ -11,7 +11,12 @@ export const TOURS = [
         departure: 'Hanoi',
         departureTime: 'Approximately 08 : 10 AM',
         returnTime: 'Approximately 07 : 20 PM',
-        category: 'Cruise, nature and romantic',
+        category: [
+            {
+                id: 1,
+                title: 'Wildlife',
+            },
+        ],
         rating: 4.8,
         oldPrice: 950,
         price: 850,
@@ -73,7 +78,12 @@ export const TOURS = [
         departure: 'Hanoi',
         departureTime: 'Approximately 08 : 10 AM',
         returnTime: 'Approximately 07 : 20 PM',
-        category: 'Cruise, nature and romantic',
+        category: [
+            {
+                id: 1,
+                title: 'Cruises',
+            },
+        ],
         rating: 4.8,
         oldPrice: 950,
         price: 850,
@@ -144,7 +154,12 @@ export const TOURS = [
         departure: 'Hanoi',
         departureTime: 'Approximately 08 : 10 AM',
         returnTime: 'Approximately 07 : 20 PM',
-        category: 'Cruise, nature and romantic',
+        category: [
+            {
+                id: 1,
+                title: 'Hiking',
+            },
+        ],
         rating: 4.8,
         oldPrice: 950,
         price: 850,
@@ -215,7 +230,12 @@ export const TOURS = [
         departure: 'Hanoi',
         departureTime: 'Approximately 08 : 10 AM',
         returnTime: 'Approximately 07 : 20 PM',
-        category: 'Cruise, nature and romantic',
+        category: [
+            {
+                id: 1,
+                title: 'Airbirds',
+            },
+        ],
         rating: 4.8,
         oldPrice: 950,
         price: 850,
@@ -286,7 +306,16 @@ export const TOURS = [
         departure: 'Hanoi',
         departureTime: 'Approximately 08 : 10 AM',
         returnTime: 'Approximately 07 : 20 PM',
-        category: 'Cruise, nature and romantic',
+        category: [
+            {
+                id: 1,
+                title: 'Airbirds',
+            },
+            {
+                id: 1,
+                title: 'Walking',
+            },
+        ],
         rating: 4.8,
         oldPrice: 950,
         price: 850,
@@ -357,7 +386,12 @@ export const TOURS = [
         departure: 'Hanoi',
         departureTime: 'Approximately 08 : 10 AM',
         returnTime: 'Approximately 07 : 20 PM',
-        category: 'Cruise, nature and romantic',
+        category: [
+            {
+                id: 1,
+                title: 'Walking',
+            },
+        ],
         rating: 4.8,
         oldPrice: 950,
         price: 850,
@@ -450,6 +484,3 @@ export const FEEDBACKS = [
         rating: 5,
     },
 ];
-
-
-

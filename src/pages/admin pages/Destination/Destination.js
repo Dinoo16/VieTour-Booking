@@ -4,6 +4,7 @@ import Calendar from '../components/Calendar/Calendar';
 import Button from '~/components/Button/Button';
 import icons from '~/assets/icons';
 import { DESTINATIONS, DESTINATION_COLUMNS } from '~/data/Dashboard/Destination';
+import { CATEGORIES, CATEGORIES_COLUMN } from '~/data/Category/Category';
 import Table from '../components/Table/Table';
 import routesConfig from '~/config/routes';
 
@@ -24,10 +25,15 @@ function Destination() {
                 </div>
             </div>
 
-            <div className={cx('calendar')}>
-                <Calendar />
-                <div className={cx('recent-activities')}>
-                    <h3 className={cx('heading')}>Recent Activities</h3>
+            <div className={cx('category')}>
+                <div className={cx('add-category')}>
+                    <h2>Categories</h2>
+                    <Button primary small leftIcon={<icons.add />} to={routesConfig.adminAddDestination}>
+                        New
+                    </Button>
+                </div>
+                <div className={cx('category-list')}>
+                    <Table columns={CATEGORIES_COLUMN} data={CATEGORIES} />
                 </div>
             </div>
         </div>

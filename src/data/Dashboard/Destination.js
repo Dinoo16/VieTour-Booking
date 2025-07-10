@@ -7,7 +7,7 @@ export const DESTINATIONS = [
         id: 1,
         title: 'Ha noi',
         image: images.hanoi,
-        region: 'northern',
+        region: 'Northern',
         numberOfTours: 10,
         description: 'Hanoi, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -21,7 +21,7 @@ export const DESTINATIONS = [
         id: 2,
         title: 'Quang Ninh',
         image: images.destination_1,
-        region: 'northern',
+        region: 'Northern',
         numberOfTours: 15,
         description: 'Quang Ninh, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -35,7 +35,7 @@ export const DESTINATIONS = [
         id: 3,
         title: 'Nghe An',
         image: images.destination_2,
-        region: 'central',
+        region: 'Central',
         numberOfTours: 15,
         description: 'Nghe An, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -49,7 +49,7 @@ export const DESTINATIONS = [
         id: 4,
         title: 'Hue',
         image: images.destination_3,
-        region: 'central',
+        region: 'Central',
         numberOfTours: 15,
         description: 'Hue, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -63,7 +63,7 @@ export const DESTINATIONS = [
         id: 5,
         title: 'Hue',
         image: images.destination_2,
-        region: 'central',
+        region: 'Central',
         numberOfTours: 15,
         description: 'Hue, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -77,7 +77,7 @@ export const DESTINATIONS = [
         id: 6,
         title: 'Hue',
         image: images.destination_3,
-        region: 'central',
+        region: 'Central',
         numberOfTours: 15,
         description: 'Hue, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -91,7 +91,7 @@ export const DESTINATIONS = [
         id: 7,
         title: 'Hue',
         image: images.destination_3,
-        region: 'central',
+        region: 'Central',
         numberOfTours: 15,
         description: 'Hue, the capital of Vietnam, is a vibrant city with a rich history and culture.',
         edit: (
@@ -116,7 +116,7 @@ export const DESTINATION_COLUMNS = [
         ),
     },
     {
-        header: 'title',
+        header: 'Title',
         accessor: 'title',
     },
     {

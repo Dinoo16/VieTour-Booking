@@ -7,6 +7,7 @@ import Select from '../components/Select/Select';
 import Form from '../components/Form/Form';
 import { useState } from 'react';
 
+
 const cx = classNames.bind(styles);
 
 const regionOptions = [
@@ -14,8 +15,11 @@ const regionOptions = [
     { title: 'Central', value: 'central' },
     { title: 'Southern', value: 'southern' },
 ];
+
 function AddDestination() {
     const [region, setRegion] = useState('');
+   
+    // const regionOption = ['Northern', 'Central', 'Southern'];
     const handleSubmit = (e) => {
         e.preventDefault();
         // Do something with the data
@@ -25,13 +29,16 @@ function AddDestination() {
             title="Add Destination"
             onSubmit={handleSubmit}
             rightPanel={
-                <Select
-                    label="Region"
-                    placeholder="Select a region"
-                    options={regionOptions}
-                    value={region}
-                    onChange={(e) => setRegion(e.target.value)}
-                />
+                
+                    <Select
+                        label="Region"
+                        placeholder="Select a region"
+                        options={regionOptions}
+                        value={region}
+                        onChange={(e) => setRegion(e.target.value)}
+                    />
+                    
+            
             }
         >
             <TextInput label="Destination name" placeholder="Destination name" />

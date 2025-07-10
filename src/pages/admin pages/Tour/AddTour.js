@@ -9,16 +9,17 @@ import TourPlan from '../components/TourPlan/TourPlan';
 import { CATEGORIES } from '~/data/Category/Category';
 import { DESTINATIONS } from '~/data/Dashboard/Destination';
 import { useState } from 'react';
-
+import MultiSelect from '../components/Select/MultiSelec';
 const cx = classNames.bind(styles);
 
 function AddTour() {
     const [destination, setDestination] = useState('');
-    const [category, setCategory] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
         // Do something with the data
     };
+
     return (
         <Form
             title="Add Tour"
@@ -32,12 +33,11 @@ function AddTour() {
                         value={destination}
                         onChange={(e) => setDestination(e.target.value)}
                     />
-                    <Select
-                        label="Category"
-                        placeholder="Select categories"
+                    <MultiSelect
+                        label={'Category'}
                         options={CATEGORIES}
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
+                        selected={selectedCategories}
+                        setSelected={setSelectedCategories}
                     />
                 </>
             }

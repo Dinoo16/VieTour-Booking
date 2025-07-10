@@ -43,4 +43,50 @@ export const CATEGORIES = [
         image: images.aboutusbg,
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
     },
+    {
+        id: 7,
+        title: 'Airbirds',
+        value: 'airbirds',
+        image: images.aboutusbg,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+    },
+    {
+        id: 8,
+        title: 'Airbirds',
+        value: 'airbirds',
+        image: images.aboutusbg,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+    },
+    {
+        id: 9,
+        title: 'Airbirds',
+        value: 'airbirds',
+        image: images.aboutusbg,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+    },
+    {
+        id: 10,
+        title: 'Airbird',
+        value: 'airbirds',
+        image: images.aboutusbg,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+    },
+];
+
+export const CATEGORIES_COLUMN = [
+    {
+        header: 'Id',
+        accessor: 'id',
+    },
+    {
+        header: 'Image',
+        accessor: 'image',
+        render: (value) => (
+            <img src={value} alt="destination" style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover' }} />
+        ),
+    },
+    {
+        header: 'Title',
+        accessor: 'title',
+    },
 ];
