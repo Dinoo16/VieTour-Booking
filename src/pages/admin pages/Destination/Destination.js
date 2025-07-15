@@ -15,7 +15,7 @@ function Destination() {
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
                 <div className={cx('add-destination')}>
-                    <h2>New Destination</h2>
+                    <h2 className={cx('title')}>New Destination</h2>
                     <Button primary small leftIcon={<icons.add />} to={routesConfig.adminAddDestination}>
                         Add Destination
                     </Button>
@@ -27,7 +27,7 @@ function Destination() {
 
             <div className={cx('category')}>
                 <div className={cx('add-category')}>
-                    <h2>Categories</h2>
+                    <h2 className={cx('title')}>Categories</h2>
                     <Button primary small leftIcon={<icons.add />} to={routesConfig.adminAddDestination}>
                         New
                     </Button>

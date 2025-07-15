@@ -75,7 +75,9 @@ function TourDetail() {
                                     <strong>Return Time:</strong> {tour.returnTime}
                                 </p>
                                 <p>
-                                    <strong>Category:</strong> {tour.category}
+                                    <strong>Category:</strong> {tour.category.map((cat) => cat.title).join(', ')}
+
+
                                 </p>
                                 <p>
                                     <strong>Duration:</strong> {tour.duration}

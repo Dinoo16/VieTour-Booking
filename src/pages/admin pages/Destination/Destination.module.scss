@@ -8,21 +8,22 @@
     width: 100%;
 
     .add-destination {
-
         display: flex;
         justify-content: space-between;
+
+        
     }
 
     .destination-list {
         margin-top: 24px;
     }
 }
-h2 {
-    font-size: 18px;
-    font-weight: 500;
-    color: black;
-}
 
+.title {
+        font-size: 18px;
+        font-weight: 500;
+        color: black;
+}
 
 .add-category {
     display: flex;

@@ -53,3 +53,23 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.popover {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    color: var(--text-color);
+}
+
+.popover-item {
+    padding: 6px 0;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--primary)
+    }
+}

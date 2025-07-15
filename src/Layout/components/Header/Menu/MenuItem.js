@@ -4,19 +4,26 @@ import { NavLink } from 'react-router-dom';
 import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
-function MenuItem({ title, to }) {
+function MenuItem({ title, to, onClick }) {
+    const content = <span className={cx('title')}>{title}</span>;
+    if (to) {
+        return (
+            <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
+                {content}
+            </NavLink>
+        );
+    }
     return (
-        <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
-            <span className={cx('title')}>{title}</span>
-        </NavLink>
+        <div className={cx('menu-item')} onClick={onClick}>
+            {content}
+        </div>
     );
 }
 
 MenuItem.propTypes = {
     title: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
-    icon: PropTypes.node.isRequired,
-    activeIcon: PropTypes.node.isRequired,
+    to: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 export default MenuItem;

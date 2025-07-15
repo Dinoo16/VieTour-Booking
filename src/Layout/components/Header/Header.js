@@ -1,41 +1,26 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import Button from '~/components/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import config from '~/config/routes';
 import images from '~/assets/images';
 import icons from '~/assets/icons';
 import MenuItem from './Menu/MenuItem';
 import Menu from './Menu/menu';
 import HeaderMenu from '~/components/HeaderMenu/HeaderMenu';
+import Tippy from '@tippyjs/react/headless';
+import { useRef } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const currentUser = true;
-    const userMenu = [
-        {
-            icon: icons.user,
-            title: 'View profile',
-            to: '/@dino',
-        },
-        {
-            icon: icons.dollar,
-            title: 'Get coins',
-            to: '/coin',
-        },
-        {
-            icon: icons.info,
-            title: 'Settings',
-            to: '/settings',
-        },
-        {
-            icon: icons.logout,
-            title: 'Log out',
-            to: '/logout',
-            separate: true,
-        },
-    ];
+    const tippyRef = useRef();
+
+    const handleClose = () => {
+        // Close the Tippy manually
+        tippyRef.current?.hide();
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -64,7 +49,27 @@ function Header() {
                 <Menu>
                     <MenuItem title="Home" to={config.home} />
                     <MenuItem title="Places to go" to={config.destination} />
-                    <MenuItem title="Service" to={config.tour} />
+                    <Tippy
+                        interactive
+                        delay={[0, 200]}
+                        onCreate={(instance) => {
+                            tippyRef.current = instance;
+                        }}
+                        placement="bottom-end"
+                        render={(attrs) => (
+                            <div className={cx('popover')} tabIndex="-1" {...attrs}>
+                                <NavLink className={cx('popover-item')} to={config.tour} onClick={handleClose}>
+                                    Tour Packages
+                                </NavLink>
+                                <span className={cx('popover-item')}>Build Package</span>
+                            </div>
+                        )}
+                    >
+                        <div>
+                            <MenuItem title="Service" />
+                        </div>
+                    </Tippy>
+
                     <MenuItem title="Blog" to={config.blog} />
                     <MenuItem title="About Us" to={config.aboutus} />
                 </Menu>
