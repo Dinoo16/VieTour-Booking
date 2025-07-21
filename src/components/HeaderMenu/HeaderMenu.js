@@ -7,21 +7,20 @@ import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 import Box from './Box/Box';
 import { useNavigate } from 'react-router-dom';
+import { userData } from '~/data/User/User';
+import { UserContext } from '~/contexts/UserContext';
+import { useContext } from 'react';
+
 const cx = classNames.bind(styles);
 
 function HeaderMenu({ color, border, isWrap }) {
+    const context = useContext(UserContext);
+
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
-
-    const userData = {
-        name: 'Dinosaur',
-        role: 'Admin',
-        avatar: images.avatar,
-    };
-
     // Build menu items based on role
     const menuItems = [
-        ...(userData.role === 'Admin'
+        ...(context.role === 'Admin'
             ? [
                   {
                       title: 'Dashboard',
@@ -79,7 +78,7 @@ function HeaderMenu({ color, border, isWrap }) {
                 render={(attrs) => (
                     <div className={cx('popover')} tabIndex="-1" {...attrs}>
                         <Box
-                            user={userData}
+                            user={context}
                             menuItems={menuItems}
                             onItemClick={handleItemClick}
                             onLogout={handleLogout}
@@ -89,12 +88,12 @@ function HeaderMenu({ color, border, isWrap }) {
             >
                 <div className={cx('user-info')} onClick={() => setVisible(!visible)}>
                     <div className={cx('avatar', border && 'border')}>
-                        <img className={cx('avatar-img', border && 'border')} src={images.avatar} alt="avatar" />
+                        <img className={cx('avatar-img', border && 'border')} src={context.avatar} alt="avatar" />
                         {/* <icons.user /> */}
                     </div>
                     <div className={cx('user-name', color && 'black-color')}>
-                        <span className={cx('name')}>{userData.name}</span>
-                        <span className={cx('role')}>{userData.role}</span>
+                        <span className={cx('name')}>{context.username}</span>
+                        <span className={cx('role')}>{context.role}</span>
                     </div>
                     <icons.arrow_down className={cx('arrow-down', color && 'black-color')} />
                 </div>

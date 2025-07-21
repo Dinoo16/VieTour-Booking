@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './Box.module.scss';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
-
+import { userData } from '~/data/User/User';
 const cx = classNames.bind(styles);
 
 /**
@@ -31,12 +31,7 @@ const cx = classNames.bind(styles);
  *     onLogout={handleLogout}
  * />
  */
-function Box({
-    user = { name: 'Dinosaur', role: 'Admin', avatar: images.avatar },
-    menuItems = [],
-    onItemClick,
-    onLogout,
-}) {
+function Box({ user, menuItems = [], onItemClick, onLogout }) {
     // Default menu items if none provided
     const defaultMenuItems = [
         {
@@ -78,7 +73,7 @@ function Box({
                         <img src={user.avatar} alt="avatar" />
                     </div>
                     <div className={cx('menu-user-info')}>
-                        <span className={cx('menu-name')}>{user.name}</span>
+                        <span className={cx('menu-name')}>{user.username}</span>
                         <span className={cx('menu-role')}>{user.role}</span>
                     </div>
                 </div>

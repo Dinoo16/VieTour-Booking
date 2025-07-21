@@ -9,6 +9,7 @@ import TourDetail from '~/pages/user pages/TourDetail/TourDetail';
 import DefaultLayout from '~/Layout/DefaultLayout/DefaultLayout';
 import AuthLayout from '~/Layout/AuthLayout/AuthLayout';
 import Payment from '~/pages/user pages/Payment/Payment';
+import Profile from '~/pages/user pages/Profile/Profile';
 import AdminDashboard from '~/pages/admin pages/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
 import AdminDestination from '~/pages/admin pages/Destination/Destination';
@@ -203,7 +204,24 @@ const publicRoutes = [
 ];
 
 // Logged in User
-const privateRoutes = [];
+const privateRoutes = [
+    {
+        path: routesConfig.profile,
+        component: Profile,
+        layout: (page) => (
+            <DefaultLayout
+                banner={{
+                    image: images.signup_cover,
+                }}
+                hideSearchTour
+                noContentSpacing
+                hideExploreBtn
+            >
+                {page}
+            </DefaultLayout>
+        ),
+    },
+];
 
 // Admin
 const adminRoutes = [

@@ -9,13 +9,20 @@ import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function DefaultLayout({ children, banner, hideSearchTour = false, noContentSpacing = false }) {
+function DefaultLayout({
+    children,
+    banner,
+    halfHeightBanner,
+    hideSearchTour = false,
+    hideExploreBtn = false,
+    noContentSpacing = false,
+}) {
     const navigate = useNavigate();
     return (
         <div className={cx('wrapper')}>
             {banner && (
                 <div
-                    className={cx('banner')}
+                    className={cx('banner', halfHeightBanner)}
                     style={{
                         backgroundImage: `url(${banner.image})`,
                     }}
@@ -26,9 +33,11 @@ function DefaultLayout({ children, banner, hideSearchTour = false, noContentSpac
                         <div className={cx('banner-content', { 'start-title': banner.startTitle })}>
                             {banner.subtitle && <span className={cx('subtitle')}>{banner.subtitle}</span>}
                             <h1>{banner.title}</h1>
-                            <Button rounded transparent onClick={() => navigate('/tour')}>
-                                Expore Tours
-                            </Button>
+                            {!hideExploreBtn && (
+                                <Button rounded transparent onClick={() => navigate('/tour')}>
+                                    Expore Tours
+                                </Button>
+                            )}
                         </div>
                         {!hideSearchTour && <SearchTour />}
                     </div>

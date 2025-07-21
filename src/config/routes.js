@@ -7,7 +7,7 @@ const routes = {
     payment: '/payment/:id',
     blog: '/blog',
     search: '/search',
-    profile: '/:nickname',
+    profile: '/profile',
     admin: '/admin',
     adminDestination: '/admin/destination',
     adminAddDestination: '/admin/destination/add',

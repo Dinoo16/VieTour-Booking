@@ -54,6 +54,10 @@ import { ReactComponent as FaceBookIcon2 } from './facebook2.svg';
 import { ReactComponent as IcloudIcon } from './icloud.svg';
 import { ReactComponent as GoogleIcon } from './google.svg';
 import { ReactComponent as UploadCloudIcon } from './upload-cloud.svg';
+import { ReactComponent as AddAvatarIcon } from './add-avatar.svg';
+import { ReactComponent as NameIcon } from './name.svg';
+import { ReactComponent as BirthdayIcon } from './birthday.svg';
+
 const icons = {
     location: LocationIcon,
     time: TimeIcon,
@@ -111,6 +115,9 @@ const icons = {
     icloud: IcloudIcon,
     google: GoogleIcon,
     upload: UploadCloudIcon,
+    addAvatar: AddAvatarIcon,
+    nameIcon: NameIcon,
+    birthdayIcon: BirthdayIcon,
 };
 
 export default icons;
