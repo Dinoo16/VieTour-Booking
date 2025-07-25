@@ -7,6 +7,8 @@ import { DESTINATIONS, DESTINATION_COLUMNS } from '~/data/Dashboard/Destination'
 import { CATEGORIES, CATEGORIES_COLUMN } from '~/data/Category/Category';
 import Table from '../components/Table/Table';
 import routesConfig from '~/config/routes';
+import Dialog from '~/components/Dialog/Dialog';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 

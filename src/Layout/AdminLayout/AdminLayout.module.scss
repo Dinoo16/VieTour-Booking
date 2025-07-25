@@ -1,26 +1,4 @@
-.wrapper {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
 
-    .content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        padding: 32px 56px;
-        background-color: #EDF2F9;
-        overflow-y: auto;
-    }
-
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 40px;
-    }
-}
 
 .layout {
     display: flex;
@@ -28,11 +6,12 @@
     overflow: hidden;
 }
 
+
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -82,4 +61,8 @@
     overflow-y: auto;
     padding: 24px;
     background-color: #EDF2F9;
+     overscroll-behavior-y: contain;
+}
+.content {
+    overscroll-behavior-y: contain; /* Ngăn scroll lan sang body */
 }

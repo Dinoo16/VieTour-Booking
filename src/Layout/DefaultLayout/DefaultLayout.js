@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function DefaultLayout({
     children,
     banner,
-    halfHeightBanner,
+    halfHeightBanner = false,
     hideSearchTour = false,
     hideExploreBtn = false,
     noContentSpacing = false,
@@ -22,7 +22,7 @@ function DefaultLayout({
         <div className={cx('wrapper')}>
             {banner && (
                 <div
-                    className={cx('banner', halfHeightBanner)}
+                    className={cx('banner', { 'banner-custom': halfHeightBanner })}
                     style={{
                         backgroundImage: `url(${banner.image})`,
                     }}

@@ -1,0 +1,14 @@
+
+
+// Menu item
+.item {
+    padding: 12px 24px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #ededed;
+}
+.active {
+    background-color: #c8c8c8;
+}

@@ -213,6 +213,7 @@ const privateRoutes = [
                 banner={{
                     image: images.signup_cover,
                 }}
+                halfHeightBanner
                 hideSearchTour
                 noContentSpacing
                 hideExploreBtn
