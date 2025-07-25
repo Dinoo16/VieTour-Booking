@@ -7,11 +7,11 @@ const PROFILE_SETTING_MENU = [
     },
     {
         title: 'Security Setting',
-        icon: icons.user,
+        icon: icons.lock,
     },
     {
         title: 'Payment Method',
-        icon: icons.user,
+        icon: icons.wallet,
     },
     {
         title: 'Notification & Alerts',
@@ -23,7 +23,7 @@ const PROFILE_SETTING_MENU = [
     },
     {
         title: 'My Reviews',
-        icon: icons.user,
+        icon: icons.like,
     },
 ];
 

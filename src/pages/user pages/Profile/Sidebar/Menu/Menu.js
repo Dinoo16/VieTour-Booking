@@ -4,11 +4,19 @@ import MenuItem from './MenuItem';
 
 const cx = classNames.bind(styles);
 
-function Menu({ items }) {
+function Menu({ items = [], activeMenu, onClick }) {
     return (
         <div className={cx('menu')}>
             {items.map((item, index) => {
-                <MenuItem key={index} icon={item.icon} title={item.title} />;
+                return (
+                    <MenuItem
+                        key={index}
+                        icon={item.icon}
+                        title={item.title}
+                        isActive={item.title === activeMenu.title}
+                        onClick={() => onClick(item)}
+                    />
+                );
             })}
         </div>
     );

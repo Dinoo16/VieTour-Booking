@@ -1,0 +1,69 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+
+    svg {
+        color: black;
+    }
+
+    .title {
+        color: var(--title-color);
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.upload-avatar {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    font-size: 14px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #c9c9c9;
+    }
+}
+
+.icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.text {
+    pointer-events: none;
+}
+
+.input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    gap: 24px;
+
+    > div {
+        flex: 1;
+    }
+}
+
+.save-btn {
+    display: flex;
+    justify-self: end;
+    padding-top: 24px;
+}

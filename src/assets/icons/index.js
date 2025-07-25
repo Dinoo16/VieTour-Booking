@@ -57,6 +57,14 @@ import { ReactComponent as UploadCloudIcon } from './upload-cloud.svg';
 import { ReactComponent as AddAvatarIcon } from './add-avatar.svg';
 import { ReactComponent as NameIcon } from './name.svg';
 import { ReactComponent as BirthdayIcon } from './birthday.svg';
+import { ReactComponent as LockIcon } from './lock.svg';
+import { ReactComponent as UnlockIcon } from './unlock.svg';
+import { ReactComponent as GiftIcon } from './gift.svg';
+import { ReactComponent as DiscountIcon } from './discount.svg';
+import { ReactComponent as TargetIcon } from './target.svg';
+import { ReactComponent as WalletIcon } from './wallet.svg';
+import { ReactComponent as LikeIcon } from './like.svg';
+import { ReactComponent as CameraIcon } from './camera.svg';
 
 const icons = {
     location: LocationIcon,
@@ -118,6 +126,14 @@ const icons = {
     addAvatar: AddAvatarIcon,
     nameIcon: NameIcon,
     birthdayIcon: BirthdayIcon,
+    lock: LockIcon,
+    unlock: UnlockIcon,
+    gift: GiftIcon,
+    discount: DiscountIcon,
+    target: TargetIcon,
+    like: LikeIcon,
+    wallet: WalletIcon,
+    camera: CameraIcon,
 };
 
 export default icons;

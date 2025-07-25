@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+
+    svg {
+        color: black;
+    }
+
+    .title {
+        color: var(--title-color);
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.save-btn {
+    display: flex;
+    justify-self: center;
+    padding-top: 24px;
+}
