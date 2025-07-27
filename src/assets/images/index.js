@@ -38,6 +38,7 @@ const images = {
     gallery_7: require('~/assets/images/gallery_7.png'),
     signup_cover: require('~/assets/images/signup-cover.jpg'),
     signout: require('~/assets/images/signout.png'),
+    trips: require('~/assets/images/trips.png'),
 };
 
 export default images;

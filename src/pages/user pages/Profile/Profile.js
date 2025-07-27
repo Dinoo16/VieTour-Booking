@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import icons from '~/assets/icons';
-import { act, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '~/contexts/UserContext';
 import Sidebar from './Sidebar/Sidebar';
 import RewardSection from './RewardSection/RewardSection';
@@ -9,6 +9,7 @@ import PROFILE_SETTING_MENU from '~/data/MenuItem/ProfileSettingMenu';
 import PersonalInfo from './Content/PersonalInfo/PersonalInfo';
 import SecuritySetting from './Content/SecuritySetting/SecuritySetting';
 import PaymentMethod from './Content/Payment/Payment';
+import Bookings from './Content/Bookings/Bookings';
 
 const cx = classNames.bind(styles);
 
@@ -24,9 +25,9 @@ function Profile() {
             case 'Payment Method':
                 return <PaymentMethod />;
             case 'Notification & Alerts':
-                return <div>Notification Preferences</div>;
+                return <Bookings />;
             case 'Bookings & Trips':
-                return <div>Booking History</div>;
+                return <Bookings />;
             case 'My Reviews':
                 return <div>User Reviews List</div>;
             default:

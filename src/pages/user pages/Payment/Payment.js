@@ -50,6 +50,7 @@ function Payment() {
                                 <p>{method.name}</p>
                             </label>
                         ))}
+                        
                     </div>
                     <form className={cx('card-form')}>
                         <div className={cx('form-group')}>
