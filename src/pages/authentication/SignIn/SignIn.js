@@ -30,7 +30,6 @@ function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
         try {
             const response = await signin({ email, password });
             console.log('API response:', response);

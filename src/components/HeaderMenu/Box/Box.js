@@ -33,29 +33,7 @@ const cx = classNames.bind(styles);
  */
 function Box({ user, menuItems = [], onItemClick, onLogout }) {
     // Default menu items if none provided
-    const defaultMenuItems = [
-        {
-            title: 'Profile',
-            icon: icons.user,
-            to: '/profile',
-            action: 'profile',
-        },
-        {
-            title: 'Booking',
-            icon: icons.booking,
-            to: '/booking',
-            action: 'booking',
-        },
-        {
-            title: 'Logout',
-            icon: icons.logout,
-            to: '/signout',
-            action: 'logout',
-            className: 'logout',
-        },
-    ];
-
-    const items = menuItems.length > 0 ? menuItems : defaultMenuItems;
+    const items = menuItems.length > 0 ? menuItems : [];
 
     const handleItemClick = (item) => {
         if (item.action === 'logout' && onLogout) {
@@ -70,7 +48,7 @@ function Box({ user, menuItems = [], onItemClick, onLogout }) {
             <div className={cx('user-menu')}>
                 <div className={cx('menu-header')}>
                     <div className={cx('menu-avatar')}>
-                        <img src={user.avatar} alt="avatar" />
+                        <img src={images[user.avatar]} alt="avatar" />
                     </div>
                     <div className={cx('menu-user-info')}>
                         <span className={cx('menu-name')}>{user.username}</span>

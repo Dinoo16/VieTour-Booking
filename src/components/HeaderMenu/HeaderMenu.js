@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './HeaderMenu.module.scss';
 import icons from '~/assets/icons';
+import images from '~/assets/images';
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
@@ -8,6 +9,7 @@ import Box from './Box/Box';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '~/contexts/UserContext';
 import { useContext } from 'react';
+import { signOut } from '~/apiServices/authService';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +20,7 @@ function HeaderMenu({ color, border, isWrap }) {
     const [visible, setVisible] = useState(false);
     // Build menu items based on role
     const menuItems = [
-        ...(context.role === 'Admin'
+        ...(context.role === 'ADMIN'
             ? [
                   {
                       title: 'Dashboard',
@@ -43,24 +45,22 @@ function HeaderMenu({ color, border, isWrap }) {
         {
             title: 'Logout',
             icon: icons.logout,
-            to: '/signout',
             action: 'logout',
             className: 'logout',
         },
     ];
 
-    const handleLogout = (item) => {
+    const handleLogout = () => {
         // Add logout logic here
         setVisible(false);
-        navigate(item.to);
+        signOut();
     };
 
     const handleItemClick = (item) => {
         console.log('Menu item clicked:', item);
         setVisible(false);
         navigate(item.to);
-    };
-
+    };  
     return (
         <div className={cx('wrapper')}>
             <div className={cx('notification', isWrap && 'wrap')}>
@@ -86,7 +86,11 @@ function HeaderMenu({ color, border, isWrap }) {
             >
                 <div className={cx('user-info')} onClick={() => setVisible(!visible)}>
                     <div className={cx('avatar', border && 'border')}>
-                        <img className={cx('avatar-img', border && 'border')} src={context.avatar} alt="avatar" />
+                        <img
+                            className={cx('avatar-img', border && 'border')}
+                            src={images[context.avatar]}
+                            alt="avatar"
+                        />
                         {/* <icons.user /> */}
                     </div>
                     <div className={cx('user-name', color && 'black-color')}>

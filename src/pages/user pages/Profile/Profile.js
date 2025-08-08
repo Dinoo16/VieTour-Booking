@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import icons from '~/assets/icons';
+import images from '~/assets/images';
 import { useContext, useState } from 'react';
 import { UserContext } from '~/contexts/UserContext';
 import Sidebar from './Sidebar/Sidebar';
@@ -38,7 +39,7 @@ function Profile() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <img className={cx('avatar')} src={context.avatar} alt={context.avatar} />
+                <img className={cx('avatar')} src={images[context.avatar]} alt={context.avatar} />
                 <div className={cx('info')}>
                     <h3 className={cx('name')}>Hi {context.username} !</h3>
                     <span className={cx('role')}>{context.membership}</span>

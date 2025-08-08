@@ -18,8 +18,18 @@ export const signin = async (credentials) => {
     }
 };
 
+export const signOut = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/signout';
+};
+
 // get user infor base on JWT
 export const getUserInfo = async () => {
-    const response = await httpRequest.get('/auth/me');
-    return response;
+    try {
+        const response = await httpRequest.get('/auth/me');
+        return response;
+    } catch (error) {
+        console.error('Failed to get user info:', error);
+        throw error;
+    }
 };
