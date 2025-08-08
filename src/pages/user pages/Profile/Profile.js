@@ -10,6 +10,7 @@ import PersonalInfo from './Content/PersonalInfo/PersonalInfo';
 import SecuritySetting from './Content/SecuritySetting/SecuritySetting';
 import PaymentMethod from './Content/Payment/Payment';
 import Bookings from './Content/Bookings/Bookings';
+import MyReviews from './Content/MyReviews/MyReviews';
 
 const cx = classNames.bind(styles);
 
@@ -25,11 +26,11 @@ function Profile() {
             case 'Payment Method':
                 return <PaymentMethod />;
             case 'Notification & Alerts':
-                return <Bookings />;
+                return <div> Notifications and Alerts </div>;
             case 'Bookings & Trips':
                 return <Bookings />;
             case 'My Reviews':
-                return <div>User Reviews List</div>;
+                return <MyReviews />;
             default:
                 return <div>Coming soon...</div>;
         }

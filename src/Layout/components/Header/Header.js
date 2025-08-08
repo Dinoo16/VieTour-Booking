@@ -10,11 +10,15 @@ import Menu from './Menu/menu';
 import HeaderMenu from '~/components/HeaderMenu/HeaderMenu';
 import Tippy from '@tippyjs/react/headless';
 import { useRef } from 'react';
+import { isTokenValid } from '~/utils/isTokenValid';
+import { isAuthenticated } from '~/utils/isAuthenticated';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const currentUser = true;
+    // const token = localStorage.getItem('token');
+    const currentUser = isAuthenticated();
+
     const tippyRef = useRef();
 
     const handleClose = () => {

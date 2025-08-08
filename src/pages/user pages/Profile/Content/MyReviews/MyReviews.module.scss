@@ -1,0 +1,118 @@
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+
+    svg {
+        color: black;
+    }
+
+    .title {
+        color: var(--title-color);
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.content {
+    .no-booking {
+        display: flex;
+        gap: 24px;
+
+        .desc {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            h2 {
+                color: black;
+                font-size: 18px;
+            }
+            span {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .bookings {
+        .card-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--title-color);
+            margin-bottom: 12px;
+        }
+
+        .card-box {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .card-info {
+            display: flex;
+            gap: 16px;
+        }
+        .img {
+            width: 65px;
+            height: 65px;
+            border-radius: 8px;
+        }
+        .details {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            gap: 8px;
+        }
+        .status {
+            height: 26px;
+            padding: 2px 12px;
+            font-size: 14px;
+        }
+        .success {
+            border: 1px solid #1b9736;
+            color: #1b9736;
+        }
+        .denied {
+            border: 1px solid #FF002E;
+            color: #FF002E;
+        }
+
+        .brand {
+            font-weight: 600;
+            margin-right: 8px;
+            color: var(--title-color);
+        }
+        .date {
+            font-size: 14px;
+            color: black;
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+}
+
+.view {
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: #4674ff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.remove {
+    font-size: 16px;
+    background: none;
+    border: none;
+    color: #ff002e;
+    font-weight: 500;
+    cursor: pointer;
+}

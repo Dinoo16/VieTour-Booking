@@ -1,12 +1,33 @@
-import { createContext, useContext, useState } from 'react';
-import { userData } from '~/data/User/User';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getUserInfo } from '~/apiServices/authService';
 
 const UserContext = createContext();
-const currentUser = userData[0];
-function UserProvider({ children }) {
-    const [user, setUser] = useState(currentUser);
 
-    return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+function UserProvider({ children }) {
+    const [user, setUser] = useState({
+        username: '',
+        avatar: '',
+        role: '',
+    });
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const data = await getUserInfo();
+                    setUser(data);
+                } catch (err) {
+                    console.error('Failed to fetch user info:', err);
+                    localStorage.removeItem('token');
+                }
+            }
+        };
+
+        fetchUser();
+    }, []);
+
+    return <UserContext.Provider value={{ ...user, setUser }}>{children}</UserContext.Provider>;
 }
 
 export { UserContext, UserProvider };

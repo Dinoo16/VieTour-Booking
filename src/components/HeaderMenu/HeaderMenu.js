@@ -1,13 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './HeaderMenu.module.scss';
 import icons from '~/assets/icons';
-import images from '~/assets/images';
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 import Box from './Box/Box';
 import { useNavigate } from 'react-router-dom';
-import { userData } from '~/data/User/User';
 import { UserContext } from '~/contexts/UserContext';
 import { useContext } from 'react';
 
