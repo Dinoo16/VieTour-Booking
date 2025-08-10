@@ -35,5 +35,15 @@ export const post = async (path, data = {}, config = {}) => {
     return response.data;
 };
 // PUT request
+export const put = async (path, data = {}, config = {}) => {
+    const response = await httpRequest.put(path, data, config);
+    return response.data;
+};
+
+// DELETE request
+export const del = async (path, options = {}) => {
+    const response = await httpRequest.delete(path, options);
+    return response.data;
+};
 
 export default httpRequest;
