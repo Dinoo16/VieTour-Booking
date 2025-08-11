@@ -15,10 +15,14 @@ function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    const [showDialog, setShowDialog] = useState(false);
+    const [dialogMessage, setDialogMessage] = useState('');
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticated()) {
+        const loggedIn = isAuthenticated();
+        if (loggedIn) {
             navigate('/');
         }
     }, [navigate]);
@@ -34,25 +38,26 @@ function SignUp() {
 
         try {
             const response = await signup({ email, password });
+            console.log('Full response:', response); // Debug
+
             const token = response.token;
 
             if (token) {
-                localStorage.setItem('token', token);
-                navigate('/signin');
+                // localStorage.setItem('token', token);
+                setDialogMessage('Sign up successfully! Please sign up to get more feature.');
+                setShowDialog(true);
             } else {
-                setError('Sign up failed!');
+                setError(response.data?.message || 'Signup successful but no token received');
             }
         } catch (err) {
-            console.error(err);
-            if (err.response?.data) {
-                const errorMessages = Array.isArray(err.response.data)
-                    ? err.response.data.join(', ')
-                    : err.response.data.message || 'Signup failed';
-                setError(errorMessages);
-            } else {
-                setError('Signup failed. Please try again.');
-            }
+            console.error('Signup error:', err);
+            setError(err.response?.data?.message || 'Signup failed. Please try again.');
         }
+    };
+
+    const handleClose = () => {
+        setShowDialog(false);
+        navigate('/signin');
     };
 
     return (
@@ -116,6 +121,16 @@ function SignUp() {
                     Already have an account? <a href="/signin">Sign In</a>
                 </p>
             </form>
+            {/* Dialog */}
+            {showDialog && (
+                <div className={cx('dialog-overlay')}>
+                    <div className={cx('dialog-box')}>
+                        <h3>Thông báo</h3>
+                        <p>{dialogMessage}</p>
+                        <button onClick={handleClose}>OK</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

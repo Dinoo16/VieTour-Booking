@@ -1,15 +1,11 @@
-import React, { use, useEffect } from 'react';
-import { signin } from '~/apiServices/authService';
+import React, { useEffect, useState } from 'react';
+import { signin, getUserInfo } from '~/apiServices/authService';
 import classNames from 'classnames/bind';
 import styles from './SignIn.module.scss';
 import icons from '~/assets/icons';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { isAuthenticated } from '~/utils/isAuthenticated';
-import { UserContext } from '~/contexts/UserContext';
-import { useContext } from 'react';
-import { getUserInfo } from '~/apiServices/authService';
+import { useUser } from '~/contexts/UserContext';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +15,7 @@ function SignIn() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const context = useContext(UserContext);
+    const { setUser, fetchUser } = useUser();
 
     useEffect(() => {
         if (isAuthenticated()) {
@@ -33,14 +29,16 @@ function SignIn() {
         try {
             const response = await signin({ email, password });
             console.log('API response:', response);
-            const token = response.token;
+            const token = response?.token;
 
             if (token) {
                 localStorage.setItem('token', token);
-                // Get user info
+                // Lấy user info từ API
                 const userData = await getUserInfo();
-                console.log(userData);
-                context.setUser(userData);
+                // if (!userData.username && userData.email) {
+                //     userData.username = userData.email.split('@')[0];
+                // }
+                setUser(userData);
 
                 navigate('/');
             } else {
@@ -57,13 +55,13 @@ function SignIn() {
                 <h2 className={cx('title')}>Sign In</h2>
 
                 <div className={cx('socialLogin')}>
-                    <button className={cx('socialBtn')}>
+                    <button type="button" className={cx('socialBtn')}>
                         <icons.facebook2 />
                     </button>
-                    <button className={cx('socialBtn')}>
+                    <button type="button" className={cx('socialBtn')}>
                         <icons.icloud />
                     </button>
-                    <button className={cx('socialBtn')}>
+                    <button type="button" className={cx('socialBtn')}>
                         <icons.google />
                     </button>
                 </div>
@@ -91,7 +89,9 @@ function SignIn() {
                     <input type="checkbox" id="remember" />
                     <label htmlFor="remember">Remember Me</label>
                 </div>
+
                 {error && <p className={cx('error')}>{error}</p>}
+
                 <button type="submit" className={cx('signInBtn')}>
                     Sign In
                 </button>

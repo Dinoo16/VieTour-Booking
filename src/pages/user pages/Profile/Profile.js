@@ -2,8 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
-import { useContext, useState } from 'react';
-import { UserContext } from '~/contexts/UserContext';
+import { useState } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import RewardSection from './RewardSection/RewardSection';
 import PROFILE_SETTING_MENU from '~/data/MenuItem/ProfileSettingMenu';
@@ -12,12 +11,15 @@ import SecuritySetting from './Content/SecuritySetting/SecuritySetting';
 import PaymentMethod from './Content/Payment/Payment';
 import Bookings from './Content/Bookings/Bookings';
 import MyReviews from './Content/MyReviews/MyReviews';
+import { useUser } from '~/contexts/UserContext';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
-    const context = useContext(UserContext);
+    const { user, loading } = useUser();
+
     const [activeMenu, setActiveMenu] = useState(PROFILE_SETTING_MENU[0]);
+    const username = user?.username || (user?.email ? user.email.split('@')[0] : 'User');
     const renderContent = () => {
         switch (activeMenu.title) {
             case 'Personal Information':
@@ -39,10 +41,10 @@ function Profile() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <img className={cx('avatar')} src={images[context.avatar]} alt={context.avatar} />
+                <img className={cx('avatar')} src={images[user.avatar]} alt={user.avatar} />
                 <div className={cx('info')}>
-                    <h3 className={cx('name')}>Hi {context.username} !</h3>
-                    <span className={cx('role')}>{context.membership}</span>
+                    <h3 className={cx('name')}>Hi {username} !</h3>
+                    <span className={cx('role')}>{user.membership}</span>
                 </div>
             </div>
 

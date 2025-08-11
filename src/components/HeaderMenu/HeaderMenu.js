@@ -7,20 +7,24 @@ import Tippy from '@tippyjs/react/headless';
 import { useState } from 'react';
 import Box from './Box/Box';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '~/contexts/UserContext';
-import { useContext } from 'react';
 import { signOut } from '~/apiServices/authService';
+import { useUser } from '~/contexts/UserContext';
 
 const cx = classNames.bind(styles);
 
 function HeaderMenu({ color, border, isWrap }) {
-    const context = useContext(UserContext);
-
+    const { user, loading, setUser } = useUser();
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
-    // Build menu items based on role
+
+    if (loading) return null;
+
+    // Sử dụng fallback data
+    const username = user.username || (user.email ? user.email.split('@')[0] : 'User');
+    const avatarSrc = user.avatar ? images[user.avatar] : images.defaultAvatar;
+
     const menuItems = [
-        ...(context.role === 'ADMIN'
+        ...(user.role === 'ADMIN'
             ? [
                   {
                       title: 'Dashboard',
@@ -51,16 +55,30 @@ function HeaderMenu({ color, border, isWrap }) {
     ];
 
     const handleLogout = () => {
-        // Add logout logic here
         setVisible(false);
         signOut();
+        setUser({
+            username: '',
+            role: '',
+            email: '',
+            phone: '',
+            avatar: '',
+            address: '',
+            dateOfBirth: '',
+            bio: '',
+        });
+        navigate('/signout');
     };
 
     const handleItemClick = (item) => {
-        console.log('Menu item clicked:', item);
         setVisible(false);
-        navigate(item.to);
-    };  
+        if (item.action === 'logout') {
+            handleLogout();
+        } else {
+            navigate(item.to);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('notification', isWrap && 'wrap')}>
@@ -69,14 +87,14 @@ function HeaderMenu({ color, border, isWrap }) {
             </div>
 
             <Tippy
-                interactive={true}
+                interactive
                 visible={visible}
                 onClickOutside={() => setVisible(false)}
                 placement="bottom-end"
                 render={(attrs) => (
                     <div className={cx('popover')} tabIndex="-1" {...attrs}>
                         <Box
-                            user={context}
+                            user={{ ...user, username, avatarSrc }}
                             menuItems={menuItems}
                             onItemClick={handleItemClick}
                             onLogout={handleLogout}
@@ -88,14 +106,13 @@ function HeaderMenu({ color, border, isWrap }) {
                     <div className={cx('avatar', border && 'border')}>
                         <img
                             className={cx('avatar-img', border && 'border')}
-                            src={images[context.avatar]}
+                            src={images[user.avatar] || images.defaultAvatar}
                             alt="avatar"
                         />
-                        {/* <icons.user /> */}
                     </div>
                     <div className={cx('user-name', color && 'black-color')}>
-                        <span className={cx('name')}>{context.username}</span>
-                        <span className={cx('role')}>{context.role}</span>
+                        <span className={cx('name')}> {user.username || (user.email && user.email.split('@')[0])}</span>
+                        <span className={cx('role')}>{user.role}</span>
                     </div>
                     <icons.arrow_down className={cx('arrow-down', color && 'black-color')} />
                 </div>

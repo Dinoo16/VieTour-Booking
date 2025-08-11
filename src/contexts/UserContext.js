@@ -14,39 +14,46 @@ function UserProvider({ children }) {
         dateOfBirth: '',
         bio: '',
     });
-
-    // Add a state to track if user data is loading
     const [loading, setLoading] = useState(true);
 
-    const fetchUser = async () => {
+    const fetchUser = useCallback(async () => {
         const token = localStorage.getItem('token');
-        if (token) {
-            try {
-                setLoading(true);
-                const data = await getUserInfo();
-                // if username is empty, get prefix email to set username
-                const username = data.username?.trim() ? data.username : data.email?.split('@')[0] || '';
-
-                setUser({
-                    ...data,
-                    username,
-                });
-            } catch (err) {
-                console.error('Failed to fetch user info:', err);
-                localStorage.removeItem('token');
-            } finally {
-                setLoading(false);
+        if (!token) {
+            setUser({
+                username: '',
+                role: '',
+                email: '',
+                phone: '',
+                avatar: '',
+                address: '',
+                dateOfBirth: '',
+                bio: '',
+            });
+            setLoading(false);
+            return;
+        }
+        try {
+            const userData = await getUserInfo();
+            if (userData) {
+                // Nếu username không có, tạo từ email
+                if (!userData.username && userData.email) {
+                    userData.username = userData.email.split('@')[0];
+                }
+                setUser(userData);
             }
-        } else {
+        } catch (error) {
+            console.error('Failed to fetch user info:', error);
+        } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
         fetchUser();
     }, [fetchUser]);
 
-    return <UserContext.Provider value={{ ...user, loading, setUser, fetchUser }}>{children}</UserContext.Provider>;
+    return <UserContext.Provider value={{ user, loading, setUser, fetchUser }}>{children}</UserContext.Provider>;
 }
 
+export const useUser = () => useContext(UserContext);
 export { UserContext, UserProvider };

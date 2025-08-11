@@ -5,33 +5,50 @@ import Table from './components/Table/Table';
 import { TOPTOUR_DATA, TOPTOUR_COLUMNS } from '~/data/Dashboard/TopTour';
 import Calendar from './components/Calendar/Calendar';
 import LineChart from './components/LineChart/LineChart';
+import { useEffect, useState } from 'react';
+import { getAllUsers } from '~/apiServices/adminUserService';
 
 const cx = classNames.bind(styles);
 
-const SUMMARY_ITEMS = [
-    {
-        icon: icons.booking,
-        title: 'Total Bookings',
-        value: 10001,
-    },
-    {
-        icon: icons.user,
-        title: 'Total Customers',
-        value: 1245,
-    },
-    {
-        icon: icons.dollar,
-        title: 'Total Earnings',
-        value: '$1234.5',
-    },
-];
-
 const AdminDashboard = () => {
+    const [summaryItems, setSummaryItems] = useState([
+        {
+            icon: icons.booking,
+            title: 'Total Bookings',
+            value: 10001,
+        },
+        {
+            icon: icons.user,
+            title: 'Total Customers',
+            value: 'Loading...', // Initial value while fetching
+        },
+        {
+            icon: icons.dollar,
+            title: 'Total Earnings',
+            value: '$1234.5',
+        },
+    ]);
+
+    useEffect(() => {
+        const fetchUsersApi = async () => {
+            try {
+                const data = await getAllUsers();
+                const userCount = data.length - 1;
+                setSummaryItems((prevItems) =>
+                    prevItems.map((item) => (item.title === 'Total Customers' ? { ...item, value: userCount } : item)),
+                );
+            } catch (error) {
+                console.log('Failed to fetch all users:', error);
+            }
+        };
+        fetchUsersApi();
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
                 <div className={cx('summary')}>
-                    {SUMMARY_ITEMS.map((item, index) => (
+                    {summaryItems.map((item, index) => (
                         <div className={cx('summary-item')} key={index}>
                             <item.icon />
                             <div className={cx('summary-item-info')}>

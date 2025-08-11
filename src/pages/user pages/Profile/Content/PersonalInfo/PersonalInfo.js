@@ -4,12 +4,13 @@ import icons from '~/assets/icons';
 import TextInput from '~/pages/admin pages/components/Input/TextInput';
 import TextareaField from '~/pages/admin pages/components/Input/TextareaField';
 import Button from '~/components/Button/Button';
-import { UserContext } from '~/contexts/UserContext';
-import { useContext } from 'react';
+import { useUser } from '~/contexts/UserContext';
+
 const cx = classNames.bind(styles);
 
 function PersonalInfo() {
-    const context = useContext(UserContext);
+    const { user, loading } = useUser();
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -26,7 +27,7 @@ function PersonalInfo() {
                 <TextInput label="Last Name" placeholder="Last Name" />
             </div>
             <div className={cx('row')}>
-                <TextInput label="Email" placeholder="Email" value={context.email} />
+                <TextInput label="Email" placeholder="Email" value={user.email} />
                 <TextInput label="Phone" placeholder="Phone" />
             </div>
             <div className={cx('row')}>

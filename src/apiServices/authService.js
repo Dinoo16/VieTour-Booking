@@ -3,7 +3,7 @@ import * as httpRequest from '~/utils/httpRequest';
 export const signup = async (userData) => {
     try {
         const res = await httpRequest.post('auth/signup', userData);
-        return res.data;
+        return res;
     } catch (error) {
         console.log(error);
     }
@@ -33,3 +33,4 @@ export const getUserInfo = async () => {
         throw error;
     }
 };
+

@@ -28,6 +28,7 @@ import AdminMessage from '~/pages/admin pages/Message/Message';
 import SignIn from '~/pages/authentication/SignIn/SignIn';
 import SignUp from '~/pages/authentication/SignUp/SignUp';
 import SignOut from '~/pages/authentication/SignOut/SignOut';
+import AdminRoute from '~/config/AdminRoute';
 
 import classNames from 'classnames/bind';
 import styles from './routes.module.scss';
@@ -229,72 +230,128 @@ const adminRoutes = [
     {
         path: routesConfig.admin,
         component: AdminDashboard,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminDestination,
         component: AdminDestination,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminAddDestination,
         component: AdminAddDestination,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminEditDestination,
         component: AdminEditDestination,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminTour,
         component: AdminTour,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminAddTour,
         component: AdminAddTour,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminEditTour,
         component: AdminEditTour,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminBooking,
         component: AdminBooking,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminTraveler,
         component: AdminTraveler,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminGuide,
         component: AdminGuide,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminGallery,
         component: AdminGallery,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminAddGallery,
         component: AdminAddGallery,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminFeedback,
         component: AdminFeedback,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
     {
         path: routesConfig.adminMessage,
         component: AdminMessage,
-        layout: (page) => <AdminLayout>{page}</AdminLayout>,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
     },
 ];
 

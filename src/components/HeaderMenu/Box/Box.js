@@ -3,34 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './Box.module.scss';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
-import { userData } from '~/data/User/User';
 const cx = classNames.bind(styles);
 
-/**
- * Box Component - User Menu Dropdown
- *
- * Usage Examples:
- *
- * // Basic usage with default menu items
- * <Box onLogout={handleLogout} />
- *
- * // Custom user data
- * <Box
- *     user={{ name: 'John Doe', role: 'User', avatar: '/path/to/avatar.jpg' }}
- *     onLogout={handleLogout}
- * />
- *
- * // Custom menu items
- * <Box
- *     menuItems={[
- *         { title: 'Dashboard', icon: icons.dashboard, action: 'dashboard' },
- *         { title: 'Settings', icon: icons.settings, action: 'settings' },
- *         { title: 'Logout', icon: icons.logout, action: 'logout', className: 'logout' }
- *     ]}
- *     onItemClick={handleItemClick}
- *     onLogout={handleLogout}
- * />
- */
 function Box({ user, menuItems = [], onItemClick, onLogout }) {
     // Default menu items if none provided
     const items = menuItems.length > 0 ? menuItems : [];
@@ -42,7 +16,9 @@ function Box({ user, menuItems = [], onItemClick, onLogout }) {
             onItemClick(item);
         }
     };
-
+    // Fallback avatar và username
+    const avatarSrc = user?.avatar ? images[user.avatar] : images.defaultAvatar;
+    const username = user?.username || (user?.email ? user.email.split('@')[0] : 'User');
     return (
         <div className={cx('box')}>
             <div className={cx('user-menu')}>
