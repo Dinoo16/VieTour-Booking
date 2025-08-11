@@ -14,6 +14,7 @@ import AdminDashboard from '~/pages/admin pages/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
 import AdminDestination from '~/pages/admin pages/Destination/Destination';
 import AdminAddDestination from '~/pages/admin pages/Destination/AddDestination';
+import AdminAddCategory from '~/pages/admin pages/Destination/AddCategory';
 import AdminEditDestination from '~/pages/admin pages/Destination/EditDestination';
 import AdminTour from '~/pages/admin pages/Tour/Tour';
 import AdminAddTour from '~/pages/admin pages/Tour/AddTour';
@@ -248,6 +249,15 @@ const adminRoutes = [
     {
         path: routesConfig.adminAddDestination,
         component: AdminAddDestination,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
+    },
+    {
+        path: routesConfig.adminAddCategory,
+        component: AdminAddCategory,
         layout: (page) => (
             <AdminRoute>
                 <AdminLayout>{page}</AdminLayout>

@@ -2,31 +2,55 @@ import classNames from 'classnames/bind';
 import styles from './Destination.module.scss';
 import TextInput from '../components/Input/TextInput';
 import TextareaField from '../components/Input/TextareaField';
-import FileDropzone from '../components/FileDropzone/FileDropzone';
 import Select from '../components/Select/Select';
 import Form from '../components/Form/Form';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { getAllRegions } from '~/apiServices/regionService';
+import { createDestination } from '~/apiServices/destinationService';
 const cx = classNames.bind(styles);
 
-const regionOptions = [
-    { title: 'Northern', value: 'northern' },
-    { title: 'Central', value: 'central' },
-    { title: 'Southern', value: 'southern' },
-];
-
 function AddDestination() {
+    const [regionOptions, setRegionOptions] = useState([]);
     const [region, setRegion] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');
 
-    // const regionOption = ['Northern', 'Central', 'Southern'];
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        const fetchRegions = async () => {
+            try {
+                const data = await getAllRegions();
+                console.log('Regions: ', data);
+                setRegionOptions(data);
+            } catch (error) {
+                console.log('Failed to fetch all Regions:', error);
+            }
+        };
+        fetchRegions();
+    }, []);
+
+    // add destination info
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        // Do something with the data
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('description', description);
+        formData.append('regionId', region);
+        if (image) formData.append('backgroundImage', image);
+        try {
+            const res = await createDestination(formData);
+            console.log('Create destination success:', res);
+            // Có thể clear form hoặc chuyển hướng
+        } catch (error) {
+            console.error('Failed to create destination:', error);
+        }
     };
+
+
     return (
         <Form
             title="Add Destination"
-            onSubmit={handleSubmit}
+            onSubmit={handleFormSubmit}
             rightPanel={
                 <Select
                     label="Region"
@@ -37,10 +61,25 @@ function AddDestination() {
                 />
             }
         >
-            <TextInput label="Destination name" placeholder="Destination name" />
-            <TextareaField label="Description" placeholder="Enter a description..." />
+            <TextInput
+                label="Destination name"
+                placeholder="Destination name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <TextareaField
+                label="Description"
+                placeholder="Enter a description..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            />
 
-            <FileDropzone />
+            <TextInput
+                label="Image url"
+                placeholder="Image url"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+            />
         </Form>
     );
 }

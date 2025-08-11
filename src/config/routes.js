@@ -11,6 +11,7 @@ const routes = {
     admin: '/admin',
     adminDestination: '/admin/destination',
     adminAddDestination: '/admin/destination/add',
+    adminAddCategory: '/admin/category/add',
     adminEditDestination: '/admin/destination/edit/:id',
     adminTour: '/admin/tour',
     adminAddTour: '/admin/tour/add',
@@ -28,5 +29,3 @@ const routes = {
 };
 
 export default routes;
-
-

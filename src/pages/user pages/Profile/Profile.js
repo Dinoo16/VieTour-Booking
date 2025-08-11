@@ -41,7 +41,7 @@ function Profile() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <img className={cx('avatar')} src={images[user.avatar]} alt={user.avatar} />
+                <img className={cx('avatar')} src={images[user.avatar] || user.avatar} alt={user.avatar} />
                 <div className={cx('info')}>
                     <h3 className={cx('name')}>Hi {username} !</h3>
                     <span className={cx('role')}>{user.membership}</span>

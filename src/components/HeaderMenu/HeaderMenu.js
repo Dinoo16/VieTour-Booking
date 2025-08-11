@@ -106,12 +106,12 @@ function HeaderMenu({ color, border, isWrap }) {
                     <div className={cx('avatar', border && 'border')}>
                         <img
                             className={cx('avatar-img', border && 'border')}
-                            src={images[user.avatar] || images.defaultAvatar}
+                            src={images[user.avatar] || user.avatar}
                             alt="avatar"
                         />
                     </div>
                     <div className={cx('user-name', color && 'black-color')}>
-                        <span className={cx('name')}> {user.username || (user.email && user.email.split('@')[0])}</span>
+                        <span className={cx('name')}> {user.name || (user.email && user.email.split('@')[0])}</span>
                         <span className={cx('role')}>{user.role}</span>
                     </div>
                     <icons.arrow_down className={cx('arrow-down', color && 'black-color')} />

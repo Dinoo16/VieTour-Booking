@@ -86,7 +86,7 @@ export const CATEGORIES_COLUMN = [
         ),
     },
     {
-        header: 'Title',
-        accessor: 'title',
+        header: 'Name',
+        accessor: 'name',
     },
 ];

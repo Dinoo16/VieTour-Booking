@@ -1,5 +1,6 @@
 import * as httpRequest from '~/utils/httpRequest';
 
+// Get all categories
 export const getAllCategories = async () => {
     try {
         const res = await httpRequest.get('/public/categories');
@@ -9,33 +10,13 @@ export const getAllCategories = async () => {
         throw error;
     }
 };
-
+// Get category by id
 export const getCategoryById = async (id) => {
     try {
         const res = await httpRequest.get(`/public/categories/${id}`);
         return res;
     } catch (error) {
         console.error(`Error fetching Category with ID ${id}:`, error);
-        throw error;
-    }
-};
-
-// Get all categories (Admin)
-export const getAllCategoriesAdmin = async () => {
-    try {
-        return await httpRequest.get('/admin/categories');
-    } catch (error) {
-        console.error('Error fetching admin Categories:', error);
-        throw error;
-    }
-};
-
-// Get category by ID (Admin)
-export const getCategoryByIdAdmin = async (id) => {
-    try {
-        return await httpRequest.get(`/admin/categories/${id}`);
-    } catch (error) {
-        console.error(`Error fetching admin category with ID ${id}:`, error);
         throw error;
     }
 };

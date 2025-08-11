@@ -20,24 +20,6 @@ export const getDestinationById = async (id) => {
     }
 };
 
-// Get all destinations (Admin)
-export const getAllDestinationsAdmin = async () => {
-    try {
-        return await httpRequest.get('/admin/destinations');
-    } catch (error) {
-        console.error('Error fetching admin destinations:', error);
-        throw error;
-    }
-};
-// Get destination by ID (Admin)
-export const getDestinationByIdAdmin = async (id) => {
-    try {
-        return await httpRequest.get(`/admin/destinations/${id}`);
-    } catch (error) {
-        console.error(`Error fetching admin destination with ID ${id}:`, error);
-        throw error;
-    }
-};
 
 // Create destination by Admin
 export const createDestination = async (destinationData) => {

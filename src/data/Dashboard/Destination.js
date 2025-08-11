@@ -102,37 +102,3 @@ export const DESTINATIONS = [
         delete: <icons.remove />,
     },
 ];
-
-export const DESTINATION_COLUMNS = [
-    {
-        header: 'Id',
-        accessor: 'id',
-    },
-    {
-        header: 'Image',
-        accessor: 'image',
-        render: (value) => (
-            <img src={value} alt="destination" style={{ width: 40, height: 40, borderRadius: 8, objectFit: 'cover' }} />
-        ),
-    },
-    {
-        header: 'Title',
-        accessor: 'title',
-    },
-    {
-        header: 'Region',
-        accessor: 'region',
-    },
-    {
-        header: 'Number Of Tours',
-        accessor: 'numberOfTours',
-    },
-    {
-        header: 'Edit',
-        accessor: 'edit',
-    },
-    {
-        header: 'Delete',
-        accessor: 'delete',
-    },
-];

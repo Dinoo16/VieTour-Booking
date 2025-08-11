@@ -16,18 +16,16 @@ function Box({ user, menuItems = [], onItemClick, onLogout }) {
             onItemClick(item);
         }
     };
-    // Fallback avatar và username
-    const avatarSrc = user?.avatar ? images[user.avatar] : images.defaultAvatar;
-    const username = user?.username || (user?.email ? user.email.split('@')[0] : 'User');
+
     return (
         <div className={cx('box')}>
             <div className={cx('user-menu')}>
                 <div className={cx('menu-header')}>
                     <div className={cx('menu-avatar')}>
-                        <img src={images[user.avatar]} alt="avatar" />
+                        <img src={images[user.avatar] || user.avatar} alt="avatar" />
                     </div>
                     <div className={cx('menu-user-info')}>
-                        <span className={cx('menu-name')}>{user.username}</span>
+                        <span className={cx('menu-name')}>{user.name || user.username}</span>
                         <span className={cx('menu-role')}>{user.role}</span>
                     </div>
                 </div>
