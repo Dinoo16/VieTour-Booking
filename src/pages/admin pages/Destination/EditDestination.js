@@ -2,32 +2,62 @@ import classNames from 'classnames/bind';
 import styles from './Destination.module.scss';
 import TextInput from '../components/Input/TextInput';
 import TextareaField from '../components/Input/TextareaField';
-import FileDropzone from '../components/FileDropzone/FileDropzone';
 import Select from '../components/Select/Select';
 import Form from '../components/Form/Form';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { DESTINATIONS } from '~/data/Dashboard/Destination';
+import { useState, useEffect } from 'react';
+import { useDestination, useUpdateDestination } from '~/hooks/useDestinations';
+import { useRegions } from '~/hooks/useRegions';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const regionOptions = [
-    { title: 'Northern', value: 'northern' },
-    { title: 'Central', value: 'central' },
-    { title: 'Southern', value: 'southern' },
-];
-
 function EditDestination() {
+    const navigate = useNavigate();
     const { id } = useParams();
-    const destination = DESTINATIONS.find((t) => t.id === parseInt(id));
+    const { data: destinationData } = useDestination(id);
+    const { data: regions } = useRegions();
+    const updateDestination = useUpdateDestination();
 
-    const [name, setName] = useState(destination?.title || '');
-    const [description, setDescription] = useState(destination?.description || '');
-    const [region, setRegion] = useState(destination?.region || '');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [regionId, setRegionId] = useState('');
+    const [backgroundImage, setBackgroundImage] = useState('');
+
+    const regionOptions = regions ? regions.map((r) => ({ value: r.regionId, label: r.name })) : [];
+
+    useEffect(() => {
+        if (destinationData) {
+            setName(destinationData.name || '');
+            setDescription(destinationData.description || '');
+            setRegionId(destinationData.regionId || '');
+            setBackgroundImage(destinationData.backgroundImage || '');
+        }
+    }, [destinationData]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Do something with the data
+
+        const updateData = {
+            id: id,
+            name,
+            description,
+            regionId,
+            backgroundImage,
+        };
+
+        // call api
+        updateDestination.mutate(updateData, {
+            onSuccess: (responseData) => {
+                console.log('Update thành công:', responseData);
+                navigate('/admin/destination');
+            },
+            onError: (error) => {
+                console.error('Lỗi khi update:', error);
+                // Thêm thông báo lỗi cụ thể hơn
+                alert(`Update failed: ${error.response?.data?.message || error.message}`);
+            },
+        });
     };
     return (
         <Form
@@ -38,8 +68,8 @@ function EditDestination() {
                     label="Region"
                     placeholder="Select a region"
                     options={regionOptions}
-                    value={region}
-                    onChange={(e) => setRegion(e.target.value)}
+                    value={regionId}
+                    onChange={(e) => setRegionId(e.target.value)}
                 />
             }
         >
@@ -55,7 +85,12 @@ function EditDestination() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            <FileDropzone />
+            <TextInput
+                label="Image Url"
+                placeholder="Insert image url"
+                value={backgroundImage}
+                onChange={(e) => setBackgroundImage(e.target.value)}
+            />
         </Form>
     );
 }

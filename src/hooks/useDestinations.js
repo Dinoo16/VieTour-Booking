@@ -42,11 +42,11 @@ export const useCreateDestination = () => {
 export const useUpdateDestination = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: ({ id, data }) => updateDestination(id, data),
-        onSuccess: (_, { id }) => {
+        mutationFn: (updatedData) => updateDestination(updatedData.id, updatedData),
+        onSuccess: (data) => {
             // Refresh cache
             queryClient.invalidateQueries(['destinations']);
-            queryClient.invalidateQueries(['destination', id]);
+            queryClient.invalidateQueries(['destination', data.id]);
         },
     });
 };
@@ -89,4 +89,3 @@ export const useDeleteDestination = () => {
 // const handleDelete = () => {
 //     deleteDest(1);
 // };
-

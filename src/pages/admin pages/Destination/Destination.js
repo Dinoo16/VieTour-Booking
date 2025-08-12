@@ -7,10 +7,12 @@ import Table from '../components/Table/Table';
 import routesConfig from '~/config/routes';
 import { useDestinations } from '~/hooks/useDestinations';
 import { useCategories } from '~/hooks/useCategories';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Destination() {
+    const navigate = useNavigate();
     const DESTINATION_COLUMNS = [
         {
             header: 'Id',
@@ -42,7 +44,7 @@ function Destination() {
         },
         {
             header: 'Edit',
-            accessor: 'edit',
+            accessor: 'id',
             render: (id) => (
                 <button onClick={() => handleEdit(id)}>
                     <icons.penIcon />
@@ -51,7 +53,7 @@ function Destination() {
         },
         {
             header: 'Delete',
-            accessor: 'delete',
+            accessor: 'id',
             render: (id) => (
                 <button onClick={() => handleDelete(id)}>
                     <icons.remove />
@@ -66,6 +68,7 @@ function Destination() {
     const handleEdit = (id) => {
         console.log('Edit destination with id:', id);
         // Điều hướng hoặc mở modal sửa destination
+        navigate(`/admin/destination/edit/${id}`);
     };
 
     const handleDelete = (id) => {
