@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function Form({ children, title, rightPanel, bottomRightPanel, onSubmit }) {
     return (
-        <div className={cx('wrapper')}>
+        <form className={cx('wrapper')} onSubmit={onSubmit}>
             <div className={cx('info')}>
                 <div className={cx('details', { fullWidth: !rightPanel && !bottomRightPanel })}>
                     <h3>{title}</h3>
@@ -31,7 +31,7 @@ function Form({ children, title, rightPanel, bottomRightPanel, onSubmit }) {
             <div className={cx('save')}>
                 <Save />
             </div>
-        </div>
+        </form>
     );
 }
 

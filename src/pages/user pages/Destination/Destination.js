@@ -1,17 +1,17 @@
 import classNames from 'classnames/bind';
 import styles from './Destination.module.scss';
-import { DESTINATIONS } from '~/data/Destination/Destination';
 import { useEffect, useState } from 'react';
 import { getAllRegions } from '~/apiServices/regionService';
-import { getAllDestinations } from '~/apiServices/destinationService';
+import { useDestinations } from '~/hooks/useDestinations';
 
 const cx = classNames.bind(styles);
 
 function Destination() {
     const [regions, setRegions] = useState([]);
     const [activeRegion, setActiveRegion] = useState(null);
-    const [destinations, setDestinations] = useState([]);
+    const { data: destinations = [], isLoading } = useDestinations();
 
+    // Fetch regions api
     useEffect(() => {
         const fetchRegionsApi = async () => {
             try {
@@ -28,21 +28,12 @@ function Destination() {
         fetchRegionsApi();
     }, []);
 
-    useEffect(() => {
-        const fetchDestinationsApi = async () => {
-            try {
-                const data = await getAllDestinations();
-                setDestinations(data);
-                console.log(data);
-            } catch (error) {
-                console.error('Error fetching regions:', error);
-            }
-        };
-        fetchDestinationsApi();
-    }, []);
-
+    // Filter destinations with regions
     const filteredDestinations = destinations.filter((item) => item.regionId === activeRegion);
 
+    if (isLoading) {
+        return <p>Loading destinations...</p>;
+    }
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>Explore more destinations</h1>

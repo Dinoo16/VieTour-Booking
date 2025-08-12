@@ -20,11 +20,14 @@ export const getDestinationById = async (id) => {
     }
 };
 
-
 // Create destination by Admin
 export const createDestination = async (destinationData) => {
     try {
-        const res = await httpRequest.post('/admin/destinations', destinationData);
+        const res = await httpRequest.post('/admin/destinations', destinationData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         return res.data;
     } catch (error) {
         console.error('Error creating destination:', error);
@@ -33,9 +36,13 @@ export const createDestination = async (destinationData) => {
 };
 
 // Update destination by ID
-export const updateDestinationAdmin = async (id, destinationData) => {
+export const updateDestination = async (id, destinationData) => {
     try {
-        return await httpRequest.put(`/admin/destinations/${id}`, destinationData);
+        return await httpRequest.put(`/admin/destinations/${id}`, destinationData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
     } catch (error) {
         console.error(`Error updating destination with ID ${id}:`, error);
         throw error;
@@ -43,7 +50,7 @@ export const updateDestinationAdmin = async (id, destinationData) => {
 };
 
 // Delete destination by ID
-export const deleteDestinationAdmin = async (id) => {
+export const deleteDestination = async (id) => {
     try {
         return await httpRequest.del(`/admin/destinations/${id}`);
     } catch (error) {

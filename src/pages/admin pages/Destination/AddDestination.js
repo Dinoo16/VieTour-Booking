@@ -3,25 +3,31 @@ import styles from './Destination.module.scss';
 import TextInput from '../components/Input/TextInput';
 import TextareaField from '../components/Input/TextareaField';
 import Select from '../components/Select/Select';
+import PropTypes from 'prop-types';
 import Form from '../components/Form/Form';
 import { useState, useEffect } from 'react';
 import { getAllRegions } from '~/apiServices/regionService';
-import { createDestination } from '~/apiServices/destinationService';
+import { useCreateDestination } from '~/hooks/useDestinations';
+import { useNavigate } from 'react-router-dom';
+
 const cx = classNames.bind(styles);
 
 function AddDestination() {
+    const navigate = useNavigate();
     const [regionOptions, setRegionOptions] = useState([]);
     const [region, setRegion] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const [backgroundImage, setBackgroundImage] = useState('');
+
+    const { mutate: createDestination, isLoading } = useCreateDestination();
 
     useEffect(() => {
         const fetchRegions = async () => {
             try {
                 const data = await getAllRegions();
                 console.log('Regions: ', data);
-                setRegionOptions(data);
+                setRegionOptions(data.map((r) => ({ value: r.regionId, label: r.name })));
             } catch (error) {
                 console.log('Failed to fetch all Regions:', error);
             }
@@ -32,21 +38,22 @@ function AddDestination() {
     // add destination info
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('description', description);
-        formData.append('regionId', region);
-        if (image) formData.append('backgroundImage', image);
-        try {
-            const res = await createDestination(formData);
-            console.log('Create destination success:', res);
-            // Có thể clear form hoặc chuyển hướng
-        } catch (error) {
-            console.error('Failed to create destination:', error);
-        }
+        const destinationData = {
+            name,
+            description,
+            regionId: region,
+            backgroundImage,
+        };
+
+        // call api
+        createDestination(destinationData, {
+            onSuccess: () => {
+                navigate('/admin/destination');
+            },
+        });
     };
 
-
+    if (isLoading) return <p>Loading...</p>;
     return (
         <Form
             title="Add Destination"
@@ -57,7 +64,7 @@ function AddDestination() {
                     placeholder="Select a region"
                     options={regionOptions}
                     value={region}
-                    onChange={(e) => setRegion(e.target.value)}
+                    onChange={(e) => setRegion(Number(e.target.value))}
                 />
             }
         >
@@ -76,12 +83,23 @@ function AddDestination() {
 
             <TextInput
                 label="Image url"
-                placeholder="Image url"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
+                placeholder="Insert Image url"
+                value={backgroundImage}
+                onChange={(e) => setBackgroundImage(e.target.value)}
             />
         </Form>
     );
 }
-
+Select.propTypes = {
+    label: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+        }),
+    ).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    onChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+};
 export default AddDestination;

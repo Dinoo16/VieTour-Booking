@@ -24,7 +24,12 @@ export const getCategoryById = async (id) => {
 // Create category by Admin
 export const createCategory = async (categoryData) => {
     try {
-        const res = await httpRequest.post('/admin/categories', categoryData);
+        const res = await httpRequest.post('/admin/categories', categoryData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
         return res.data;
     } catch (error) {
         console.error('Error creating Category:', error);
@@ -33,9 +38,13 @@ export const createCategory = async (categoryData) => {
 };
 
 // Update category by ID
-export const updateCategoryAdmin = async (id, categoryData) => {
+export const updateCategory = async (id, categoryData) => {
     try {
-        return await httpRequest.put(`/admin/categories/${id}`, categoryData);
+        return await httpRequest.put(`/admin/categories/${id}`, categoryData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
     } catch (error) {
         console.error(`Error updating category with ID ${id}:`, error);
         throw error;
@@ -43,7 +52,7 @@ export const updateCategoryAdmin = async (id, categoryData) => {
 };
 
 // Delete category by ID
-export const deleteCategoryAdmin = async (id) => {
+export const deleteCategory = async (id) => {
     try {
         return await httpRequest.del(`/admin/categories/${id}`);
     } catch (error) {

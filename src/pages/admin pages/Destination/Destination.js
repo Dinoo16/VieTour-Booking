@@ -5,9 +5,8 @@ import icons from '~/assets/icons';
 import { CATEGORIES_COLUMN } from '~/data/Category/Category';
 import Table from '../components/Table/Table';
 import routesConfig from '~/config/routes';
-import { useEffect, useState } from 'react';
-import { getAllCategories } from '~/apiServices/categoriesService';
-import { getAllDestinations } from '~/apiServices/destinationService';
+import { useDestinations } from '~/hooks/useDestinations';
+import { useCategories } from '~/hooks/useCategories';
 
 const cx = classNames.bind(styles);
 
@@ -61,6 +60,9 @@ function Destination() {
         },
     ];
 
+    const { data: destinations = [], isDestinationsLoading } = useDestinations();
+    const { data: categories = [], isCategoriesLoading } = useCategories();
+
     const handleEdit = (id) => {
         console.log('Edit destination with id:', id);
         // Điều hướng hoặc mở modal sửa destination
@@ -70,34 +72,13 @@ function Destination() {
         console.log('Delete destination with id:', id);
         // Gọi API xóa rồi cập nhật lại danh sách destinations
     };
-    const [categories, setCategories] = useState([]);
-    const [destinations, setDestinations] = useState([]);
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const data = await getAllCategories();
-                console.log('Categories: ', data);
-                setCategories(data);
-            } catch (error) {
-                console.log('Failed to fetch all categories:', error);
-            }
-        };
-        fetchCategories();
-    }, []);
-
-    useEffect(() => {
-        const fetchDestinations = async () => {
-            try {
-                const data = await getAllDestinations();
-                console.log('Destinations: ', data);
-                setDestinations(data);
-            } catch (error) {
-                console.log('Failed to fetch all destinations:', error);
-            }
-        };
-        fetchDestinations();
-    }, []);
+    if (isDestinationsLoading) {
+        return <p>Loading destinations...</p>;
+    }
+    if (isCategoriesLoading) {
+        return <p>Loading categories...</p>;
+    }
 
     return (
         <div className={cx('wrapper')}>
