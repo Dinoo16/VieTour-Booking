@@ -16,6 +16,7 @@ import AdminDestination from '~/pages/admin pages/Destination/Destination';
 import AdminAddDestination from '~/pages/admin pages/Destination/AddDestination';
 import AdminAddCategory from '~/pages/admin pages/Destination/AddCategory';
 import AdminEditDestination from '~/pages/admin pages/Destination/EditDestination';
+import AdminEditCategory from '~/pages/admin pages/Destination/EditCategory';
 import AdminTour from '~/pages/admin pages/Tour/Tour';
 import AdminAddTour from '~/pages/admin pages/Tour/AddTour';
 import AdminEditTour from '~/pages/admin pages/Tour/EditTour';
@@ -267,6 +268,15 @@ const adminRoutes = [
     {
         path: routesConfig.adminEditDestination,
         component: AdminEditDestination,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
+    },
+    {
+        path: routesConfig.adminEditCategory,
+        component: AdminEditCategory,
         layout: (page) => (
             <AdminRoute>
                 <AdminLayout>{page}</AdminLayout>

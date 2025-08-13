@@ -1,19 +1,22 @@
 import classNames from 'classnames/bind';
 import styles from './Box.module.scss';
-import images from '~/assets/images';
-import { CATEGORIES } from '~/data/Category/Category';
+import { useCategories } from '~/hooks/useCategories';
+
 const cx = classNames.bind(styles);
 
 function CategoryBox({ onSelect }) {
-   
+    const { data: categories = [], isCategoriesLoading } = useCategories();
+    if (isCategoriesLoading) {
+        return <p>Loading Category...</p>;
+    }
     return (
         <div className={cx('dropdown')}>
             <p className={cx('dropdown-title')}>Choose category</p>
-            {CATEGORIES.map((category, index) => (
-                <div key={index} className={cx('dropdown-item')} onClick={() => onSelect && onSelect(category.title)}>
-                    <img src={category.image} alt={category.title} />
+            {categories.map((category, index) => (
+                <div key={index} className={cx('dropdown-item')} onClick={() => onSelect && onSelect(category.name)}>
+                    <img src={category.image} alt={category.name} />
                     <div>
-                        <p className={cx('dropdown-title')}>{category.title}</p>
+                        <p className={cx('dropdown-title')}>{category.name}</p>
                     </div>
                 </div>
             ))}

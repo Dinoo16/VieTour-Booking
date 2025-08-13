@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getAllTours, getTourById } from '~/apiServices/tourService';
+import { getAllTours, getTourById, createTour, updateTour, deleteTour } from '~/apiServices/tourService';
 
 // Hook get all Tours
 export const useTours = () => {
@@ -21,7 +21,35 @@ export const useTour = (id) => {
 };
 
 // Hook create tour by admin
+export const useCreateTour = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: createTour,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['tours']);
+        },
+    });
+};
 
 // Hook update tour by admin
+export const useUpdateTour = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (updateData) => updateTour(updateData.id, updateData),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries(['tours']);
+            queryClient.invalidateQueries(['tour', variables.id]);
+        },
+    });
+};
 
 // Hook delete tour by admin
+export const useDeleteTour = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: deleteTour,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['tours']);
+        },
+    });
+};

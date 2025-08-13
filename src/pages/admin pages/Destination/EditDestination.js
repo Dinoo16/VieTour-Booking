@@ -15,6 +15,7 @@ const cx = classNames.bind(styles);
 function EditDestination() {
     const navigate = useNavigate();
     const { id } = useParams();
+
     const { data: destinationData } = useDestination(id);
     const { data: regions } = useRegions();
     const updateDestination = useUpdateDestination();
@@ -54,7 +55,6 @@ function EditDestination() {
             },
             onError: (error) => {
                 console.error('Lỗi khi update:', error);
-                // Thêm thông báo lỗi cụ thể hơn
                 alert(`Update failed: ${error.response?.data?.message || error.message}`);
             },
         });

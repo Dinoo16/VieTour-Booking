@@ -1,26 +1,43 @@
 import styles from './Tour.module.scss';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import { TOURS } from '~/data/Tour/Tour';
+import { useState, useEffect } from 'react';
+// import { TOURS } from '~/data/Tour/Tour';
 import Menu from './Menu/Menu';
 import Button from '~/components/Button/Button';
 import icons from '~/assets/icons';
 import routesConfig from '~/config/routes';
+import { useTours } from '~/hooks/useTours';
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
 function Tour() {
-    const [activeTour, setActiveTour] = useState(TOURS[0]);
+    const [activeTour, setActiveTour] = useState(null);
+
+    const { data: tourData = [], isTourDataLoading } = useTours();
+    console.log('tours', tourData);
+
+    useEffect(() => {
+        if (tourData.length > 0) {
+            setActiveTour(tourData[0]);
+        }
+    }, [tourData]);
 
     const handleTourClick = (tour) => {
         setActiveTour(tour);
     };
 
+    if (isTourDataLoading) {
+        return <LoadingSpinner text="Fetching tours..." />;
+    }
+    if (!activeTour) {
+        return <LoadingSpinner text="Fetching tours..." />;
+    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('tour-list')}>
                 <h3 className={cx('title')}>All Tours</h3>
-                <Menu items={TOURS} activeItem={activeTour} onItemClick={handleTourClick} />
+                <Menu items={tourData} activeItem={activeTour} onItemClick={handleTourClick} />
 
                 <Button to={routesConfig.adminAddTour} className={cx('add-tour-btn')} primary leftIcon={<icons.add />}>
                     Add Tour
@@ -28,7 +45,7 @@ function Tour() {
             </div>
             <div className={cx('tour-detail')}>
                 <div className={cx('tour-info')}>
-                    <img src={activeTour.image} alt={activeTour.title} />
+                    <img src={activeTour.backgroundImage} alt={activeTour.title} />
                     <div className={cx('info')}>
                         <h2>{activeTour.title}</h2>
                         <Button
@@ -43,7 +60,7 @@ function Tour() {
                     <div className={cx('meta')}>
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Destination</span>
-                            <span className={cx('value')}>{activeTour.destination}</span>
+                            <span className={cx('value')}>{activeTour.destinationName}</span>
                         </div>
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Departure</span>
@@ -59,9 +76,7 @@ function Tour() {
                         </div>
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Category</span>
-                            <span className={cx('value')}>
-                                {activeTour.category.map((cat) => cat.title).join(', ')}
-                            </span>
+                            <span className={cx('value')}>{activeTour.categoryNames.map((cat) => cat).join(', ')}</span>
                         </div>
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Duration</span>

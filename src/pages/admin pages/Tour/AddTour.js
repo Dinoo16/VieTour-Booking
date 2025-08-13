@@ -10,9 +10,14 @@ import { CATEGORIES } from '~/data/Category/Category';
 import { DESTINATIONS } from '~/data/Dashboard/Destination';
 import { useState } from 'react';
 import MultiSelect from '../components/Select/MultiSelec';
+import { useCreateTour } from '~/hooks/useTours';
+
 const cx = classNames.bind(styles);
 
 function AddTour() {
+    // Fetch destinations
+    // Fetch categories
+
     const [destination, setDestination] = useState('');
     const [selectedCategories, setSelectedCategories] = useState('');
     const handleSubmit = (e) => {

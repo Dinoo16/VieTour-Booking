@@ -41,10 +41,10 @@ export const useCreateCategory = () => {
 export const useUpdateCategory = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        muatationFn: ({ id, data }) => updateCategory(id, data),
-        onSuccess: (_, { id }) => {
+        mutationFn: (updateData) => updateCategory(updateData.categoryId, updateData),
+        onSuccess: (_data, variables) => {
             queryClient.invalidateQueries(['categories']);
-            queryClient.invalidateQueries(['category', id]);
+            queryClient.invalidateQueries(['category', variables.categoryId]);
         },
     });
 };
