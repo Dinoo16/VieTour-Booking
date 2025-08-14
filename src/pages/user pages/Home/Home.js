@@ -8,10 +8,11 @@ import Destination from './components/Destination/Destination';
 import Promotion from './components/Promotion/Promotion';
 import Tours from './components/Tours/Tours';
 import Gallery from './components/Gallery/Gallery';
-import { TOURS } from '~/data/Tour/Tour';
-import { CATEGORIES } from '~/data/Category/Category';
 import { DESTINATIONS } from '~/data/Destination/Destination';
 import { useNavigate } from 'react-router-dom';
+import { useCategories } from '~/hooks/useCategories';
+import { useTours } from '~/hooks/useTours';
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
@@ -22,20 +23,24 @@ function handleDestinationClick(item) {
     console.log(item);
 }
 
-
 function Home() {
+    const { data: CategoriesData = [], isCategoriesLoading } = useCategories();
+    const { data: ToursData = [], isToursLoading } = useTours();
     const navigate = useNavigate();
     const handleTourClick = (item) => {
         navigate(`/tour/${item.id}`);
     };
 
+    if (isCategoriesLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
     return (
         <div className={cx('wrapper')}>
             {/* SERVICES */}
             <Services />
 
             {/* CATEGORY */}
-            <Categories items={CATEGORIES} onclick={handleCategoryClick} />
+            <Categories items={CategoriesData} onclick={handleCategoryClick} />
 
             {/* DESTINATION */}
             <Destination items={DESTINATIONS} onclick={handleDestinationClick} />
@@ -44,7 +49,7 @@ function Home() {
             <Promotion />
 
             {/* TOURS */}
-            <Tours items={TOURS} onclick={handleTourClick}/>
+            <Tours items={ToursData} onclick={handleTourClick} />
 
             {/* GALLERY */}
             <Gallery />

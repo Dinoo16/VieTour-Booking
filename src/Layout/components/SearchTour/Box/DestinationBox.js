@@ -19,7 +19,7 @@ function DestinationBox({ onSelect }) {
                     <img src={destination.backgroundImage} alt={destination.name} />
                     <div>
                         <p className={cx('dropdown-title')}>{destination.name}</p>
-                        <small>{destination.tours} tours</small>
+                        <small>{destination.tourIds.length} tours</small>   
                     </div>
                 </div>
             ))}

@@ -17,7 +17,7 @@ function Tours({ items = [], onclick }) {
                 </div>
                 <div className={cx('button')}>
                     <Button outline rounded to="/tour" rightIcon={<icons.arrow_right />}>
-                        See More Tours  
+                        See More Tours
                     </Button>
                 </div>
             </div>
@@ -26,13 +26,13 @@ function Tours({ items = [], onclick }) {
                 {items.map((item, index) => (
                     <TourCard
                         key={index}
-                        images={item.image}
+                        images={item.backgroundImage}
                         title={item.title}
-                        destination={item.destination}
+                        destination={item.destinationName}
                         rating={item.rating}
                         oldPrice={item.oldPrice}
                         price={item.price}
-                        onclick={() => onclick(item)}   
+                        onclick={() => onclick(item)}
                     />
                 ))}
             </div>
