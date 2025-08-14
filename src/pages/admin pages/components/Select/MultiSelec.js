@@ -9,10 +9,10 @@ function MultiSelect({ label, options, selected, setSelected, placeholder = 'Sel
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOption = (option) => {
-        if (selected.includes(option.title)) {
-            setSelected(selected.filter((item) => item !== option.title));
+        if (selected.includes(option.name)) {
+            setSelected(selected.filter((item) => item !== option.name));
         } else {
-            setSelected([...selected, option.title]);
+            setSelected([...selected, option.name]);
         }
     };
 
@@ -29,11 +29,11 @@ function MultiSelect({ label, options, selected, setSelected, placeholder = 'Sel
                     {options.map((option) => (
                         <div
                             key={option.id}
-                            className={cx('option', { selected: selected.includes(option.title) })}
+                            className={cx('option', { selected: selected.includes(option.name) })}
                             onClick={() => toggleOption(option)}
                         >
-                            <input type="checkbox" checked={selected.includes(option.title)} readOnly />
-                            <span>{option.title}</span>
+                            <input type="checkbox" checked={selected.includes(option.name)} readOnly />
+                            <span>{option.name}</span>
                         </div>
                     ))}
                 </div>

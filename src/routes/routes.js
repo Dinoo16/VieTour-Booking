@@ -20,6 +20,7 @@ import AdminEditCategory from '~/pages/admin pages/Destination/EditCategory';
 import AdminTour from '~/pages/admin pages/Tour/Tour';
 import AdminAddTour from '~/pages/admin pages/Tour/AddTour';
 import AdminEditTour from '~/pages/admin pages/Tour/EditTour';
+import AdminEditTourPlan from '~/pages/admin pages/Tour/EditTourPlan';
 import AdminBooking from '~/pages/admin pages/Booking/Booking';
 import AdminTraveler from '~/pages/admin pages/Traveler/Traveler';
 import AdminGuide from '~/pages/admin pages/Guide/Guide';
@@ -304,6 +305,15 @@ const adminRoutes = [
     {
         path: routesConfig.adminEditTour,
         component: AdminEditTour,
+        layout: (page) => (
+            <AdminRoute>
+                <AdminLayout>{page}</AdminLayout>
+            </AdminRoute>
+        ),
+    },
+    {
+        path: routesConfig.adminEditTourPlan,
+        component: AdminEditTourPlan,
         layout: (page) => (
             <AdminRoute>
                 <AdminLayout>{page}</AdminLayout>

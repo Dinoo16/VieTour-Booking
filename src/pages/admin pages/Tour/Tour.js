@@ -107,6 +107,17 @@ function Tour() {
                             </div>
                         </div>
                     ))}
+
+                    <div className={cx('edit-btn')}>
+                        <Button
+                            to={routesConfig.adminEditTourPlan.replace(':id', activeTour.id)}
+                            primary
+                            small
+                            leftIcon={<icons.penIcon />}
+                        >
+                            Update Tour Plan
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

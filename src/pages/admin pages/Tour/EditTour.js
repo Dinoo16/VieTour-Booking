@@ -2,63 +2,112 @@ import classNames from 'classnames/bind';
 import styles from './Tour.module.scss';
 import TextInput from '../components/Input/TextInput';
 import TextareaField from '../components/Input/TextareaField';
-import FileDropzone from '../components/FileDropzone/FileDropzone';
 import Select from '../components/Select/Select';
 import Form from '../components/Form/Form';
-import TourPlan from '../components/TourPlan/TourPlan';
-import { CATEGORIES } from '~/data/Category/Category';
-import { DESTINATIONS } from '~/data/Dashboard/Destination';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { TOURS } from '~/data/Tour/Tour';
+import { useNavigate } from 'react-router-dom';
 import MultiSelect from '../components/Select/MultiSelec';
+import { useTour } from '~/hooks/useTours';
+import { useUpdateTour } from '~/hooks/useTours';
+import { useDestinations } from '~/hooks/useDestinations';
+import { useCategories } from '~/hooks/useCategories';
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
 function EditTour() {
     const { id } = useParams();
-    const tour = TOURS.find((t) => t.id === parseInt(id));
+    const navigate = useNavigate();
+    const { data: tourData, isLoading } = useTour(id);
+    const updateTour = useUpdateTour();
 
-    const [destination, setDestination] = useState(tour?.destination || '');
-    const [category, setCategory] = useState(tour?.category.map((c) => c.title) || '');
-    const [title, setTitle] = useState(tour?.title || '');
-    const [departure, setDepature] = useState(tour?.departure || '');
-    const [departureTime, setDepatureTime] = useState(tour?.departureTime || '');
-    const [returnTime, setReturnTime] = useState(tour?.returnTime || '');
-    const [price, setPrice] = useState(tour?.price || '');
-    const [duration, setDuration] = useState(tour?.duration || '');
-    const [description, setDescription] = useState(tour?.description || '');
+    // Fetch destinations
+    const { data: destinationData } = useDestinations();
+    const destinationOptions = destinationData ? destinationData.map((d) => ({ value: d.name, label: d.name })) : [];
+    const [destinationName, setDestinationName] = useState('');
+
+    // Fetch Categories
+    const { data: categoryData } = useCategories();
+    const categoryOptions = categoryData ? categoryData.map((c) => ({ id: c.id, name: c.name })) : [];
+    const [categoryNames, setCategoryNames] = useState([]);
+    // Other tour fields
+    const [title, setTitle] = useState('');
+    const [departure, setDeparture] = useState('');
+    const [departureTime, setDepartureTime] = useState('');
+    const [returnTime, setReturnTime] = useState('');
+    const [duration, setDuration] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const [backgroundImage, setBackgroundImage] = useState('');
+
+    useEffect(() => {
+        if (tourData) {
+            setTitle(tourData.title);
+            setDeparture(tourData.departure);
+            setDepartureTime(tourData.departureTime);
+            setReturnTime(tourData.returnTime);
+            setDuration(tourData.duration);
+            setPrice(tourData.price);
+            setDescription(tourData.description);
+            setBackgroundImage(tourData.backgroundImage);
+            setDestinationName(tourData.destinationName);
+            setCategoryNames(tourData.categoryNames);
+        }
+    }, [tourData]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Do something with the data
+        const updateData = {
+            id,
+            title,
+            description,
+            departure,
+            departureTime,
+            returnTime,
+            duration,
+            price,
+            backgroundImage,
+            destinationName,
+            categoryNames,
+        };
+
+        updateTour.mutate(updateData, {
+            onSuccess: (responseData) => {
+                console.log('Update thành công:', responseData);
+                navigate('/admin/tour');
+            },
+            onError: (error) => {
+                console.error('Lỗi khi update:', error);
+                alert(`Update failed: ${error.response?.data?.message || error.message}`);
+            },
+        });
     };
+
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
     return (
         <Form
-            title="Edit Tour"
+            title="Update Tour"
             onSubmit={handleSubmit}
             rightPanel={
                 <>
                     <Select
                         label="Destination"
                         placeholder="Select a destination"
-                        options={DESTINATIONS}
-                        value={destination}
-                        onChange={(e) => setDestination(e.target.value)}
+                        options={destinationOptions}
+                        value={destinationName}
+                        onChange={(e) => setDestinationName(e.target.value)}
                     />
                     <MultiSelect
                         label={'Category'}
-                        options={CATEGORIES}
-                        selected={category}
-                        setSelected={setCategory}
+                        options={categoryOptions}
+                        selected={categoryNames}
+                        setSelected={setCategoryNames}
                     />
                 </>
-            }
-            bottomRightPanel={
-                <TourPlan title={'Tour Plan'}>
-                    <TextInput label="Day 1" placeholder="Title" />
-                    <TextareaField label="Description" placeholder="Enter a description..." />
-                </TourPlan>
             }
         >
             <TextInput
@@ -71,14 +120,14 @@ function EditTour() {
                 label="Departure"
                 placeholder="Departure"
                 value={departure}
-                onChange={(e) => setDepature(e.target.value)}
+                onChange={(e) => setDeparture(e.target.value)}
             />
             <div className={cx('timeRow')}>
                 <TextInput
                     label="Departure Time"
                     placeholder="Departure Time"
                     value={departureTime}
-                    onChange={(e) => setDepatureTime(e.target.value)}
+                    onChange={(e) => setDepartureTime(e.target.value)}
                 />
                 <TextInput
                     label="Return Time"
@@ -102,7 +151,12 @@ function EditTour() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            <FileDropzone />
+            <TextInput
+                label="Image Url"
+                placeholder="Insert Image Url"
+                value={backgroundImage}
+                onChange={(e) => setBackgroundImage(e.target.value)}
+            />
         </Form>
     );
 }
