@@ -28,7 +28,7 @@ export const createDestination = async (destinationData) => {
                 'Content-Type': 'application/json',
             },
         });
-        return res.data;
+        return res;
     } catch (error) {
         console.error('Error creating destination:', error);
         throw error;

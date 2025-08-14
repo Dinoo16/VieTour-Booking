@@ -30,7 +30,7 @@ export const createCategory = async (categoryData) => {
             },
         });
 
-        return res.data;
+        return res;
     } catch (error) {
         console.error('Error creating Category:', error);
         throw error;

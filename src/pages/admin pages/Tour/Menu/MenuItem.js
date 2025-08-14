@@ -13,7 +13,7 @@ function MenuItem({ item, isActive, onClick }) {
                 <div className={cx('meta')}>
                     <span className={cx('destination')}>
                         <icons.location2 />
-                        {item.destination}
+                        {item.destinationName}
                     </span>
                     <span className={cx('duration')}>{item.duration}</span>
                 </div>

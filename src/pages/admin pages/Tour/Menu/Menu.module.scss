@@ -33,7 +33,6 @@
 
         .meta {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             gap: 12px;
             color: var(--title-color);
@@ -41,7 +40,7 @@
             svg {
                 width: 18px;
                 height: 18px;
-                color: #6E7070;
+                color: #6e7070;
             }
 
             .destination {
@@ -49,7 +48,7 @@
                 font-weight: 400;
                 padding: 2px 4px;
                 border-radius: 6px;
-                background-color: #E5E5E5;
+                background-color: #e5e5e5;
                 display: flex;
                 align-items: center;
                 gap: 4px;
@@ -58,7 +57,7 @@
             .duration {
                 padding: 2px 4px;
                 border-radius: 6px;
-                background-color: #E5E5E5;
+                background-color: #e5e5e5;
                 font-size: 14px;
                 font-weight: 400;
             }
@@ -71,7 +70,7 @@
             color: var(--title-color);
 
             svg {
-                color: #FFC107;
+                color: #ffc107;
                 width: 16px;
                 height: 16px;
             }
@@ -87,6 +86,7 @@
                 font-size: 18px;
                 color: var(--primary);
                 font-weight: 700;
+                padding-top: 2px;
             }
         }
     }
