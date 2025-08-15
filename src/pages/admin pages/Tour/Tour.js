@@ -15,16 +15,29 @@ function Tour() {
     const [activeTour, setActiveTour] = useState(null);
 
     const { data: tourData = [], isTourDataLoading } = useTours();
-    console.log('tours', tourData);
+
+    // State phân trang
+    const [currentPage, setCurrentPage] = useState(1);
+    const toursPerPage = 10;
+
+    // Tính chỉ số slice
+    const indexOfLastTour = currentPage * toursPerPage;
+    const indexOfFirstTour = indexOfLastTour - toursPerPage;
+    const currentTours = tourData.slice(indexOfFirstTour, indexOfLastTour);
 
     useEffect(() => {
-        if (tourData.length > 0) {
+        if (!activeTour && tourData.length > 0) {
             setActiveTour(tourData[0]);
         }
-    }, [tourData]);
+    }, [tourData, activeTour]);
 
     const handleTourClick = (tour) => {
         setActiveTour(tour);
+    };
+
+    const totalPages = Math.ceil(tourData.length / toursPerPage);
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
 
     if (isTourDataLoading) {
@@ -37,11 +50,39 @@ function Tour() {
         <div className={cx('wrapper')}>
             <div className={cx('tour-list')}>
                 <h3 className={cx('title')}>All Tours</h3>
-                <Menu items={tourData} activeItem={activeTour} onItemClick={handleTourClick} />
+                <Menu items={currentTours} activeItem={activeTour} onItemClick={handleTourClick} />
 
                 <Button to={routesConfig.adminAddTour} className={cx('add-tour-btn')} primary leftIcon={<icons.add />}>
                     Add Tour
                 </Button>
+                {/* Phân trang */}
+                <div className={cx('pagination')}>
+                    <button
+                        className={cx('prev')}
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage((prev) => prev - 1)}
+                    >
+                        Prev
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => handlePageChange(i + 1)}
+                            className={cx('page-btn', { active: currentPage === i + 1 })}
+                        >
+                            {i + 1}
+                        </button>
+                    ))}
+
+                    <button
+                        className={cx('next')}
+                        disabled={currentPage === totalPages}
+                        onClick={() => setCurrentPage((prev) => prev + 1)}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
             <div className={cx('tour-detail')}>
                 <div className={cx('tour-info')}>

@@ -1,10 +1,15 @@
 .dropdown {
+    min-width: 250px;
+    max-height: 320px;
     margin: 35px 0;
     padding: 8px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    min-width: 250px;
+    overflow-y: hidden;
+    &:hover {
+        overflow-y: auto;
+    }
 }
 
 .dropdown-title {
@@ -29,7 +34,7 @@
     }
 
     &:hover {
-        background-color: #EDEDED;
+        background-color: #ededed;
         border-radius: 8px;
     }
     &.daysbox:hover {
@@ -40,7 +45,7 @@
     img {
         width: 45px;
         height: 45px;
-        margin: 0 12px; 
+        margin: 0 12px;
         object-fit: cover;
         border-radius: 4px;
         flex-shrink: 0;
@@ -58,24 +63,22 @@
     }
 }
 
-
 // Category box
-
 
 //Budget box
 .budget-box {
-  min-width: 80px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 6px 16px;
-  font-weight: 500;
-  color: var(--title-color);
+    min-width: 80px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-weight: 500;
+    color: var(--title-color);
 }
 
 .confirm-btn {
-  width: 100%;
-  padding: 6px 0;
-  margin: 8px 0;
-  background-color: var(--primary);
-  font-weight: 500;
+    width: 100%;
+    padding: 6px 0;
+    margin: 8px 0;
+    background-color: var(--primary);
+    font-weight: 500;
 }

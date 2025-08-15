@@ -3,11 +3,10 @@ import styles from './TourDetail.module.scss';
 import { useParams } from 'react-router-dom';
 import Menu from './Menu/Menu';
 import icons from '~/assets/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import images from '~/assets/images';
 import BookTour from './components/BookTour';
-import { TOURS } from '~/data/Tour/Tour';
-
+import { useTour } from '~/hooks/useTours';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -32,7 +31,24 @@ const MENU_ITEMS = [
 function TourDetail() {
     const [activeMenu, setActiveMenu] = useState(MENU_ITEMS[0]);
     const { id } = useParams();
-    const tour = TOURS.find((t) => t.id === parseInt(id));
+
+    const { data: tourData, isTourLoading } = useTour(id);
+
+    const [tour, setTour] = useState(null);
+
+    useEffect(() => {
+        if (tourData) {
+            setTour(tourData);
+        }
+    }, [tourData]);
+
+    if (isTourLoading) {
+        return <div className={cx('loading')}>Loading...</div>;
+    }
+
+    if (!tour) {
+        return <div className={cx('not-found')}>Tour not found</div>;
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -75,9 +91,7 @@ function TourDetail() {
                                     <strong>Return Time:</strong> {tour.returnTime}
                                 </p>
                                 <p>
-                                    <strong>Category:</strong> {tour.category.map((cat) => cat.title).join(', ')}
-
-
+                                    <strong>Category:</strong> {tour.categoryNames.map((cat) => cat.title).join(', ')}
                                 </p>
                                 <p>
                                     <strong>Duration:</strong> {tour.duration}

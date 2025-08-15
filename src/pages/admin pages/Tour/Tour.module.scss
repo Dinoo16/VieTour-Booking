@@ -192,3 +192,29 @@
     justify-content: center;
     align-items: center;
 }
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 12px;
+
+    .page-btn {
+        padding: 4px 8px;
+        border: 1px solid #ccc;
+        background: white;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+    }
+
+    .next,
+    .prev {
+        background-color: transparent;
+        cursor: pointer;
+    }
+}

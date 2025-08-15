@@ -43,7 +43,6 @@ function AddTourPlan() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Plans:', plans);
         // call api
         createTourPlans.mutate(plans, {
             onSuccess: () => {
