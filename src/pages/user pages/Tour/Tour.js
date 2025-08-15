@@ -1,42 +1,42 @@
 import classNames from 'classnames/bind';
 import styles from './Tour.module.scss';
 import icons from '~/assets/icons';
-import Menu from './Menu/Menu';
 import TourCard from '~/components/TourCard/TourCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTours } from '~/hooks/useTours';
+import { useToursSort } from '~/hooks/useTours';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS = [
-    {
-        title: 'Date',
-        icon: icons.calendar,
-    },
-    {
-        title: 'Price Low To High',
-        icon: icons.upIcon,
-    },
-    {
-        title: 'Price High To Low',
-        icon: icons.downIcon,
-    },
-    {
-        title: 'Name',
-        icon: icons.penIcon,
-    },
+const options = [
+    { value: 'top', label: 'Our top picks' },
+    { value: 'lowest', label: 'Lowest price' },
+    { value: 'reviewed', label: 'Best reviewed' },
 ];
 
 function Tour() {
-    
-    const { data: toursData, isTourLoading } = useTours();
-
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(1200);
-
+    const [tours, setTours] = useState([]);
     const navigate = useNavigate();
+
+    // Set default tours list sort by top picks
+    const [selected, setSelected] = useState(options[0]);
+    const [open, setOpen] = useState(false);
+
+    const { data: toursData = [], isTourLoading } = useToursSort(selected.value);
+
+    // Handle select sort options
+    const handleSelect = (option) => {
+        setSelected(option);
+        setOpen(false);
+    };
+
+    // call api
+    useEffect(() => {
+        if (toursData) {
+            setTours(toursData);
+        }
+    }, [toursData]);
 
     function handleTourClick(tourId) {
         navigate(`/tour/${tourId}`);
@@ -47,13 +47,36 @@ function Tour() {
     }
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('filter-bar')}>
-                <Menu items={MENU_ITEMS} />
+            <div className={cx('header')}>
+                <h3 className={cx('header-result')}>Our Tours: {tours.length} results</h3>
+
+                <div className={cx('sortDropdown')}>
+                    <button className={cx('sortButton')} onClick={() => setOpen(!open)}>
+                        <icons.arrow className={cx('icon')} />
+                        Sort by: {selected.label}
+                    </button>
+
+                    {open && (
+                        <ul className={cx('dropdownMenu')}>
+                            {options.map((option) => (
+                                <li
+                                    key={option.value}
+                                    onClick={() => handleSelect(option)}
+                                    className={`${cx('dropdownItem')} ${
+                                        selected.value === option.value ? cx('active') : ''
+                                    }`}
+                                >
+                                    {option.label}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
             </div>
 
             <div className={cx('content')}>
                 <div className={cx('tour-list')}>
-                    {toursData.map((tour, index) => (
+                    {tours.map((tour, index) => (
                         <TourCard
                             key={index}
                             images={tour.backgroundImage}

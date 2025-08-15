@@ -4,122 +4,88 @@
     box-shadow: 0px 4px 48px 0px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
+    padding: 24px 56px;
 }
 
-// Content 
+// header
+.header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+
+    .header-result {
+        color: var(--title-color);
+        font-weight: 600;
+        font-size: 28px;
+    }
+    //sort
+    .sortDropdown {
+        position: relative;
+        display: inline-block;
+        font-family: Arial, sans-serif;
+    }
+
+    .sortButton {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .sortButton:hover {
+        border-color: #888;
+    }
+
+    .icon {
+        font-size: 5px;
+    }
+
+    .dropdownMenu {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        background: white;
+        border-radius: 8px;
+        list-style: none;
+        padding: 4px 0;
+        margin: 0;
+        width: 180px;
+        box-shadow: 0px 2px 8px 0px #1a1a1a29;
+        z-index: 100;
+    }
+
+    .dropdownItem {
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--title-color)
+    }
+
+    .dropdownItem:hover {
+        background: #f0f0f0;
+    }
+
+    .active {
+        font-weight: bold;
+        background: #f9f9f9;
+    }
+}
+
+// Content
 .content {
-    padding: 56px;
     display: flex;
     justify-content: space-between;
 }
 
-//Tour List 
+//Tour List
 .tour-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-}
-
-// Book Tour
-.book-tour {
-    width: 444px;
-    height: 750px;
-    background-color: #EDEDED;
-    padding: 40px 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .title {
-        font-size: 42px;
-        color: var(--header-color);
-        font-family: var(--font-family-header);
-        margin-bottom: 12px;
-    }
-
-    .description {
-        font-size: 16px;
-        color: black;
-        margin-bottom: 32px;
-    }
-
-
-
-}
-
-.form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.form-item {
-    height: 76px;
-    display: flex;
-    align-items: center;
-    position: relative;
-
-
-}
-
-.input-box {
-    width: 100%;
-
-    &:focus-within .input-icon {
-        opacity: 1;
-    }
-
-    &:focus-within .input {
-        border: 1px solid var(--primary);
-        color: var(--text-color);
-    }
-}
-
-.input-icon {
-    position: absolute;
-    left: 12px;
-    width: 20px;
-    height: 20px;
-    opacity: 0.4;
-}
-
-.input {
-    width: 100%;
-    height: 100%;
-    color: rgba(0, 0, 0, 0.26);
-    padding: 10px 12px 10px 40px;
-    font-size: 18px;
-    outline: none;
-    transition: border 0.2s;
-}
-
-
-// Hidden defautl calendar icon
-.input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    display: none;
-}
-
-.input[type="date"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-// Price Filter
-.price-filter {
-    width: 100%;
-    background: #ededed;
-    padding: 16px 0 0 0;
-    border-radius: 4px;
-}
-
-.price-filter-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
-    color: var(--title-color);
 }

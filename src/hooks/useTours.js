@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getAllTours, getTourById, createTour, updateTour, deleteTour } from '~/apiServices/tourService';
+import { getAllTours, getTourById, sortTours, createTour, updateTour, deleteTour } from '~/apiServices/tourService';
 
 // Hook get all Tours
 export const useTours = () => {
@@ -16,6 +16,15 @@ export const useTour = (id) => {
         queryKey: ['tour', id],
         queryFn: () => getTourById(id),
         enabled: !!id, // chỉ chạy khi có id
+        staleTime: 5 * 60 * 1000,
+    });
+};
+
+// Hook get tours sort by top picks, lowest price, best reviewed
+export const useToursSort = (sortBy) => {
+    return useQuery({
+        queryKey: ['tours', sortBy],
+        queryFn: () => sortTours(sortBy),
         staleTime: 5 * 60 * 1000,
     });
 };

@@ -78,7 +78,7 @@ function TourDetail() {
 
                             <div className={cx('info-item')}>
                                 <p>
-                                    <strong>Destination:</strong> {tour.destination}
+                                    <strong>Destination:</strong> {tour.destinationName}
                                 </p>
 
                                 <p>
@@ -91,7 +91,7 @@ function TourDetail() {
                                     <strong>Return Time:</strong> {tour.returnTime}
                                 </p>
                                 <p>
-                                    <strong>Category:</strong> {tour.categoryNames.map((cat) => cat.title).join(', ')}
+                                    <strong>Category:</strong> {tour.categoryNames.map((cat) => cat).join(', ')}
                                 </p>
                                 <p>
                                     <strong>Duration:</strong> {tour.duration}

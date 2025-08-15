@@ -22,6 +22,17 @@ export const getTourById = async (id) => {
     }
 };
 
+// Sort Tour by top picks, lowest price, best reviewd
+export const sortTours = async (sortBy) => {
+    try {
+        const res = await httpRequest.get(`/public/tours/sorted?sortBy=${sortBy}`);
+        return res;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
 // Admin add tour
 export const createTour = async (data) => {
     try {
