@@ -3,8 +3,10 @@ import styles from './Tour.module.scss';
 import icons from '~/assets/icons';
 import TourCard from '~/components/TourCard/TourCard';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useToursSort } from '~/hooks/useTours';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useToursByCategoryId } from '~/hooks/useCategories';
+import { useTours } from '~/hooks/useTours';
+
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
@@ -16,6 +18,7 @@ const options = [
 ];
 
 function Tour() {
+    // Genaral Tours list
     const [tours, setTours] = useState([]);
     const navigate = useNavigate();
 
@@ -23,7 +26,16 @@ function Tour() {
     const [selected, setSelected] = useState(options[0]);
     const [open, setOpen] = useState(false);
 
-    const { data: toursData = [], isTourLoading } = useToursSort(selected.value);
+    const { data: toursData = [], isTourLoading } = useTours(selected.value);
+
+    // Get categoryId from URL
+    const [searchParams] = useSearchParams();
+    const categoryId = searchParams.get('categoryId');
+
+    const { data: toursByCategoryId = [], isToursByCategoryIdLoading } = useToursByCategoryId(
+        categoryId,
+        selected.value,
+    );
 
     // Handle select sort options
     const handleSelect = (option) => {
@@ -33,10 +45,12 @@ function Tour() {
 
     // call api
     useEffect(() => {
-        if (toursData) {
+        if (categoryId && toursByCategoryId) {
+            setTours(toursByCategoryId);
+        } else if (!categoryId && toursData) {
             setTours(toursData);
         }
-    }, [toursData]);
+    }, [categoryId, toursByCategoryId, toursData]);
 
     function handleTourClick(tourId) {
         navigate(`/tour/${tourId}`);
@@ -45,10 +59,13 @@ function Tour() {
     if (isTourLoading) {
         return <LoadingSpinner></LoadingSpinner>;
     }
+    if (isToursByCategoryIdLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <h3 className={cx('header-result')}>Our Tours: {tours.length} results</h3>
+                <h3 className={cx('header-result')}>Result search: {tours.length}</h3>
 
                 <div className={cx('sortDropdown')}>
                     <button className={cx('sortButton')} onClick={() => setOpen(!open)}>

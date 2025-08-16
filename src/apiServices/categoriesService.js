@@ -21,6 +21,17 @@ export const getCategoryById = async (id) => {
     }
 };
 
+// Get tours by category id
+export const getToursByCategoryId = async (id, sortBy) => {
+    try {
+        const res = await httpRequest.get(`/public/categories/${id}/tours?sortBy=${sortBy}`);
+        return res;
+    } catch (error) {
+        console.log(`Error fetching Category with ID ${id}:`, error);
+        throw error;
+    }
+};
+
 // Create category by Admin
 export const createCategory = async (categoryData) => {
     try {

@@ -2,10 +2,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getAllTours, getTourById, sortTours, createTour, updateTour, deleteTour } from '~/apiServices/tourService';
 
 // Hook get all Tours
-export const useTours = () => {
+export const useTours = (sortBy) => {
     return useQuery({
-        queryKey: ['tours'],
-        queryFn: getAllTours,
+        queryKey: ['tours', sortBy],
+        queryFn: () => getAllTours(sortBy),
         staleTime: 5 * 60 * 1000, // Cache 5 minutes
     });
 };
@@ -21,13 +21,13 @@ export const useTour = (id) => {
 };
 
 // Hook get tours sort by top picks, lowest price, best reviewed
-export const useToursSort = (sortBy) => {
-    return useQuery({
-        queryKey: ['tours', sortBy],
-        queryFn: () => sortTours(sortBy),
-        staleTime: 5 * 60 * 1000,
-    });
-};
+// export const useToursSort = (sortBy) => {
+//     return useQuery({
+//         queryKey: ['tours', sortBy],
+//         queryFn: () => sortTours(sortBy),
+//         staleTime: 5 * 60 * 1000,
+//     });
+// };
 
 // Hook create tour by admin
 export const useCreateTour = () => {

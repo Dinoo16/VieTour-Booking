@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     getAllCategories,
     getCategoryById,
+    getToursByCategoryId,
     createCategory,
     updateCategory,
     deleteCategory,
@@ -22,6 +23,16 @@ export const useCategory = (id) => {
         queryKey: ['Category', id],
         queryFn: () => getCategoryById(id),
         enabled: !!id, // chỉ chạy khi có id
+        staleTime: 5 * 60 * 1000,
+    });
+};
+
+// Hook get all tours from category id
+export const useToursByCategoryId = (id, sortBy) => {
+    return useQuery({
+        queryKey: ['ToursByCategory', id, sortBy],
+        queryFn: () => getToursByCategoryId(id, sortBy),
+        enabled: !!id,
         staleTime: 5 * 60 * 1000,
     });
 };

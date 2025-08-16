@@ -16,13 +16,6 @@ import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
-function handleCategoryClick(item) {
-    console.log(item);
-}
-function handleDestinationClick(item) {
-    console.log(item);
-}
-
 function Home() {
     const { data: CategoriesData = [], isCategoriesLoading } = useCategories();
     const { data: ToursData = [], isToursLoading } = useTours();
@@ -30,6 +23,14 @@ function Home() {
     const handleTourClick = (item) => {
         navigate(`/tour/${item.id}`);
     };
+
+    function handleCategoryClick(item) {
+        const categoryId = item.id;
+        navigate(`/tour?categoryId=${categoryId}`);
+    }
+    function handleDestinationClick(item) {
+        console.log(item);
+    }
 
     if (isCategoriesLoading) {
         return <LoadingSpinner></LoadingSpinner>;
