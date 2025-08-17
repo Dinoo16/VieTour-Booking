@@ -22,16 +22,23 @@ export const getTourById = async (id) => {
     }
 };
 
-// Sort Tour by top picks, lowest price, best reviewd
-// export const    sortTours = async (sortBy) => {
-//     try {
-//         const res = await httpRequest.get(`/public/tours/sorted?sortBy=${sortBy}`);
-//         return res;
-//     } catch (error) {
-//         console.log(error);
-//         throw error;
-//     }
-// };
+// Search tour by destination, category, days, budget
+export const searchTours = async (destination, days, category, minPrice, maxPrice) => {
+    try {
+        const params = new URLSearchParams();
+        if (destination) params.append('destination', destination);
+        if (days) params.append('days', days);
+        if (category) params.append('category', category);
+        if (minPrice) params.append('minPrice', minPrice);
+        if (maxPrice) params.append('maxPrice', maxPrice);
+
+        const res = await httpRequest.get(`/public/tours/search?${params.toString()}`);
+        return res;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
 
 // Admin add tour
 export const createTour = async (data) => {

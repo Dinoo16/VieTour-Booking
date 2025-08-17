@@ -3,12 +3,15 @@ import styles from './Destination.module.scss';
 import { useEffect, useState } from 'react';
 import { getAllRegions } from '~/apiServices/regionService';
 import { useDestinations } from '~/hooks/useDestinations';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Destination() {
+    const navigate = useNavigate();
     const [regions, setRegions] = useState([]);
     const [activeRegion, setActiveRegion] = useState(null);
+
     const { data: destinations = [], isLoading } = useDestinations();
 
     // Fetch regions api
@@ -28,9 +31,13 @@ function Destination() {
         fetchRegionsApi();
     }, []);
 
+    function handleDestinationClick(item) {
+        const destinationId = item.id;
+        navigate(`/tour?destinationId=${destinationId}`);
+    }
+
     // Filter destinations with regions
     const filteredDestinations = destinations.filter((item) => item.regionId === activeRegion);
-
     if (isLoading) {
         return <p>Loading destinations...</p>;
     }
@@ -53,7 +60,7 @@ function Destination() {
 
             <div className={cx('content')}>
                 {filteredDestinations.map((item, index) => (
-                    <div key={index} className={cx('card')}>
+                    <div key={index} className={cx('card')} onClick={() => handleDestinationClick(item)}>
                         <img src={item.backgroundImage} alt={item.name} className={cx('image')} />
                         <div className={cx('overlay')}></div>
                         <div className={cx('info')}>

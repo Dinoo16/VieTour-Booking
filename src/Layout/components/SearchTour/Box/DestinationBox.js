@@ -1,12 +1,16 @@
 import classNames from 'classnames/bind';
 import styles from './Box.module.scss';
 import { useDestinations } from '~/hooks/useDestinations';
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
 function DestinationBox({ onSelect }) {
     const { data: destinationsData = [], isDestinationLoading } = useDestinations();
 
+    if (isDestinationLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
     return (
         <div className={cx('dropdown')}>
             <p className={cx('dropdown-title')}>Nearby destinations</p>
@@ -19,7 +23,7 @@ function DestinationBox({ onSelect }) {
                     <img src={destination.backgroundImage} alt={destination.name} />
                     <div>
                         <p className={cx('dropdown-title')}>{destination.name}</p>
-                        <small>{destination.tourIds.length} tours</small>   
+                        <small>{destination.tourIds.length} tours</small>
                     </div>
                 </div>
             ))}

@@ -5,8 +5,8 @@ import TourCard from '~/components/TourCard/TourCard';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useToursByCategoryId } from '~/hooks/useCategories';
-import { useTours } from '~/hooks/useTours';
-
+import { useToursByDestinationId } from '~/hooks/useDestinations';
+import { useTours, useSearchTours } from '~/hooks/useTours';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
@@ -18,6 +18,16 @@ const options = [
 ];
 
 function Tour() {
+    const [searchParams] = useSearchParams();
+
+    // Search tour
+    const destination = searchParams.get('destination');
+    const day = searchParams.get('day');
+    const category = searchParams.get('category');
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
+    const { data: toursSearch, isLoading } = useSearchTours(destination, day, category, minPrice, maxPrice);
+
     // Genaral Tours list
     const [tours, setTours] = useState([]);
     const navigate = useNavigate();
@@ -29,11 +39,18 @@ function Tour() {
     const { data: toursData = [], isTourLoading } = useTours(selected.value);
 
     // Get categoryId from URL
-    const [searchParams] = useSearchParams();
     const categoryId = searchParams.get('categoryId');
 
     const { data: toursByCategoryId = [], isToursByCategoryIdLoading } = useToursByCategoryId(
         categoryId,
+        selected.value,
+    );
+
+    // Get destinationId from URL
+    const destinationId = searchParams.get('destinationId');
+
+    const { data: toursByDestinationId = [], isToursByDestinationIdLoading } = useToursByDestinationId(
+        destinationId,
         selected.value,
     );
 
@@ -45,12 +62,16 @@ function Tour() {
 
     // call api
     useEffect(() => {
-        if (categoryId && toursByCategoryId) {
+        if (toursSearch) {
+            setTours(toursSearch);
+        } else if (categoryId && toursByCategoryId) {
             setTours(toursByCategoryId);
-        } else if (!categoryId && toursData) {
+        } else if (destinationId && toursByDestinationId) {
+            setTours(toursByDestinationId);
+        } else if (toursData) {
             setTours(toursData);
         }
-    }, [categoryId, toursByCategoryId, toursData]);
+    }, [categoryId, destinationId, toursByCategoryId, toursByDestinationId, toursData, toursSearch]);
 
     function handleTourClick(tourId) {
         navigate(`/tour/${tourId}`);
@@ -60,6 +81,9 @@ function Tour() {
         return <LoadingSpinner></LoadingSpinner>;
     }
     if (isToursByCategoryIdLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
+    if (isToursByDestinationIdLoading) {
         return <LoadingSpinner></LoadingSpinner>;
     }
     return (

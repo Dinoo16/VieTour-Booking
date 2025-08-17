@@ -28,6 +28,7 @@ function Home() {
         const categoryId = item.id;
         navigate(`/tour?categoryId=${categoryId}`);
     }
+    
     function handleDestinationClick(item) {
         console.log(item);
     }

@@ -1,5 +1,6 @@
 import * as httpRequest from '~/utils/httpRequest';
 
+// get all destinations
 export const getAllDestinations = async () => {
     try {
         const res = await httpRequest.get('/public/destinations');
@@ -10,9 +11,21 @@ export const getAllDestinations = async () => {
     }
 };
 
+// Get destination by id
 export const getDestinationById = async (id) => {
     try {
         const res = await httpRequest.get(`/public/destinations/${id}`);
+        return res;
+    } catch (error) {
+        console.error(`Error fetching destination with ID ${id}:`, error);
+        throw error;
+    }
+};
+
+// Get all tours by destination id
+export const getToursByDestinationId = async (id, sortBy) => {
+    try {
+        const res = await httpRequest.get(`/public/destinations/${id}/tours?sortBy=${sortBy}`);
         return res;
     } catch (error) {
         console.error(`Error fetching destination with ID ${id}:`, error);

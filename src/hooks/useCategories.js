@@ -30,7 +30,7 @@ export const useCategory = (id) => {
 // Hook get all tours from category id
 export const useToursByCategoryId = (id, sortBy) => {
     return useQuery({
-        queryKey: ['ToursByCategory', id, sortBy],
+        queryKey: ['toursByCategory', id, sortBy],
         queryFn: () => getToursByCategoryId(id, sortBy),
         enabled: !!id,
         staleTime: 5 * 60 * 1000,

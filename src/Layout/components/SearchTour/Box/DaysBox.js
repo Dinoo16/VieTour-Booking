@@ -4,7 +4,7 @@ import styles from './Box.module.scss';
 const cx = classNames.bind(styles);
 
 function DaysBox({ onSelect }) {
-    const DAYS = ['1 day', '2 days', '3 days', '4 days', '5 days', '6 days'];
+    const DAYS = [1, 2, 3, 4, 5, 6];
 
     return (
         <div className={cx('dropdown')}>
@@ -15,7 +15,7 @@ function DaysBox({ onSelect }) {
                     className={cx('dropdown-item', 'daysbox', { selected: index === 0 })}
                     onClick={() => onSelect && onSelect(day)}
                 >
-                    {day}
+                    {day == 1 ? `${day} day` : `${day} days`}
                 </div>
             ))}
         </div>

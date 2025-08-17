@@ -23,6 +23,7 @@ function TourCard({ images, title, destination, rating, oldPrice, price, onclick
                     <span className={cx('rating')}>
                         <icons.rating />
                         {rating}
+                        (123 reviews)
                     </span>
                 </div>
 

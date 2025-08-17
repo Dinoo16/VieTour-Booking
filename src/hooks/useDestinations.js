@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     getAllDestinations,
     getDestinationById,
+    getToursByDestinationId,
     createDestination,
     updateDestination,
     deleteDestination,
@@ -22,6 +23,16 @@ export const useDestination = (id) => {
         queryKey: ['destination', id],
         queryFn: () => getDestinationById(id),
         enabled: !!id, // chỉ chạy khi có id
+        staleTime: 5 * 60 * 1000,
+    });
+};
+
+// Hook get all tours by destination id
+export const useToursByDestinationId = (id, sortBy) => {
+    return useQuery({
+        queryKey: ['toursByDestinationId', id, sortBy],
+        queryFn: () => getToursByDestinationId(id, sortBy),
+        enabled: !!id,
         staleTime: 5 * 60 * 1000,
     });
 };
