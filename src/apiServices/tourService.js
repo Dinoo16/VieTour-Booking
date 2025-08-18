@@ -23,7 +23,7 @@ export const getTourById = async (id) => {
 };
 
 // Search tour by destination, category, days, budget
-export const searchTours = async (destination, days, category, minPrice, maxPrice) => {
+export const searchTours = async (destination, days, category, minPrice, maxPrice, sortBy) => {
     try {
         const params = new URLSearchParams();
         if (destination) params.append('destination', destination);
@@ -32,7 +32,7 @@ export const searchTours = async (destination, days, category, minPrice, maxPric
         if (minPrice) params.append('minPrice', minPrice);
         if (maxPrice) params.append('maxPrice', maxPrice);
 
-        const res = await httpRequest.get(`/public/tours/search?${params.toString()}`);
+        const res = await httpRequest.get(`/public/tours/search?${params.toString()}&&sortBy=${sortBy}`);
         return res;
     } catch (error) {
         console.log(error);

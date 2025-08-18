@@ -33,6 +33,17 @@ export const getToursByDestinationId = async (id, sortBy) => {
     }
 };
 
+// Get top 5 popular destinations
+export const getPopularDestinations = async () => {
+    try {
+        const res = await httpRequest.get('/public/destinations/popular');
+        return res;
+    } catch (error) {
+        console.log(`Error fetching popular destination`, error);
+        throw error;
+    }
+};
+
 // Create destination by Admin
 export const createDestination = async (destinationData) => {
     try {

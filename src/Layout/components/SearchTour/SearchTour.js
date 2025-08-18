@@ -53,6 +53,8 @@ function SearchTour() {
         if (index === 1) {
             // index 1 is Days
             updatedTitles[index] = `${value}  ${value === 1 ? 'day' : 'days'}`;
+        } else if (index === 3) {
+            updatedTitles[index] = value.label;
         } else {
             updatedTitles[index] = value;
         }

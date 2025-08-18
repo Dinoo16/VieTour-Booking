@@ -19,6 +19,13 @@ const options = [
 
 function Tour() {
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
+    // Set default tours list sort by top picks
+    const [selected, setSelected] = useState(options[0]);
+    const [open, setOpen] = useState(false);
+    // Genaral Tours list
+    const [tours, setTours] = useState([]);
+    const { data: toursData = [], isTourLoading } = useTours(selected.value);
 
     // Search tour
     const destination = searchParams.get('destination');
@@ -26,17 +33,14 @@ function Tour() {
     const category = searchParams.get('category');
     const minPrice = searchParams.get('minPrice');
     const maxPrice = searchParams.get('maxPrice');
-    const { data: toursSearch, isLoading } = useSearchTours(destination, day, category, minPrice, maxPrice);
-
-    // Genaral Tours list
-    const [tours, setTours] = useState([]);
-    const navigate = useNavigate();
-
-    // Set default tours list sort by top picks
-    const [selected, setSelected] = useState(options[0]);
-    const [open, setOpen] = useState(false);
-
-    const { data: toursData = [], isTourLoading } = useTours(selected.value);
+    const { data: toursSearch = [], isLoading } = useSearchTours(
+        destination,
+        day,
+        category,
+        minPrice,
+        maxPrice,
+        selected.value,
+    );
 
     // Get categoryId from URL
     const categoryId = searchParams.get('categoryId');
@@ -60,31 +64,48 @@ function Tour() {
         setOpen(false);
     };
 
-    // call api
     useEffect(() => {
-        if (toursSearch) {
-            setTours(toursSearch);
-        } else if (categoryId && toursByCategoryId) {
-            setTours(toursByCategoryId);
-        } else if (destinationId && toursByDestinationId) {
-            setTours(toursByDestinationId);
-        } else if (toursData) {
-            setTours(toursData);
+        // Determine which tours to display based on current filters
+        let toursToDisplay = [];
+
+        if (destination || day || category || minPrice || maxPrice) {
+            // When search params exist, use search results
+            toursToDisplay = toursSearch || [];
+        } else if (categoryId) {
+            // When categoryId exists, use category-filtered tours
+            toursToDisplay = toursByCategoryId || [];
+        } else if (destinationId) {
+            // When destinationId exists, use destination-filtered tours
+            toursToDisplay = toursByDestinationId || [];
+        } else {
+            // Default case - use all tours
+            toursToDisplay = toursData || [];
         }
-    }, [categoryId, destinationId, toursByCategoryId, toursByDestinationId, toursData, toursSearch]);
+
+        setTours(toursToDisplay);
+    }, [
+        // Dependencies that should trigger a re-render
+        destination,
+        day,
+        category,
+        minPrice,
+        maxPrice,
+        categoryId,
+        destinationId, // ID filters
+        toursSearch,
+        toursByCategoryId, // API data
+        toursByDestinationId,
+        toursData,
+    ]);
 
     function handleTourClick(tourId) {
         navigate(`/tour/${tourId}`);
     }
 
-    if (isTourLoading) {
-        return <LoadingSpinner></LoadingSpinner>;
-    }
-    if (isToursByCategoryIdLoading) {
-        return <LoadingSpinner></LoadingSpinner>;
-    }
-    if (isToursByDestinationIdLoading) {
-        return <LoadingSpinner></LoadingSpinner>;
+    const isLoadingAny = isLoading || isTourLoading || isToursByCategoryIdLoading || isToursByDestinationIdLoading;
+
+    if (isLoadingAny) {
+        return <LoadingSpinner />;
     }
     return (
         <div className={cx('wrapper')}>

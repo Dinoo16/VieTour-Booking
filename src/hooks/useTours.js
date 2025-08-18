@@ -21,10 +21,10 @@ export const useTour = (id) => {
 };
 
 // Hook search tour
-export const useSearchTours = (destination, days, category, minPrice, maxPrice) => {
+export const useSearchTours = (destination, days, category, minPrice, maxPrice, sortBy) => {
     return useQuery({
-        queryKey: ['tours', destination, days, category, minPrice, maxPrice],
-        queryFn: () => searchTours(destination, days, category, minPrice, maxPrice),
+        queryKey: ['tours', destination, days, category, minPrice, maxPrice, sortBy],
+        queryFn: () => searchTours(destination, days, category, minPrice, maxPrice, sortBy),
         staleTime: 5 * 60 * 1000,
     });
 };

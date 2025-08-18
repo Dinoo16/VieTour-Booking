@@ -15,7 +15,7 @@
     height: 16px;
     background: transparent;
     position: absolute;
-    pointer-events: all;
+    pointer-events: none;
 }
 
 .slider::-webkit-slider-thumb {
@@ -28,6 +28,9 @@
     cursor: pointer;
     border: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    pointer-events: all;
+    z-index: 2;
+
 }
 
 .slider::-moz-range-thumb {

@@ -6,6 +6,7 @@ import {
     createDestination,
     updateDestination,
     deleteDestination,
+    getPopularDestinations,
 } from '~/apiServices/destinationService';
 
 // Hook get all destinations
@@ -33,6 +34,15 @@ export const useToursByDestinationId = (id, sortBy) => {
         queryKey: ['toursByDestinationId', id, sortBy],
         queryFn: () => getToursByDestinationId(id, sortBy),
         enabled: !!id,
+        staleTime: 5 * 60 * 1000,
+    });
+};
+
+// Hook get popular destinations
+export const usePopularDestinations = () => {
+    return useQuery({
+        queryKey: ['popularDestinations'],
+        queryFn: () => getPopularDestinations(),
         staleTime: 5 * 60 * 1000,
     });
 };
