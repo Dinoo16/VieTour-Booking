@@ -65,7 +65,7 @@ function Bookings() {
             setLoadingTours(true);
             Promise.all(tourIds.map((id) => getTourById(id)))
                 .then((responses) => {
-                    // nếu getTourById trả về { data: {...} }
+                    // set tours to myTours
                     const tours = responses.map((r) => r.data || r);
                     setMyTours(tours);
                 })
@@ -74,12 +74,10 @@ function Bookings() {
         }
     }, [bookings]);
 
-    // Fetch Tour from booking
-    // const {data: tours, }
-
     // Group bookings by destination
     const groupedBookings = bookings.reduce((acc, booking) => {
         const tour = myTours.find((t) => t.id === booking.tourId);
+
         if (!tour) return acc;
 
         const dest = tour.destinationName;
@@ -87,17 +85,15 @@ function Bookings() {
             acc[dest] = [];
         }
 
-        // gắn thêm thông tin tour vào booking
+        // Add tour into booking
         acc[dest].push({
             ...booking,
-            tourName: tour.title,
-            tourImg: tour.backgroundImage,
-            destination: tour.destinationName,
-            tour, // nếu sau này muốn dùng toàn bộ tour
+            tour,
         });
 
         return acc;
     }, {});
+    console.log(groupedBookings);
 
     if (isBookingsLoading || loadingTours) return <LoadingSpinner />;
     return (
@@ -116,13 +112,13 @@ function Bookings() {
                                     <div key={booking.bookingId} className={cx('card-box')}>
                                         <div className={cx('card-info')}>
                                             <img
-                                                src={booking.tourImg}
-                                                alt={`${booking.tourName} tour`}
+                                                src={booking.tour.backgroundImage}
+                                                alt={`${booking.tour.backgroundImage} tour`}
                                                 className={cx('img')}
                                             />
                                             <div className={cx('details')}>
                                                 <div>
-                                                    <span className={cx('brand')}>{booking.tourName}</span>
+                                                    <span className={cx('brand')}>{booking.tour.title}</span>
                                                     <span className={cx('date')}>{booking.date}</span>
                                                 </div>
                                                 <span className={cx('status', booking.status.toLowerCase())}>
@@ -130,7 +126,7 @@ function Bookings() {
                                                 </span>
                                             </div>
                                         </div>
-                                        <span className={cx('price')}>{booking.totalAmount}</span>
+                                        <span className={cx('price')}>{booking.totalAmount}$</span>
                                     </div>
                                 ))}
                             </div>
