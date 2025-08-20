@@ -3,7 +3,6 @@ import styles from './Destination.module.scss';
 import Button from '~/components/Button/Button';
 import ConfirmDialog from '~/components/Dialog/ConfirmDialog';
 import icons from '~/assets/icons';
-import { CATEGORIES_COLUMN } from '~/data/Category/Category';
 import Table from '../components/Table/Table';
 import routesConfig from '~/config/routes';
 import { useDestinations } from '~/hooks/useDestinations';

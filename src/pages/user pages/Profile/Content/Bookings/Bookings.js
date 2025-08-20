@@ -2,7 +2,11 @@ import classNames from 'classnames/bind';
 import styles from './Bookings.module.scss';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
-
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
+import { useEffect, useState } from 'react';
+import { useBookingsUser } from '~/hooks/useBooking';
+import { useTour } from '~/hooks/useTours';
+import { getTourById } from '~/apiServices/tourService';
 const cx = classNames.bind(styles);
 
 const BOOKINGS = [
@@ -49,15 +53,53 @@ const BOOKINGS = [
 ];
 
 function Bookings() {
-    // 1. Group bookings by destination
-    const groupedBookings = BOOKINGS.reduce((acc, booking) => {
-        if (!acc[booking.destination]) {
-            acc[booking.destination] = [];
+    // Fetch bookings
+    const { data: bookings = [], isBookingsLoading } = useBookingsUser();
+    const [myTours, setMyTours] = useState([]);
+    const [loadingTours, setLoadingTours] = useState(false);
+
+    useEffect(() => {
+        if (bookings && bookings.length > 0) {
+            const tourIds = [...new Set(bookings.map((b) => b.tourId))];
+
+            setLoadingTours(true);
+            Promise.all(tourIds.map((id) => getTourById(id)))
+                .then((responses) => {
+                    // nếu getTourById trả về { data: {...} }
+                    const tours = responses.map((r) => r.data || r);
+                    setMyTours(tours);
+                })
+                .catch((err) => console.error('Error fetching tours:', err))
+                .finally(() => setLoadingTours(false));
         }
-        acc[booking.destination].push(booking);
+    }, [bookings]);
+
+    // Fetch Tour from booking
+    // const {data: tours, }
+
+    // Group bookings by destination
+    const groupedBookings = bookings.reduce((acc, booking) => {
+        const tour = myTours.find((t) => t.id === booking.tourId);
+        if (!tour) return acc;
+
+        const dest = tour.destinationName;
+        if (!acc[dest]) {
+            acc[dest] = [];
+        }
+
+        // gắn thêm thông tin tour vào booking
+        acc[dest].push({
+            ...booking,
+            tourName: tour.title,
+            tourImg: tour.backgroundImage,
+            destination: tour.destinationName,
+            tour, // nếu sau này muốn dùng toàn bộ tour
+        });
+
         return acc;
     }, {});
 
+    if (isBookingsLoading || loadingTours) return <LoadingSpinner />;
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -65,7 +107,7 @@ function Bookings() {
                 <h2 className={cx('title')}>Bookings and Trips</h2>
             </div>
             <div className={cx('content')}>
-                {BOOKINGS.length > 0 ? (
+                {bookings.length > 0 ? (
                     <div>
                         {Object.entries(groupedBookings).map(([destination, bookings]) => (
                             <div key={destination} className={cx('bookings')}>
@@ -83,9 +125,7 @@ function Bookings() {
                                                     <span className={cx('brand')}>{booking.tourName}</span>
                                                     <span className={cx('date')}>{booking.date}</span>
                                                 </div>
-                                                <span
-                                                    className={cx('status', booking.status.toLowerCase())}
-                                                >
+                                                <span className={cx('status', booking.status.toLowerCase())}>
                                                     {booking.status}
                                                 </span>
                                             </div>
@@ -111,6 +151,5 @@ function Bookings() {
         </div>
     );
 }
-
 
 export default Bookings;

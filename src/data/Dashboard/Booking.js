@@ -5,16 +5,16 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Pending',
-    },  
+    },
     {
         bookingId: 'bk_2',
         name: 'John Doe',
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Confirmed',
     },
     {
@@ -23,16 +23,16 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Cancelled',
-    },   
+    },
     {
         bookingId: 'bk_4',
         name: 'John Doe',
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Confirmed',
     },
     {
@@ -41,7 +41,7 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Confirmed',
     },
     {
@@ -50,7 +50,7 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Confirmed',
     },
     {
@@ -59,7 +59,7 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Confirmed',
     },
     {
@@ -68,7 +68,7 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Pending',
     },
     {
@@ -77,7 +77,7 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Cancelled',
     },
     {
@@ -86,38 +86,43 @@ export const BOOKINGS = [
         tourname: 'Tour 1',
         duration: '1 day',
         date: '2021-01-01',
-        price: '$100',  
+        price: '$100',
         status: 'Cancelled',
-    },                      
+    },
 ];
 
 export const BOOKING_COLUMNS = [
     {
         header: 'Booking ID',
-        accessor: 'bookingId',
+        accessor: 'id',
     },
     {
-        header: 'Name',
-        accessor: 'name',
+        header: 'User id',
+        accessor: 'userId',
     },
     {
-        header: 'Tour',
-        accessor: 'tourname',
+        header: 'Tour Id',
+        accessor: 'tourId',
     },
     {
-        header: 'Duration',
-        accessor: 'duration',
+        header: 'Number of People',
+        accessor: 'numberOfPeople',
     },
     {
         header: 'Date',
         accessor: 'date',
     },
     {
-        header: 'Price',
-        accessor: 'price',
+        header: 'Total amout',
+        accessor: 'totalAmount',
     },
-    { header: 'Status', accessor: 'status', render: (value) => (
-        <span style={{ color: value === 'Cancelled' ? '#FF002E' : value === 'Pending' ? '#4674FF' : '#00B871' }}>{value}</span>
-      )
+    {
+        header: 'Status',
+        accessor: 'status',
+        render: (value) => (
+            <span style={{ color: value === 'Cancelled' ? '#FF002E' : value === 'Pending' ? '#4674FF' : '#00B871' }}>
+                {value}
+            </span>
+        ),
     },
 ];

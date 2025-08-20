@@ -7,20 +7,27 @@ import Calendar from './components/Calendar/Calendar';
 import LineChart from './components/LineChart/LineChart';
 import { useEffect, useState } from 'react';
 import { getAllUsers } from '~/apiServices/adminUserService';
+import { useBookings } from '~/hooks/useBooking';
+import { useUsers } from '~/hooks/useUsers';
 
 const cx = classNames.bind(styles);
 
 const AdminDashboard = () => {
+    // Fetch bookings
+    const { data: bookings = [], isBookingsDataLoading } = useBookings();
+    // Fetch users
+    const { data: users = [], isUsersLoading } = useUsers();
+
     const [summaryItems, setSummaryItems] = useState([
         {
             icon: icons.booking,
             title: 'Total Bookings',
-            value: 10001,
+            value: isBookingsDataLoading ? 'Loading...' : bookings.length,
         },
         {
             icon: icons.user,
             title: 'Total Customers',
-            value: 'Loading...', // Initial value while fetching
+            value: isUsersLoading ? 'Loading...' : users.length,
         },
         {
             icon: icons.dollar,
@@ -28,21 +35,6 @@ const AdminDashboard = () => {
             value: '$1234.5',
         },
     ]);
-
-    useEffect(() => {
-        const fetchUsersApi = async () => {
-            try {
-                const data = await getAllUsers();
-                const userCount = data.length - 1;
-                setSummaryItems((prevItems) =>
-                    prevItems.map((item) => (item.title === 'Total Customers' ? { ...item, value: userCount } : item)),
-                );
-            } catch (error) {
-                console.log('Failed to fetch all users:', error);
-            }
-        };
-        fetchUsersApi();
-    }, []);
 
     return (
         <div className={cx('wrapper')}>
