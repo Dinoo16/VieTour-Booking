@@ -9,6 +9,7 @@ import TourDetail from '~/pages/user pages/TourDetail/TourDetail';
 import DefaultLayout from '~/Layout/DefaultLayout/DefaultLayout';
 import AuthLayout from '~/Layout/AuthLayout/AuthLayout';
 import Payment from '~/pages/user pages/Payment/Payment';
+import PaymentSuccess from '~/pages/user pages/Payment/PaymentSuccess';
 import Profile from '~/pages/user pages/Profile/Profile';
 import AdminDashboard from '~/pages/admin pages/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
@@ -144,23 +145,7 @@ const publicRoutes = [
             </DefaultLayout>
         ),
     },
-    {
-        path: routesConfig.payment,
-        component: Payment,
-        layout: (page) => (
-            <DefaultLayout
-                banner={{
-                    image: images.aboutusbg,
-                    title: 'Thanks For Choosing Us',
-                    subtitle: 'READ',
-                }}
-                hideSearchTour
-                noContentSpacing
-            >
-                {page}
-            </DefaultLayout>
-        ),
-    },
+
     {
         path: routesConfig.signin,
         component: SignIn,
@@ -222,6 +207,40 @@ const privateRoutes = [
                 hideSearchTour
                 noContentSpacing
                 hideExploreBtn
+            >
+                {page}
+            </DefaultLayout>
+        ),
+    },
+    {
+        path: routesConfig.payment,
+        component: Payment,
+        layout: (page) => (
+            <DefaultLayout
+                banner={{
+                    image: images.aboutusbg,
+                    title: 'Thanks For Choosing Us',
+                    subtitle: 'READ',
+                }}
+                hideSearchTour
+                noContentSpacing
+            >
+                {page}
+            </DefaultLayout>
+        ),
+    },
+    {
+        path: routesConfig.paymentSuccess,
+        component: PaymentSuccess,
+        layout: (page) => (
+            <DefaultLayout
+                banner={{
+                    image: images.aboutusbg,
+                    title: 'Thanks For Choosing Us',
+                    subtitle: 'READ',
+                }}
+                hideSearchTour
+                noContentSpacing
             >
                 {page}
             </DefaultLayout>

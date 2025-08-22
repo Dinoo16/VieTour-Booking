@@ -2,31 +2,18 @@ import classNames from 'classnames/bind';
 import styles from './Payment.module.scss';
 import icons from '~/assets/icons';
 import { useEffect, useState } from 'react';
-import images from '~/assets/images';
 import Button from '~/components/Button/Button';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useTour } from '~/hooks/useTours';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 import { useBooking } from '~/hooks/useBooking';
+import { useCreatePayment } from '~/hooks/usePayment';
 
 const cx = classNames.bind(styles);
 
-const paymentMethods = [
-    {
-        id: 'applepay',
-        name: 'Apple Pay',
-        img: images.applepay,
-    },
-    {
-        id: 'paypal',
-        name: 'PayPal',
-        img: images.paypal,
-    },
-];
-
 function Payment() {
-    const [selected, setSelected] = useState('applepay');
     const { id: bookingId } = useParams();
+    const navigate = useNavigate();
 
     // Fetch booking info
     const { data: bookingData, isBookingLoading } = useBooking(bookingId);
@@ -36,21 +23,25 @@ function Payment() {
         enabled: !!bookingData?.tourId,
     });
 
-    if (isBookingLoading) {
-        return <LoadingSpinner />;
+    // Call api create payment
+    const { mutate: createPayment, isLoading, error: paymentError } = useCreatePayment();
+
+    const handleCheckout = (e) => {
+        e.preventDefault();
+
+        // call api
+        createPayment(bookingId);
+    };
+
+    if (isBookingLoading || isTourLoading) {
+        return (
+            <div className={cx('loading-container')}>
+                <LoadingSpinner />
+                <p>Loading booking information...</p>
+            </div>
+        );
     }
 
-    if (!bookingData?.tourId) {
-        return <LoadingSpinner />;
-    }
-
-    if (isTourLoading) {
-        return <LoadingSpinner />;
-    }
-
-    if (!tourData) {
-        return <div>No tour data found</div>;
-    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
@@ -59,65 +50,6 @@ function Payment() {
             </div>
 
             <div className={cx('content')}>
-                <div className={cx('payment-method')}>
-                    <h2>Choose payment method</h2>
-                    <div className={cx('payment-container')}>
-                        {paymentMethods.map((method) => (
-                            <label key={method.id} className={cx('card', { active: selected === method.id })}>
-                                <input
-                                    type="radio"
-                                    name="payment"
-                                    checked={selected === method.id}
-                                    onChange={() => setSelected(method.id)}
-                                />
-                                <img src={method.img} alt={method.name} />
-                                <p>{method.name}</p>
-                            </label>
-                        ))}
-                    </div>
-                    <form className={cx('card-form')}>
-                        <div className={cx('form-group')}>
-                            <label>
-                                Cardholder name <span className={cx('required')}>*</span>
-                                <div className={cx('input-icon')}>
-                                    <icons.user />
-                                    <input type="text" placeholder="Cardholder name" required />
-                                </div>
-                            </label>
-                        </div>
-                        <div className={cx('form-group')}>
-                            <label>
-                                Card number <span className={cx('required')}>*</span>
-                                <div className={cx('input-icon')}>
-                                    <icons.card />
-                                    <input type="text" placeholder="Card number" required />
-                                </div>
-                            </label>
-                        </div>
-                        <div className={cx('form-row')}>
-                            <div className={cx('form-group', 'half')}>
-                                <label>
-                                    Expiration date <span className={cx('required')}>*</span>
-                                    <div className={cx('input-icon')}>
-                                        <icons.calendar />
-                                        <input type="text" placeholder="MM/YY" required />
-                                    </div>
-                                </label>
-                            </div>
-                            <div className={cx('form-group', 'half')}>
-                                <label>
-                                    CVC <span className={cx('required')}>*</span>
-                                    <div className={cx('input-icon')}>
-                                        <icons.card />
-                                        <input type="text" placeholder="CVC" required />
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <Button primary>Complete order</Button>
-                    </form>
-                </div>
-
                 <div className={cx('tour-info')}>
                     <div className={cx('tour-info-top')}>
                         <img src={tourData?.backgroundImage} alt="tour-info" />
@@ -158,6 +90,23 @@ function Payment() {
                     </div>
                 </div>
             </div>
+
+            <Button primary onClick={handleCheckout}>
+                {isLoading ? (
+                    <>
+                        <LoadingSpinner />
+                        Processing...
+                    </>
+                ) : (
+                    'Check out'
+                )}
+            </Button>
+            {paymentError && (
+                <div className={cx('error-banner')}>
+                    {/* <icons /> */}
+                    <span>Payment initialization failed. Please try again.</span>
+                </div>
+            )}
         </div>
     );
 }

@@ -7,50 +7,9 @@ import { useEffect, useState } from 'react';
 import { useBookingsUser } from '~/hooks/useBooking';
 import { useTour } from '~/hooks/useTours';
 import { getTourById } from '~/apiServices/tourService';
+import Button from '~/components/Button/Button';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
-
-const BOOKINGS = [
-    {
-        bookingId: '1',
-        userId: '1',
-        destination: 'Quang Ninh',
-        tourName: 'Ha Long Bay',
-        tourImg: images.halongbay,
-        date: 'July 27 - July 31',
-        status: 'Past',
-        totalAmount: '$1234',
-    },
-    {
-        bookingId: '2',
-        userId: '2',
-        destination: 'Hanoi',
-        tourName: 'Guom Lake',
-        tourImg: images.hanoi,
-        date: 'July 27 - July 31',
-        status: 'Cancel',
-        totalAmount: '$1234.5',
-    },
-    {
-        bookingId: '3',
-        userId: '3',
-        destination: 'Quang Nam',
-        tourName: 'Hoi An',
-        tourImg: images.destination_1,
-        date: 'August 1 - August 4',
-        status: 'Past',
-        totalAmount: '$1234.5',
-    },
-    {
-        bookingId: '4',
-        userId: '4',
-        destination: 'Hanoi',
-        tourName: 'Hanoi Coffee Lovers ',
-        tourImg: images.destination_1,
-        date: 'August 1 - August 4',
-        status: 'Past',
-        totalAmount: '$1234.5',
-    },
-];
 
 function Bookings() {
     // Fetch bookings
@@ -109,7 +68,7 @@ function Bookings() {
                             <div key={destination} className={cx('bookings')}>
                                 <h3 className={cx('card-title')}>{destination}</h3>
                                 {bookings.map((booking) => (
-                                    <div key={booking.bookingId} className={cx('card-box')}>
+                                    <div key={booking.id} className={cx('card-box')}>
                                         <div className={cx('card-info')}>
                                             <img
                                                 src={booking.tour.backgroundImage}
@@ -118,15 +77,46 @@ function Bookings() {
                                             />
                                             <div className={cx('details')}>
                                                 <div>
-                                                    <span className={cx('brand')}>{booking.tour.title}</span>
+                                                    <span className={cx('tour-title')}>{booking.tour.title}</span>
                                                     <span className={cx('date')}>{booking.date}</span>
                                                 </div>
-                                                <span className={cx('status', booking.status.toLowerCase())}>
-                                                    {booking.status}
-                                                </span>
+                                                <div className={cx('destination')}>
+                                                    <icons.location />
+                                                    <span className={cx('tour-destination')}>
+                                                        {booking.tour.destinationName}
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span className={cx('tour-destination')}>
+                                                        Number of people:{' '}
+                                                        {booking.numberOfPeople === 1
+                                                            ? `${booking.numberOfPeople} person`
+                                                            : `${booking.numberOfPeople} people`}
+                                                    </span>
+                                                </div>
+
+                                                <div className={cx('status-price')}>
+                                                    <span className={cx('price')}>
+                                                        Price: <strong>{booking.totalAmount}$</strong>
+                                                    </span>
+                                                    <span className={cx('status', booking.status.toLowerCase())}>
+                                                        {booking.status}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <span className={cx('price')}>{booking.totalAmount}$</span>
+                                        <div className={cx('actions')}>
+                                            <button className={cx('button', 'view-detail')}>View Detail</button>
+                                            {booking.status === 'PENDING' ? (
+                                                <Link className={cx('button', 'payment')} to={`/payment/${booking.id}`}>
+                                                    Continue Payment
+                                                </Link>
+                                            ) : booking.status === 'EXPIRED' ? (
+                                                <button className={cx('button', 'book-again')}>Book Again</button>
+                                            ) : (
+                                                <button className={cx('button', 'view-receipt')}>View Receipt</button>
+                                            )}
+                                        </div>
                                     </div>
                                 ))}
                             </div>

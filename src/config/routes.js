@@ -5,6 +5,7 @@ const routes = {
     tourdetail: 'tour/:id',
     destination: '/destination',
     payment: '/payment/:id',
+    paymentSuccess: '/payment-success/:bookingId',
     blog: '/blog',
     search: '/search',
     profile: '/profile',
