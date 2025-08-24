@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/VieTour-Booking/static/css/main.b747b08e.css",
-    "main.js": "/VieTour-Booking/static/js/main.615a8dd3.js",
+    "main.js": "/VieTour-Booking/static/js/main.3b1d90db.js",
     "static/js/453.f4227149.chunk.js": "/VieTour-Booking/static/js/453.f4227149.chunk.js",
     "static/media/destination_3.png": "/VieTour-Booking/static/media/destination_3.dc4f3e04f4362f59b737.png",
     "static/media/destination_2.png": "/VieTour-Booking/static/media/destination_2.09f91f14a8cba5489b62.png",
@@ -113,11 +113,11 @@
     "static/media/check.svg": "/VieTour-Booking/static/media/check.bc82a5818a2e5ad8b89b7f0823e7a0e1.svg",
     "static/media/add.svg": "/VieTour-Booking/static/media/add.f2f145640a918192bae1ebdf6995109c.svg",
     "main.b747b08e.css.map": "/VieTour-Booking/static/css/main.b747b08e.css.map",
-    "main.615a8dd3.js.map": "/VieTour-Booking/static/js/main.615a8dd3.js.map",
+    "main.3b1d90db.js.map": "/VieTour-Booking/static/js/main.3b1d90db.js.map",
     "453.f4227149.chunk.js.map": "/VieTour-Booking/static/js/453.f4227149.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b747b08e.css",
-    "static/js/main.615a8dd3.js"
+    "static/js/main.3b1d90db.js"
   ]
 }
