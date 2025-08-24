@@ -2,6 +2,7 @@
   "name": "vietour",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dinoo16.github.io/VieTour-Booking",
   "dependencies": {
     "@tanstack/react-query": "^5.84.2",
     "@testing-library/dom": "^10.4.0",
@@ -29,6 +30,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -56,4 +58,5 @@
     "react-app-rewired": "^2.2.1",
     "sass": "^1.89.2"
   }
+  
 }
