@@ -8,7 +8,7 @@ import { UserProvider } from './contexts/UserContext';
 function App() {
     return (
         <UserProvider>
-            <Router>
+            <Router basename="/VieTour-Booking">
                 <div className="App">
                     <ScrollToTop />
                     <Routes>
