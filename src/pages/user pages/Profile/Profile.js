@@ -12,6 +12,7 @@ import PaymentMethod from './Content/Payment/Payment';
 import Bookings from './Content/Bookings/Bookings';
 import MyReviews from './Content/MyReviews/MyReviews';
 import { useUser } from '~/contexts/UserContext';
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +20,7 @@ function Profile() {
     const { user, loading } = useUser();
 
     const [activeMenu, setActiveMenu] = useState(PROFILE_SETTING_MENU[0]);
-    const username = user?.username || (user?.email ? user.email.split('@')[0] : 'User');
+    const username = user?.name || (user?.email ? user.email.split('@')[0] : 'User');
     const renderContent = () => {
         switch (activeMenu.title) {
             case 'Personal Information':
@@ -38,6 +39,9 @@ function Profile() {
                 return <div>Coming soon...</div>;
         }
     };
+    if (loading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>

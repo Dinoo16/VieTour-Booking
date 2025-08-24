@@ -22,6 +22,17 @@ export const getTourById = async (id) => {
     }
 };
 
+// Get trending tours
+export const getTrendingTours = async () => {
+    try {
+        const res = await httpRequest.get('/public/tours/trending');
+        return res;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+};
+
 // Search tour by destination, category, days, budget
 export const searchTours = async (destination, days, category, minPrice, maxPrice, sortBy) => {
     try {

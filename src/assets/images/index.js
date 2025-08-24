@@ -39,6 +39,8 @@ const images = {
     signup_cover: require('~/assets/images/signup-cover.jpg'),
     signout: require('~/assets/images/signout.png'),
     trips: require('~/assets/images/trips.png'),
+    success: require('~/assets/images/success.png'),
+    failed: require('~/assets/images/failed.png'),
 };
 
 export default images;

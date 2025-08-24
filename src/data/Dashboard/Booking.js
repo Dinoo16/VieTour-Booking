@@ -27,7 +27,18 @@ export const BOOKING_COLUMNS = [
         header: 'Status',
         accessor: 'status',
         render: (value) => (
-            <span style={{ color: value === 'CANCELLED' ? '#FF002E' : value === 'PENDING' ? '#fbbf24' : '#34a853' }}>
+            <span
+                style={{
+                    color:
+                        value === 'CANCELLED'
+                            ? '#FF002E'
+                            : value === 'PENDING'
+                            ? '#fbbf24'
+                            : value === 'EXPIRED'
+                            ? '#6b7280'
+                            : '#34a853',
+                }}
+            >
                 {value}
             </span>
         ),

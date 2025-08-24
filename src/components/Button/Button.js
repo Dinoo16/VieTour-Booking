@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
+import LoadingSpinner from '../Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,7 @@ function Button({
     small = false,
     large = false,
     transparent = false,
+    isLoading,
     children,
     className,
     leftIcon,
@@ -55,7 +57,7 @@ function Button({
         text,
         iconButton,
         iconRoudedButton,
-        disabled,
+        disabled: disabled || isLoading,
         rounded,
         small,
         large,
@@ -63,9 +65,16 @@ function Button({
     });
 
     return (
-        <Comp className={classes} {...props}>
+        <Comp className={classes} disabled={disabled || isLoading} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
-            <span className={cx('title')}>{children}</span>
+            {isLoading ? (
+                <div className={cx('button-spinner')}>
+                    <LoadingSpinner small />
+                </div>
+            ) : (
+                <span className={cx('title')}>{children}</span>
+            )}
+
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     );

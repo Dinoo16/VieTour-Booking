@@ -1,14 +1,13 @@
-// src/components/Loading/LoadingSpinner.jsx
 import styles from './LoadingSpinner.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function LoadingSpinner({ text = 'Loading...' }) {
+function LoadingSpinner({ text, small }) {
     return (
         <div className={cx('loading-wrapper')}>
-            <div className={cx('spinner')}></div>
-            <span className={cx('loading-text')}>{text}</span>
+            <div className={cx('spinner', { 'small': small })}></div>
+            {text && <span className={cx('loading-text')}>{text}</span>}
         </div>
     );
 }

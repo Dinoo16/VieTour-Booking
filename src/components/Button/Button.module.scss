@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .wrapper {
@@ -20,7 +19,7 @@
     border: 1px solid transparent;
     user-select: none;
 
-    +.wrapper {
+    + .wrapper {
         margin-left: 8px;
     }
 
@@ -30,8 +29,8 @@
     }
 }
 
-.icon+.title,
-.title+.icon {
+.icon + .title,
+.title + .icon {
     margin-left: 8px;
 }
 
@@ -64,7 +63,7 @@
     border-color: var(--primary);
 
     &:hover {
-         background-color: #d15d46;
+        background-color: #d15d46;
     }
 }
 
@@ -73,13 +72,14 @@
     border-color: var(--text-color);
     background-color: transparent;
 
-    &:hover {}
+    &:hover {
+    }
 }
 
 .transparent {
     border-color: var(--white);
     background-color: transparent;
-    color: var(--white)
+    color: var(--white);
 }
 
 .text {
@@ -103,7 +103,7 @@
     justify-content: center;
     align-items: center;
     border: none;
-    
+
     svg {
         margin: 0;
     }
@@ -116,7 +116,7 @@
     padding: 0;
     min-width: unset;
     border-radius: 50%;
-    background-color: #D80027;
+    background-color: #d80027;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +135,6 @@
     }
 }
 
-
 // Button sizes
 .small {
     min-width: 88px;
@@ -146,4 +145,11 @@
 .large {
     padding: 14px 16px;
     min-width: 140px;
+}
+
+.button-spinner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -10,16 +10,20 @@ import Tours from './components/Tours/Tours';
 import Gallery from './components/Gallery/Gallery';
 import { useNavigate } from 'react-router-dom';
 import { useCategories } from '~/hooks/useCategories';
-import { useTours } from '~/hooks/useTours';
 import { usePopularDestinations } from '~/hooks/useDestinations';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 import { useEffect, useState } from 'react';
+import { useTours } from '~/hooks/useTours';
+import { useTrendingTours } from '~/hooks/useTours';
 
 const cx = classNames.bind(styles);
 
 function Home() {
+    // Fetch category
     const { data: CategoriesData = [], isCategoriesLoading } = useCategories();
-    const { data: ToursData = [], isToursLoading } = useTours();
+    // Fetch Trending tour (8 slots)
+    const { data: trendingToursData, isTrendingTourLoading } = useTrendingTours();
+    console.log(trendingToursData)
     const [popularDestinations, setPopularDestinations] = useState([]);
 
     const { data: PopularDestinations = [], isPopularDestinationsLoading } = usePopularDestinations();
@@ -47,7 +51,7 @@ function Home() {
         navigate(`/tour?destinationId=${destinationId}`);
     }
 
-    if (isCategoriesLoading || isPopularDestinationsLoading || isToursLoading) {
+    if (isCategoriesLoading || isPopularDestinationsLoading || isTrendingTourLoading) {
         return <LoadingSpinner />;
     }
 
@@ -66,7 +70,7 @@ function Home() {
             <Promotion />
 
             {/* TOURS */}
-            <Tours items={ToursData} onclick={handleTourClick} />
+            <Tours items={trendingToursData} onclick={handleTourClick} />
 
             {/* GALLERY */}
             <Gallery />

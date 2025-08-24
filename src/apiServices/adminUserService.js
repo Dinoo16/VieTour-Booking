@@ -28,3 +28,23 @@ export const deleteUser = async (id) => {
     }
 };
 // Create guide account
+
+// Update user
+export const updateUser = async (id, userData, avatarFile) => {
+    try {
+        const formData = new FormData();
+        formData.append('user', new Blob([JSON.stringify(userData)], { type: 'application/json' }));
+        if (avatarFile) {
+            formData.append('avatar', avatarFile);
+        }
+
+        const res = await httpRequest.put(`/user/users/${id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+};

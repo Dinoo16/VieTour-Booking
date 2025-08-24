@@ -161,21 +161,24 @@ const publicRoutes = [
             </AuthLayout>
         ),
     },
-    {
-        path: routesConfig.signup,
-        component: SignUp,
-        layout: (page) => (
-            <AuthLayout
-                banner={{
-                    image: images.signup_cover,
-                    title: 'Welcome!',
-                    subtitle: '"Create Your Account, Create Your Adventures."',
-                }}
-            >
-                {page}
-            </AuthLayout>
-        ),
-    },
+        {
+            path: routesConfig.signup,
+            component: SignUp,
+            layout: (page) => (
+                <AuthLayout
+                    banner={{
+                        image: images.signup_cover,
+                        title: 'Welcome!',
+                        subtitle: '"Create Your Account, Create Your Adventures."',
+                    }}
+                    onShowDialog={(message) => {
+                    
+                    }}
+                >
+                    {page}
+                </AuthLayout>
+            ),
+        },
     {
         path: routesConfig.signout,
         component: SignOut,

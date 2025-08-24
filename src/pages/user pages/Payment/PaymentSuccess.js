@@ -4,7 +4,7 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCapturePayment } from '~/hooks/usePayment';
 import Button from '~/components/Button/Button';
-import icons from '~/assets/icons';
+import images from '~/assets/images';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
@@ -62,11 +62,11 @@ function PaymentSuccess() {
         return (
             <div className={cx('container')}>
                 <div className={cx('success')}>
-                    <div className={cx('icon')}>
-                        {/* <icons.success /> */}
+                    <h2 className={cx('payment-status')}>Payment Successful!</h2>
+                    <div className={cx('payment-messsage')}>
+                        <img className={cx('img-status')} src={images.success} />
+                        <p>Your payment has been processed successfully. Thank you for your booking!</p>
                     </div>
-                    <h2>Payment Successful!</h2>
-                    <p>Your payment has been processed successfully. Thank you for your booking!</p>
                     <div className={cx('actions')}>
                         <Button primary onClick={() => navigate('/my-bookings')}>
                             View My Bookings
@@ -83,11 +83,12 @@ function PaymentSuccess() {
         return (
             <div className={cx('container')}>
                 <div className={cx('error')}>
-                    <div className={cx('icon')}>
-                        {/* <icons.error /> */}
+                    <div className={cx('icon')}></div>
+                    <h2 className={cx('payment-status')}>Payment Failed</h2>
+                    <div className={cx('payment-messsage')}>
+                        <img className={cx('img-status')} src={images.failed} />
+                        <p>{errorMessage}</p>
                     </div>
-                    <h2>Payment Failed</h2>
-                    <p>{errorMessage}</p>
                     <div className={cx('actions')}>
                         <Button primary onClick={() => navigate(`/payment/${bookingId}`)}>
                             Try Again

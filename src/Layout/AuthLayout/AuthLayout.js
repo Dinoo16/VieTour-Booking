@@ -1,11 +1,28 @@
+import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './AuthLayout.module.scss';
 import PropTypes from 'prop-types';
 import Header from './Header/Header';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function AuthLayout({ children, banner }) {
+function AuthLayout({ children, banner, onShowDialog }) {
+    const navigate = useNavigate();
+    const [showDialog, setShowDialog] = useState(false);
+    const [dialogMessage, setDialogMessage] = useState('');
+
+    const showDialogInLayout = (message) => {
+        setDialogMessage(message);
+        setShowDialog(true);
+    };
+
+    const handleClose = () => {
+        setShowDialog(false);
+        navigate('/signin');
+    };
+
     return (
         <div className={cx('wrapper')}>
             {banner && (
@@ -25,7 +42,16 @@ function AuthLayout({ children, banner }) {
                     </div>
                 </div>
             )}
-            <div className={cx('content')}> {children} </div>
+            <div className={cx('content')}> {React.cloneElement(children, { showDialog: showDialogInLayout })}</div>
+            {showDialog && (
+                <div className={cx('dialog-overlay')}>
+                    <div className={cx('dialog-box')}>
+                        <h3>Thông báo</h3>
+                        <p>{dialogMessage}</p>
+                        <button onClick={handleClose}>OK</button>
+                    </div>
+                </div>
+            )}
             <div className={cx('footer')}>
                 <span>Copyright @Dino 2025.</span>
                 <span>All Rights Reserved.</span>

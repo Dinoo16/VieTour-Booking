@@ -9,14 +9,14 @@ import { isAuthenticated } from '~/utils/isAuthenticated';
 
 const cx = classNames.bind(styles);
 
-function SignUp() {
+function SignUp({ showDialog }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const [showDialog, setShowDialog] = useState(false);
-    const [dialogMessage, setDialogMessage] = useState('');
+    // const [showDialog, setShowDialog] = useState(false);
+    // const [dialogMessage, setDialogMessage] = useState('');
 
     const navigate = useNavigate();
 
@@ -44,8 +44,11 @@ function SignUp() {
 
             if (token) {
                 // localStorage.setItem('token', token);
-                setDialogMessage('Sign up successfully! Please sign up to get more feature.');
-                setShowDialog(true);
+                // setDialogMessage('Sign up successfully! Please sign up to get more feature.');
+                // setShowDialog(true);
+                if (showDialog) {
+                    showDialog('Sign up successfully! Please sign in to get more features.');
+                }
             } else {
                 setError(response.data?.message || 'Signup successful but no token received');
             }
@@ -55,10 +58,10 @@ function SignUp() {
         }
     };
 
-    const handleClose = () => {
-        setShowDialog(false);
-        navigate('/signin');
-    };
+    // const handleClose = () => {
+    //     setShowDialog(false);
+    //     navigate('/signin');
+    // };
 
     return (
         <div className={cx('container')}>
@@ -122,7 +125,7 @@ function SignUp() {
                 </p>
             </form>
             {/* Dialog */}
-            {showDialog && (
+            {/* {showDialog && (
                 <div className={cx('dialog-overlay')}>
                     <div className={cx('dialog-box')}>
                         <h3>Thông báo</h3>
@@ -130,7 +133,7 @@ function SignUp() {
                         <button onClick={handleClose}>OK</button>
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     );
 }
