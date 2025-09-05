@@ -17,10 +17,11 @@ function Guide({ items = [] }) {
             <Swiper
                 modules={[Pagination]}
                 spaceBetween={24}
-                slidesPerView={4}
                 loop={true}
                 pagination={{ clickable: true }}
                 breakpoints={{
+                    0: { slidesPerView: 1 },
+                    425: { slidesPerView: 1 },
                     640: { slidesPerView: 2 },
                     768: { slidesPerView: 3 },
                     1024: { slidesPerView: 4 },

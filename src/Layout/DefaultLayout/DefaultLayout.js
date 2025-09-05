@@ -22,10 +22,9 @@ function DefaultLayout({
         <div className="overflow-hidden">
             {banner && (
                 <div
-                    className={`relative w-full min-h-[700px] bg-cover bg-center flex flex-col text-white ${
-                        halfHeightBanner ? 'h-[500px]' : 'h-screen'
-                    }
-  `}
+                    className={`relative w-full h-[500px] sm:min-h-[700px] bg-cover bg-center flex flex-col text-white ${
+                        halfHeightBanner ? 'h-[500px]' : 'h-[450px] s:h-[500px] sm:h-screen'
+                    }`}
                     style={{
                         backgroundImage: `url(${banner.image})`,
                     }}

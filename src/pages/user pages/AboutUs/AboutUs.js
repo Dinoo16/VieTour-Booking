@@ -9,19 +9,18 @@ import Guide from './components/Guide/Guide';
 import Feedback from './components/Feedback/Feedback';
 import { ACHIEVEMENTS, GUIDES } from '~/data/Guide/Guide';
 
-
 const cx = classNames.bind(styles);
 
 function AboutUs() {
     return (
-        <div className={cx('wrapper')}>
+        <div>
             <Intro />
 
             <WhyUs />
 
-            <div className={cx('gallery')}>
-                <img src={images.gallery} alt="aboutus" className={cx('gallery-img')} />
-                <div className={cx('overlay')}> </div>
+            <div className="mt-[120px] w-screen max-h-[550px] overflow-visible ml-[calc(-50vw+50%)] relative">
+                <img src={images.gallery} alt="aboutus" className="object-cover w-full h-full " />
+                <div className="absolute top-0 left-0 w-full h-full bg-[rgba(30, 30, 30, 0.24)] z-10"> </div>
                 <Button iconButton className={cx('play-btn')}></Button>
             </div>
 

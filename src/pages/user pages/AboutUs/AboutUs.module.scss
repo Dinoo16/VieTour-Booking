@@ -1,52 +1,24 @@
-.wrapper {}
+.play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    z-index: 2;
+    background-color: var(--primary);
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.gallery {
-    margin-top: 120px;
-    width: 100vw;
-    height: 550px;
-    overflow: visible;
-    margin-left: calc(-50vw + 50%);
-    position: relative;
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(30, 30, 30, 0.24);
-        z-index: 1;
-    }
-
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-
-    .play-btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: none;
-        z-index: 2;
-        background-color: var(--primary);
-        width: 65px;
-        height: 65px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid white;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            margin-left: 4px; // Slight offset to center the triangle
-        }
-
+    &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 20px solid white;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        margin-left: 4px;
     }
 }

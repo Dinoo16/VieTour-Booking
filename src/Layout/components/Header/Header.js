@@ -48,7 +48,7 @@ function Header() {
 
             <div className="flex justify-between items-center">
                 <Link to={config.home}>
-                    <img src={images.logo} alt="VieTour" />
+                    <img src={images.logo} alt="VieTour" className="w-[110px] h-[70px] s:w-auto s:h-auto" />
                 </Link>
                 <Menu>
                     <MenuItem title="Home" to={config.home} />

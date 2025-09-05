@@ -5,6 +5,10 @@
     gap: 8px;
     margin-top: 24px;
 
+    @media (max-width: 425px) {
+        margin-top: 0;
+    }
+
     .label {
         font-size: 14px;
         font-weight: 500;

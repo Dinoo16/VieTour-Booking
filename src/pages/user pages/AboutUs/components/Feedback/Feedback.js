@@ -10,16 +10,22 @@ import { FEEDBACKS } from '~/data/Tour/Tour';
 
 const cx = classNames.bind(styles);
 
-
 const Feedback = () => {
     return (
         <div className={cx('wrapper')}>
             <h4 className={cx('label')}>TESTIMONIAL</h4>
             <h1 className={cx('title')}>What Clients Say About Us</h1>
-            <Swiper autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-            }} navigation={true} modules={[Navigation, Autoplay]} slidesPerView={1} loop={true} className={cx('slider')}>
+            <Swiper
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                navigation={true}
+                modules={[Navigation, Autoplay]}
+                slidesPerView={1}
+                loop={true}
+                className={cx('slider')}
+            >
                 {FEEDBACKS.map((feedback) => (
                     <SwiperSlide key={feedback.id}>
                         <FeedBack item={feedback} />

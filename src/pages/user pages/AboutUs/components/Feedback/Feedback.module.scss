@@ -3,8 +3,18 @@
     margin-left: calc(50% - 50vw);
     padding-bottom: 120px;
     text-align: center;
-    background-color: #F1F1F1;
+    background-color: #f1f1f1;
 
+    @media (max-width: 400px) {
+        min-width: 60px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    @media (max-width: 400px) {
+        min-width: 60px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
 }
 
 .label {
@@ -14,21 +24,50 @@
     margin-bottom: 14px;
     padding-top: 56px;
     text-transform: uppercase;
+
+    @media (max-width: 425px) {
+        font-size: 20px;
+    }
 }
 
 .title {
-    font-size: 48px;
+    font-size: 24px;
     font-family: var(--font-family-header);
     color: var(--header-color);
     margin-bottom: 106px;
+
+    @media (min-width: 425px) {
+        font-size: 32px;
+    }
+
+    @media (min-width: 640px) {
+        font-size: 48px;
+    }
 }
 
 .swiper {
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
     position: relative;
+    padding: 0 12px;
+
+    @media (max-width: 425px) {
+        max-width: 100%;
+    }
 }
 
 .slider {
     overflow: visible;
+}
+
+.view-more {
+    margin-top: 40px;
+    font-size: 14px;
+    padding: 10px 20px;
+
+    @media (min-width: 640px) {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
 }

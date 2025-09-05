@@ -1,6 +1,10 @@
 .wrapper {
     padding: 120px 0;
     text-align: center;
+
+    @media (max-width: 640px) {
+        padding: 32px 0;
+    }
 }
 
 .label {
@@ -9,15 +13,26 @@
     font-size: 24px;
     margin-bottom: 14px;
     text-transform: uppercase;
+
+    @media (max-width: 425px) {
+        font-size: 20px;
+    }
 }
 
 .title {
-    font-size: 48px;
+    font-size: 24px;
     font-family: var(--font-family-header);
     color: var(--header-color);
     padding-bottom: 56px;
-}
 
+    @media (min-width: 425px) {
+        font-size: 32px;
+    }
+
+    @media (min-width: 640px) {
+        font-size: 48px;
+    }
+}
 
 //Guide Card
 .card {
