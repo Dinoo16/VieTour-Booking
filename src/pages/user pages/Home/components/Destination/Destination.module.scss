@@ -16,6 +16,10 @@
         font-family: var(--font-family-header);
         color: var(--header-color);
         margin-bottom: 56px;
+
+        @media (max-width: 640px) {
+            font-size: 36px;
+        }
     }
 
     .swiper {
@@ -27,10 +31,13 @@
             background: #fff;
             border-radius: 20px;
             overflow: hidden;
-            width: 340px;
-            height: 500px;
+            max-width: 340px;
+            height: 450px;
             position: relative;
             box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+
+            @media (max-width: 400px) {
+            }
 
             .info {
                 position: absolute;
@@ -66,7 +73,6 @@
             }
         }
     }
-
 }
 
 // Swiper pagination styling

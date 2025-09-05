@@ -1,13 +1,9 @@
-import classNames from 'classnames/bind';
-import styles from './Menu.module.scss';
 import MenuItem from './MenuItem';
 import PropTypes from 'prop-types';
 
-const cx = classNames.bind(styles);
-
 function Menu({ items = [] }) {
     return (
-        <div className={cx('menu')}>
+        <div className="max-h-[141px] bg-[#EDEDED] flex items-center">
             {items.map((item, index) => (
                 <MenuItem key={index} icon={item.icon} title={item.title} />
             ))}

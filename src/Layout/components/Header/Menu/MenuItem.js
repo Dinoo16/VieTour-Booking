@@ -5,16 +5,27 @@ import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 function MenuItem({ title, to, onClick }) {
-    const content = <span className={cx('title')}>{title}</span>;
+    const content = <span>{title}</span>;
     if (to) {
         return (
-            <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
+            <NavLink
+                to={to}
+                className={({ isActive }) =>
+                    cx(
+                        'flex items-center justify-between px-2 py-2 xl:mr-10 lg:mr-6 md:mr-3 text-white text-lg font-light transition-colors duration-200',
+                        isActive ? 'border-b border-[var(--primary)]' : 'hover:border-b border-[var(--primary)]',
+                    )
+                }
+            >
                 {content}
             </NavLink>
         );
     }
     return (
-        <div className={cx('menu-item')} onClick={onClick}>
+        <div
+            className="flex items-center justify-between px-2 py-2 mr-10 text-white text-lg font-light transition-colors duration-200 hover:border-b border-[var(--primary)]"
+            onClick={onClick}
+        >
             {content}
         </div>
     );

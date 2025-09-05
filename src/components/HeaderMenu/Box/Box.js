@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import styles from './Box.module.scss';
-import icons from '~/assets/icons';
 import images from '~/assets/images';
-const cx = classNames.bind(styles);
 
 function Box({ user, menuItems = [], onItemClick, onLogout }) {
-    // Default menu items if none provided
     const items = menuItems.length > 0 ? menuItems : [];
 
     const handleItemClick = (item) => {
@@ -18,28 +13,53 @@ function Box({ user, menuItems = [], onItemClick, onLogout }) {
     };
 
     return (
-        <div className={cx('box')}>
-            <div className={cx('user-menu')}>
-                <div className={cx('menu-header')}>
-                    <div className={cx('menu-avatar')}>
-                        <img src={images[user.avatar] || user.avatar} alt="avatar" />
+        <div className="bg-white rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.15)] py-2 min-w-[200px] border border-[#e1e5e9]">
+            <div className="user-menu">
+                {/* Header */}
+                <div className="flex items-center gap-3 p-4 border-b border-[#f0f0f0]">
+                    <div className="w-[45px] h-[45px] rounded-full overflow-hidden">
+                        <img
+                            src={images[user.avatar] || user.avatar}
+                            alt="avatar"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
-                    <div className={cx('menu-user-info')}>
-                        <span className={cx('menu-name')}>{user.name || user.username}</span>
-                        <span className={cx('menu-role')}>{user.role}</span>
+                    <div className="flex flex-col">
+                        <span className="text-sm font-semibold text-[var(--title-color)]">
+                            {user.name || user.username}
+                        </span>
+                        <span className="text-xs text-[var(--text-color)]">{user.role}</span>
                     </div>
                 </div>
-                <div className={cx('menu-items')}>
-                    {items.map((item, index) => (
-                        <div
-                            key={index}
-                            className={cx('menu-item', item.className)}
-                            onClick={() => handleItemClick(item)}
-                        >
-                            <item.icon />
-                            <span>{item.title}</span>
-                        </div>
-                    ))}
+
+                {/* Menu items */}
+                <div>
+                    {items.map((item, index) => {
+                        const isLogout = item.className === 'logout';
+                        return (
+                            <div
+                                key={index}
+                                className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors duration-200
+                                    hover:bg-[#E5E5E5]
+                                    ${isLogout ? 'border-t border-[#f0f0f0] mt-1 hover:bg-[rgba(255,172,155,0.3)]' : ''}
+                                `}
+                                onClick={() => handleItemClick(item)}
+                            >
+                                <item.icon
+                                    className={`w-4 h-4 ${
+                                        isLogout ? 'text-[var(--primary)]' : 'text-[var(--text-color)]'
+                                    }`}
+                                />
+                                <span
+                                    className={`text-sm ${
+                                        isLogout ? 'text-[var(--primary)]' : 'text-[var(--text-color)]'
+                                    }`}
+                                >
+                                    {item.title}
+                                </span>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

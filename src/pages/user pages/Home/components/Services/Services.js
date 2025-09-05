@@ -1,7 +1,4 @@
 import icons from '~/assets/icons';
-import classNames from 'classnames/bind';
-import styles from './Services.module.scss';
-const cx = classNames.bind(styles);
 
 const SERVICES_ITEMS = [
     {
@@ -28,20 +25,30 @@ const SERVICES_ITEMS = [
 
 function Services() {
     return (
-        <div className={cx('wrapper')}>
-            <h4 className={cx('label')}>SERVICES</h4>
-            <h1 className={cx('title')}>We Offer Best Services</h1>
-            <div className={cx('list-items')}>
+        <div className="flex flex-col justify-center items-center">
+            {/* Label */}
+            <h4 className="text-[var(--primary)] font-bold text-2xl mb-[14px] uppercase">SERVICES</h4>
+
+            {/* Title */}
+            <h1 className="text-center text-4xl sm:text-[48px] font-[var(--font-family-header)] text-[var(--header-color)] mb-14 tracking-[0.5px]">
+                We Offer Best Services
+            </h1>
+
+            {/* List Items */}
+            <div className="w-full grid grid-cols-2 gap-6 mt-10 md:flex md:justify-between">
                 {SERVICES_ITEMS.map((item, index) => (
-                    <div className={cx('item')} key={index}>
-                        <div className={cx('icon-wrapper')}>
-                            <div className={cx('icon-inner')}>
-                                <item.icon className={cx('icon')} />
+                    <div className="flex flex-col items-center" key={index}>
+                        {/* Icon wrapper */}
+                        <div className="w-[120px] h-[120px] bg-[#fdded6] rounded-full flex items-center justify-center">
+                            <div className="w-[90px] h-[90px] bg-[var(--primary)] rounded-full flex items-center justify-center">
+                                <item.icon className="w-10 h-10 text-white" />
                             </div>
                         </div>
-                        <div className={cx('services-title')}>
-                            <h2>{item.title}</h2>
-                            <small>{item.content}</small>
+
+                        {/* Title + Content */}
+                        <div className="mt-5 text-center">
+                            <h2 className="text-base font-bold mb-2">{item.title}</h2>
+                            <small className="text-[13px] leading-[1.4] text-[#555]">{item.content}</small>
                         </div>
                     </div>
                 ))}

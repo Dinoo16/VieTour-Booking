@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import styles from './SearchTour.module.scss';
 import icons from '~/assets/icons';
 import Button from '~/components/Button/Button';
 import Menu from './Menu/Menu';
@@ -9,8 +7,6 @@ import MenuItem from './Menu/MenuItem';
 import boxMapping from './Box/BoxMapping';
 import { useNavigate } from 'react-router-dom';
 import { useSearchTours } from '~/hooks/useTours';
-
-const cx = classNames.bind(styles);
 
 const SEARCH_ITEMS = [
     {
@@ -96,31 +92,38 @@ function SearchTour() {
     };
 
     return (
-        <div className={cx('wrapper')}>
-            <Menu>
-                {SEARCH_ITEMS.map((item, index) => (
-                    <Tippy
-                        key={index}
-                        interactive
-                        visible={visibleIndex === index}
-                        placement="bottom-start"
-                        render={(attrs) => (
-                            <div className={cx('popover')} tabIndex="-1" {...attrs}>
-                                {renderDropdown(index)}
+        <div className="w-full xl:w-[1200px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-0 absolute bottom-0 left-0 translate-y-1/2 z-10">
+            <div className="w-full h-auto flex flex-col md:flex-row justify-between rounded-2xl border-2 border-[var(--primary)] bg-white px-6 py-[27px]">
+                {/* Grid layout cho items */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 flex-1 w-full">
+                    {SEARCH_ITEMS.map((item, index) => (
+                        <Tippy
+                            key={index}
+                            interactive
+                            visible={visibleIndex === index}
+                            placement="bottom-start"
+                            render={(attrs) => (
+                                <div tabIndex="-1" {...attrs}>
+                                    {renderDropdown(index)}
+                                </div>
+                            )}
+                            onClickOutside={() => setVisibleIndex(null)}
+                        >
+                            <div
+                                className="flex items-center justify-start cursor-pointer"
+                                onClick={() => handleToggle(index)}
+                            >
+                                <MenuItem icon={item.icon} title={searchTitles[index]} />
                             </div>
-                        )}
-                        onClickOutside={() => setVisibleIndex(null)}
-                    >
-                        <div className={cx('menu-wrapper')} onClick={() => handleToggle(index)}>
-                            <MenuItem icon={item.icon} title={searchTitles[index]} />
-                        </div>
-                    </Tippy>
-                ))}
-            </Menu>
+                        </Tippy>
+                    ))}
+                </div>
 
-            <Button rounded onClick={handleSearchTours}>
-                Search
-            </Button>
+                {/* Nút search */}
+                <Button rounded onClick={handleSearchTours} className="mt-4 md:mt-0 md:ml-4">
+                    Search
+                </Button>
+            </div>
         </div>
     );
 }

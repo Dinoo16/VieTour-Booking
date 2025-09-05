@@ -1,5 +1,9 @@
 function Blog() {
-    return <h1> Blog Page</h1>;
+    return (
+        <div className="w-24 h-3xs bg-red-500">
+            <h1>Blog page</h1>
+        </div>
+    );
 }
 
 export default Blog;

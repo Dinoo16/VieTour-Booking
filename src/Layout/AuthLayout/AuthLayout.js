@@ -1,12 +1,8 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './AuthLayout.module.scss';
 import PropTypes from 'prop-types';
 import Header from './Header/Header';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const cx = classNames.bind(styles);
 
 function AuthLayout({ children, banner, onShowDialog }) {
     const navigate = useNavigate();
@@ -24,35 +20,42 @@ function AuthLayout({ children, banner, onShowDialog }) {
     };
 
     return (
-        <div className={cx('wrapper')}>
+        <div>
             {banner && (
                 <div
-                    className={cx('banner')}
+                    className="relative w-full min-h-[450px] bg-cover bg-top flex flex-col text-white"
                     style={{
                         backgroundImage: `url(${banner.image})`,
                     }}
                 >
-                    <div className={cx('overlay')} />
-                    <div className={cx('inner')}>
+                    <div className="absolute inset-0 bg-[#262626]/60 " />
+                    <div className="relative h-full w-full xl:w-[1200px] mx-auto flex flex-col px-4 sm:px-6 lg:px-12 xl:px-0">
                         <Header />
-                        <div className={cx('banner-content')}>
-                            <h1>{banner.title}</h1>
-                            {banner.subtitle && <span className={cx('subtitle')}>{banner.subtitle}</span>}
+                        <div className="relative text-center pt-8">
+                            <h1 className="text-5xl font-semibold">{banner.title}</h1>
+                            {banner.subtitle && (
+                                <span className="text-lg font-light mt-3 block tracking-[1px]">{banner.subtitle}</span>
+                            )}
                         </div>
                     </div>
                 </div>
             )}
-            <div className={cx('content')}> {React.cloneElement(children, { showDialog: showDialogInLayout })}</div>
+            <div> {React.cloneElement(children, { showDialog: showDialogInLayout })}</div>
             {showDialog && (
-                <div className={cx('dialog-overlay')}>
-                    <div className={cx('dialog-box')}>
-                        <h3>Thông báo</h3>
+                <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[rgba(0, 0, 0, 0.5)] z-50">
+                    <div className="bg-white p-5 rounded-lg max-w-[300px] text-center shadow-[0_2px_8px_rgba(0,0,0,0.3)] ">
+                        <h3 className="mt-0">Thông báo</h3>
                         <p>{dialogMessage}</p>
-                        <button onClick={handleClose}>OK</button>
+                        <button
+                            onClick={handleClose}
+                            className="mt-[15px] px-4 py-2 bg-[var(--primary)] text-white border-none rounded-[4px] cursor-pointer"
+                        >
+                            OK
+                        </button>
                     </div>
                 </div>
             )}
-            <div className={cx('footer')}>
+            <div className="-translate-y-[52px] flex gap-2 items-center justify-center">
                 <span>Copyright @Dino 2025.</span>
                 <span>All Rights Reserved.</span>
                 <span>Terms & Conditions</span>

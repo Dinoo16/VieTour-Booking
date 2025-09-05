@@ -1,5 +1,3 @@
-import classNames from 'classnames/bind';
-import styles from './HeaderMenu.module.scss';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
 import PropTypes from 'prop-types';
@@ -10,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from '~/apiServices/authService';
 import { useUser } from '~/contexts/UserContext';
 
-const cx = classNames.bind(styles);
-
 function HeaderMenu({ color, border, isWrap }) {
     const { user, loading, setUser } = useUser();
     const navigate = useNavigate();
@@ -19,7 +15,6 @@ function HeaderMenu({ color, border, isWrap }) {
 
     if (loading) return null;
 
-    // Sử dụng fallback data
     const username = user.username || (user.email ? user.email.split('@')[0] : 'User');
     const avatarSrc = user.avatar ? images[user.avatar] : images.defaultAvatar;
 
@@ -34,24 +29,9 @@ function HeaderMenu({ color, border, isWrap }) {
                   },
               ]
             : []),
-        {
-            title: 'Profile',
-            icon: icons.user,
-            to: '/profile',
-            action: 'profile',
-        },
-        {
-            title: 'Booking',
-            icon: icons.booking,
-            to: '/booking',
-            action: 'booking',
-        },
-        {
-            title: 'Logout',
-            icon: icons.logout,
-            action: 'logout',
-            className: 'logout',
-        },
+        { title: 'Profile', icon: icons.user, to: '/profile', action: 'profile' },
+        { title: 'Booking', icon: icons.booking, to: '/booking', action: 'booking' },
+        { title: 'Logout', icon: icons.logout, action: 'logout', className: 'logout' },
     ];
 
     const handleLogout = () => {
@@ -80,19 +60,25 @@ function HeaderMenu({ color, border, isWrap }) {
     };
 
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('notification', isWrap && 'wrap')}>
-                <icons.notification />
-                <span className={cx('badge')}></span>
+        <div className="h-full flex items-center justify-end gap-6">
+            {/* Notification */}
+            <div
+                className={`relative w-10 h-10 rounded-lg cursor-pointer hidden sm:flex items-center justify-center ${
+                    isWrap ? 'bg-[#ededed]' : ''
+                }`}
+            >
+                <icons.notification className={`w-6 h-6 ${isWrap ? 'text-[#999999]' : 'text-white'}`} />
+                <span className="absolute top-[6px] right-[9px] w-[10px] h-[10px] rounded-full bg-[var(--primary)]"></span>
             </div>
 
+            {/* User info */}
             <Tippy
                 interactive
                 visible={visible}
                 onClickOutside={() => setVisible(false)}
                 placement="bottom-end"
                 render={(attrs) => (
-                    <div className={cx('popover')} tabIndex="-1" {...attrs}>
+                    <div className="bg-transparent rounded-lg p-0 min-w-[200px]" tabIndex="-1" {...attrs}>
                         <Box
                             user={{ ...user, username, avatarSrc }}
                             menuItems={menuItems}
@@ -102,19 +88,28 @@ function HeaderMenu({ color, border, isWrap }) {
                     </div>
                 )}
             >
-                <div className={cx('user-info')} onClick={() => setVisible(!visible)}>
-                    <div className={cx('avatar', border && 'border')}>
+                <div className="flex items-center gap-3 cursor-pointer" onClick={() => setVisible(!visible)}>
+                    {/* Avatar */}
+                    <div className={`w-10 h-10 ${border ? 'rounded-lg' : 'rounded-full'} overflow-hidden`}>
                         <img
-                            className={cx('avatar-img', border && 'border')}
+                            className={`w-full h-full object-cover ${border ? 'rounded-lg' : 'rounded-full'}`}
                             src={images[user.avatar] || user.avatar}
                             alt="avatar"
                         />
                     </div>
-                    <div className={cx('user-name', color && 'black-color')}>
-                        <span className={cx('name')}> {user.name || (user.email && user.email.split('@')[0])}</span>
-                        <span className={cx('role')}>{user.role}</span>
+
+                    {/* User info */}
+                    <div className={`flex flex-col s:pr-6 ${color ? 'text-black' : 'text-white'}`}>
+                        <span className="text-base font-semibold">
+                            {user.name || (user.email && user.email.split('@')[0])}
+                        </span>
+                        <span className="text-xs">{user.role}</span>
                     </div>
-                    <icons.arrow_down className={cx('arrow-down', color && 'black-color')} />
+
+                    {/* Arrow */}
+                    <icons.arrow_down
+                        className={`w-[14px] h-[10px] cursor-pointer ${color ? 'text-black' : 'text-white'}`}
+                    />
                 </div>
             </Tippy>
         </div>

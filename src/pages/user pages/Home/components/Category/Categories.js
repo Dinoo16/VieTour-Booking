@@ -1,37 +1,52 @@
-import classNames from 'classnames/bind';
-import styles from './Categories.module.scss';
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const cx = classNames.bind(styles);
-
 function Categories({ items = [], onclick }) {
     return (
-        <div className={cx('wrapper')}>
-            <h4 className={cx('label')}>CATEGORY</h4>
-            <h1 className={cx('title')}>Tour Categories</h1>
+        <div className="text-center pt-[120px]">
+            {/* Label */}
+            <h4 className="text-[var(--primary)] font-bold text-2xl mb-[14px] uppercase">CATEGORY</h4>
+
+            {/* Title */}
+            <h1 className="text-4xl sm:text-[48px] font-[var(--font-family-header)] text-[var(--header-color)] mb-14 tracking-[0.5px]">
+                Tour Categories
+            </h1>
+
+            {/* Slider */}
             <Swiper
-                modules={[Pagination]}
+                loop={true}
                 spaceBetween={40}
                 slidesPerView={3}
-                pagination={{ clickable: true }}
                 breakpoints={{
+                    0: { slidesPerView: 1 },
+                    425: { slidesPerView: 1 },
                     640: { slidesPerView: 2 },
                     768: { slidesPerView: 3 },
                     1024: { slidesPerView: 5 },
                 }}
-                className={cx('slider')}
+                className="w-full max-w-[1200px] mx-auto pb-[74px]"
             >
                 {items.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <div className={cx('card')} onClick={() => onclick(item)}>
-                            <div className={cx('card-img-wrapper')}>
-                                <img src={item.image} alt={item.name} className={cx('image')} />
+                        <div
+                            className="flex flex-col items-center justify-start transition-all duration-300 cursor-pointer p-5 -m-5"
+                            onClick={() => onclick(item)}
+                        >
+                            {/* Card Image */}
+                            <div className="w-[200px] h-[200px] rounded-3xl overflow-hidden mb-8 relative z-[1]">
+                                <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    className="w-full h-full object-cover rounded-3xl bg-white transition-transform duration-300 ease-in-out hover:scale-110"
+                                />
                             </div>
-                            <h3 className={cx('card-title')}>{item.name}</h3>
+
+                            {/* Card Title */}
+                            <h3 className="mt-0 font-[var(--font-family-header)] font-bold text-2xl text-[var(--title-color)] tracking-[0.2px] text-center relative z-[2]">
+                                {item.name}
+                            </h3>
                         </div>
                     </SwiperSlide>
                 ))}

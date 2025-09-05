@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './BookTour.module.scss';
 import icons from '~/assets/icons';
 import Button from '~/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -9,11 +7,10 @@ import { useCreateBooking } from '~/hooks/useBooking';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 import Popup from '~/components/Popup/Popup';
 
-const cx = classNames.bind(styles);
-
 function BookTour({ item }) {
     const navigate = useNavigate();
     const tourId = item.id;
+
     // Contact infor
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -37,7 +34,6 @@ function BookTour({ item }) {
             return;
         }
 
-        // Fill form data
         if (isAuthenticated()) {
             const bookingData = {
                 tourId,
@@ -48,7 +44,6 @@ function BookTour({ item }) {
                 numberOfPeople: Number(numberOfPeople),
                 message,
             };
-            // Call api
             createBooking(bookingData, {
                 onSuccess: (data) => {
                     if (!data || !data.id) {
@@ -69,89 +64,90 @@ function BookTour({ item }) {
         }
     };
 
-    if (isLoading) {
-        return <LoadingSpinner></LoadingSpinner>;
-    }
-    return (
-        <div className={cx('wrapper')}>
-            <h1 className={cx('title')}>Book This Tour</h1>
-            <span className={cx('description')}>
-                Ex optio sequi et quos praesentium in nostrum labore nam rerum iusto aut magni nesciunt? Quo quidem
-                neque iste expedita est dolo.
-            </span>
+    if (isLoading) return <LoadingSpinner />;
 
-            <form className={cx('form')} onSubmit={handleBookTour}>
-                <div className={cx('form-item', 'input-box')}>
-                    <icons.user className={cx('input-icon')} />
+    return (
+        <div className="w-full md:max-w-[300px] max-h-[880px] lg:max-w-[444px] bg-[#ededed] flex flex-col flex-shrink-0 p-9">
+            <h1 className="text-center mt-0 text-[32px] lg:text-[42px] text-[var(--header-color)] font-header mb-3">
+                Book This Tour
+            </h1>
+
+            <form className="w-full flex flex-col gap-3 mt-6" onSubmit={handleBookTour}>
+                {/* Name */}
+                <div className="h-[50px] md:h-[76px] flex items-center relative w-full focus-within:text-[var(--text-color)]">
+                    <icons.user className="absolute left-3 w-5 h-5 opacity-40 peer-focus:opacity-100" />
                     <input
                         type="text"
-                        id="username"
                         placeholder="Name"
-                        className={cx('input')}
+                        className="peer w-full h-full pl-10 pr-3 py-2 text-base md:text-[18px] text-black/60 border border-transparent focus:border-primary outline-none transition"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
-                <div className={cx('form-item', 'input-box')}>
-                    <icons.email className={cx('input-icon')} />
+
+                {/* Email */}
+                <div className="h-[50px] md:h-[76px] flex items-center relative w-full">
+                    <icons.email className="absolute left-3 w-5 h-5 opacity-40 peer-focus:opacity-100" />
                     <input
                         type="email"
-                        id="email"
                         placeholder="Email"
-                        className={cx('input')}
+                        className="peer w-full h-full pl-10 pr-3 py-2 text-base md:text-[18px] text-black/60 border border-transparent focus:border-primary outline-none transition"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <div className={cx('form-item', 'input-box')}>
-                    <icons.phone className={cx('input-icon')} />
+
+                {/* Phone */}
+                <div className="h-[50px] md:h-[76px] flex items-center relative w-full">
+                    <icons.phone className="absolute left-3 w-5 h-5 opacity-40 peer-focus:opacity-100" />
                     <input
                         type="text"
-                        id="phone"
                         placeholder="Phone"
-                        className={cx('input')}
+                        className="peer w-full h-full pl-10 pr-3 py-2 text-base md:text-[18px] text-black/60 border border-transparent focus:border-primary outline-none transition"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                     />
                 </div>
-                <div className={cx('form-item', 'input-box')}>
-                    <icons.calendar className={cx('input-icon')} />
+
+                {/* Date */}
+                <div className="h-[50px] md:h-[76px] flex items-center relative w-full">
+                    <icons.calendar className="absolute left-3 w-5 h-5 opacity-40 peer-focus:opacity-100" />
                     <input
                         type="date"
-                        id="date"
-                        placeholder="dd/mm/yyyy"
-                        className={cx('input')}
+                        className="peer w-full h-full pl-10 pr-3 py-2 text-base md:text-[18px] text-black/60 border border-transparent focus:border-primary outline-none transition appearance-none"
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                     />
                 </div>
 
-                <div className={cx('form-item', 'input-box')}>
-                    <icons.tag className={cx('input-icon')} />
+                {/* Number of tickets */}
+                <div className="h-[50px] md:h-[76px] flex items-center relative w-full">
+                    <icons.tag className="absolute left-3 w-5 h-5 opacity-40 peer-focus:opacity-100" />
                     <input
                         type="number"
-                        id="tag"
                         placeholder="Number of tickets"
-                        className={cx('input')}
+                        className="peer w-full h-full pl-10 pr-3 py-2 text-base md:text-[18px] text-black/60 border border-transparent focus:border-primary outline-none transition"
                         value={numberOfPeople}
                         onChange={(e) => setNumberOfPeople(Number(e.target.value))}
                     />
                 </div>
-                <div className={cx('form-item', 'input-box')}>
-                    <icons.message className={cx('input-icon')} />
+
+                {/* Message */}
+                <div className="h-[50px] md:h-[76px] flex items-center relative w-full">
+                    <icons.message className="absolute left-3 w-5 h-5 opacity-40 peer-focus:opacity-100" />
                     <input
                         type="text"
-                        id="message"
                         placeholder="Message"
-                        className={cx('input')}
+                        className="peer w-full h-full pl-10 pr-3 py-2 text-base md:text-[18px] text-black/60 border border-transparent focus:border-primary outline-none transition"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
                 </div>
 
-                <Button primary className={cx('button')}>
+                <Button primary className="mt-5">
                     Book Now
                 </Button>
+
                 {showPopup && (
                     <Popup title="Notification" message={popupMessage} onConfirm={() => setShowPopup(false)} />
                 )}

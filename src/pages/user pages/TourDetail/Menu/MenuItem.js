@@ -1,14 +1,14 @@
-import classNames from 'classnames/bind';
-import styles from './Menu.module.scss';
 import PropTypes from 'prop-types';
-
-const cx = classNames.bind(styles);
 
 function MenuItem({ icon: Icon, title, active, onClick }) {
     return (
-        <div className={cx('menu-item', { active })} onClick={onClick}>
-            <Icon className={cx('icon')} />
-            <span className={cx('title')}>{title}</span>
+        <div
+            onClick={onClick}
+            className={`w-full h-full flex flex-1 justify-center items-center gap-[14px] cursor-pointer 
+        ${active ? 'bg-white' : ''}`}
+        >
+            <Icon className="hidden s:block text-black w-3 h-3 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            <span className="text-black font-bold text-xs sm:text-base md:text-xl">{title}</span>
         </div>
     );
 }

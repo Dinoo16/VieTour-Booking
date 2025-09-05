@@ -1,28 +1,28 @@
 import PropTypes from 'prop-types';
 import Button from '~/components/Button/Button';
 import icons from '~/assets/icons';
-import styles from './Tours.module.scss';
-import classNames from 'classnames/bind';
 import TourCard from '~/components/TourCard/TourCard';
-
-const cx = classNames.bind(styles);
 
 function Tours({ items = [], onclick }) {
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('header')}>
+        <div className="pt-[120px]">
+            {/* Header */}
+            <div className="flex justify-between items-center mb-14">
                 <div>
-                    <h4 className={cx('label')}>TOUR</h4>
-                    <h1 className={cx('title')}>Our Trending Tour Packages</h1>
+                    <h4 className="text-[var(--primary)] font-bold text-2xl mb-[14px] uppercase">TOUR</h4>
+                    <h1 className="text-4xl sm:text-[48px] font-[var(--font-family-header)] text-[var(--header-color)] tracking-[0.5px]">
+                        Our Trending Tour Packages
+                    </h1>
                 </div>
-                <div className={cx('button')}>
+                <div>
                     <Button outline rounded to="/tour" rightIcon={<icons.arrow_right />}>
                         See More Tours
                     </Button>
                 </div>
             </div>
+
             {/* TOURS LIST */}
-            <div className={cx('list')}>
+            <div className="grid grid-cols-1 s:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-10">
                 {items.map((item, index) => (
                     <TourCard
                         key={index}
@@ -39,6 +39,7 @@ function Tours({ items = [], onclick }) {
         </div>
     );
 }
+
 Tours.propTypes = {
     items: PropTypes.array.isRequired,
     onclick: PropTypes.func.isRequired,

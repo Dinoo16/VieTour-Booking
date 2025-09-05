@@ -19,16 +19,19 @@ function DefaultLayout({
 }) {
     const navigate = useNavigate();
     return (
-        <div className={cx('wrapper')}>
+        <div className="overflow-hidden">
             {banner && (
                 <div
-                    className={cx('banner', { 'banner-custom': halfHeightBanner })}
+                    className={`relative w-full min-h-[700px] bg-cover bg-center flex flex-col text-white ${
+                        halfHeightBanner ? 'h-[500px]' : 'h-screen'
+                    }
+  `}
                     style={{
                         backgroundImage: `url(${banner.image})`,
                     }}
                 >
-                    <div className={cx('overlay')} />
-                    <div className={cx('inner')}>
+                    <div className="absolute inset-0 bg-black/25" />
+                    <div className="h-full w-full xl:w-[1200px] mx-auto flex flex-col relative px-4 sm:px-6 lg:px-12 xl:px-0">
                         <Header />
                         <div className={cx('banner-content', { 'start-title': banner.startTitle })}>
                             {banner.subtitle && <span className={cx('subtitle')}>{banner.subtitle}</span>}
@@ -43,7 +46,13 @@ function DefaultLayout({
                     </div>
                 </div>
             )}
-            <div className={cx('content', { 'no-padding': noContentSpacing })}>{children}</div>
+            <div
+                className={` [&>*]:w-full relative w-full xl:w-[1200px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-0 my-[54px] pt-[120px] flex flex-col ${
+                    noContentSpacing ? 'mx-auto pt-[0]' : ''
+                }`}
+            >
+                {children}
+            </div>
             <Footer />
         </div>
     );

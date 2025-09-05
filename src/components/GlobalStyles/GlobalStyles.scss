@@ -16,7 +16,6 @@
 
     //Default layout
     --default-layout-width: 1200px;
-    
 }
 
 * {
@@ -38,7 +37,7 @@ body {
     overflow-y: overlay;
 }
 
-//Scrollbar css 
+//Scrollbar css
 html *::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;
@@ -58,7 +57,7 @@ button,
 input,
 [tabindex] {
     outline: none;
-    border: none;
+    // border: none;
 }
 
 a {

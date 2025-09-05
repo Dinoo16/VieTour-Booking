@@ -1,5 +1,3 @@
-import classNames from 'classnames/bind';
-import styles from './Profile.module.scss';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
 import { useState } from 'react';
@@ -14,13 +12,11 @@ import MyReviews from './Content/MyReviews/MyReviews';
 import { useUser } from '~/contexts/UserContext';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
-const cx = classNames.bind(styles);
-
 function Profile() {
     const { user, loading } = useUser();
-
     const [activeMenu, setActiveMenu] = useState(PROFILE_SETTING_MENU[0]);
     const username = user?.name || (user?.email ? user.email.split('@')[0] : 'User');
+
     const renderContent = () => {
         switch (activeMenu.title) {
             case 'Personal Information':
@@ -39,60 +35,72 @@ function Profile() {
                 return <div>Coming soon...</div>;
         }
     };
-    if (loading) {
-        return <LoadingSpinner></LoadingSpinner>;
-    }
+
+    if (loading) return <LoadingSpinner />;
+
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('header')}>
-                <img className={cx('avatar')} src={images[user.avatar] || user.avatar} alt={user.avatar} />
-                <div className={cx('info')}>
-                    <h3 className={cx('name')}>Hi {username} !</h3>
-                    <span className={cx('role')}>{user.membership}</span>
+        <div className="relative top-0 -translate-y-[500px]">
+            {/* Header */}
+            <div className="flex gap-3 text-white mb-6">
+                <img
+                    className="w-[60px] h-[60px] rounded-full"
+                    src={images[user.avatar] || user.avatar}
+                    alt={user.avatar}
+                />
+                <div>
+                    <h3 className="text-2xl font-semibold">Hi {username} !</h3>
+                    <span>{user.membership}</span>
                 </div>
             </div>
 
-            <div className={cx('membership')}>
-                <div className={cx('rewards')}>
-                    <h3 className={cx('title')}> You have 3 rewards</h3>
-                    <span className={cx('desc')}>
+            {/* Membership */}
+            <div className="w-full h-[320px] flex gap-6">
+                {/* Rewards */}
+                <div className="flex flex-col justify-between p-6 rounded-lg bg-white flex-[2] shadow-[0_6px_30px_rgba(0,0,0,0.1)] overflow-hidden">
+                    <h3 className="text-[var(--header-color)] font-bold">You have 3 rewards</h3>
+                    <span className="text-sm">
                         Enjoy rewards and discounts on select stays and rental cars worldwide
                     </span>
 
-                    {/* swipper */}
-
                     <RewardSection />
-                    <a className={cx('learn-more')} href="#">
+
+                    <a href="#" className="text-base font-semibold text-[var(--header-color)]">
                         Learn more about your rewards
                     </a>
                 </div>
-                <div className={cx('extra')}>
-                    <div className={cx('target')}>
-                        <div className={cx('title')}>
+
+                {/* Extra */}
+                <div className="flex flex-1 flex-col gap-6">
+                    {/* Target */}
+                    <div className="flex flex-col justify-between flex-1 p-6 rounded-lg shadow-[0_6px_30px_rgba(0,0,0,0.1)] bg-white text-[var(--header-color)] font-semibold">
+                        <div className="flex gap-3">
                             <icons.target />
                             <span>You're 5 bookings away from Golden</span>
                         </div>
-
-                        <a href="#" className={cx('check-progress')}>
+                        <a href="#" className="text-sm text-[#4674FF]">
                             Check your progress
                         </a>
                     </div>
-                    <div className={cx('vouchers')}>
-                        <div className={cx('title')}>
-                            <icons.discount />
-                            <span>No Credits or ouchers yet</span>
-                        </div>
 
-                        <a href="#" className={cx('check-progress')}>
+                    {/* Vouchers */}
+                    <div className="flex flex-col justify-between flex-1 p-6 rounded-lg shadow-[0_6px_30px_rgba(0,0,0,0.1)] bg-white text-[var(--header-color)] font-semibold">
+                        <div className="flex gap-3">
+                            <icons.discount />
+                            <span>No Credits or vouchers yet</span>
+                        </div>
+                        <a href="#" className="text-sm text-[#4674FF]">
                             More detail
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div className={cx('account-setting')}>
+            {/* Account setting */}
+            <div className="flex flex-col md:flex-row gap-6 mt-10">
                 <Sidebar activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-                <div className={cx('content')}>{renderContent()}</div>
+                <div className="flex-[2] p-6 bg-white min-h-[500px] rounded-lg shadow-[0_6px_30px_rgba(0,0,0,0.1)]">
+                    {renderContent()}
+                </div>
             </div>
         </div>
     );

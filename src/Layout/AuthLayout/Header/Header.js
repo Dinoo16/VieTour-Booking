@@ -1,10 +1,6 @@
-import classNames from 'classnames/bind';
-import styles from './Header.module.scss';
 import images from '~/assets/images';
 import { NavLink, Link } from 'react-router-dom';
 import routesConfig from '~/config/routes';
-
-const cx = classNames.bind(styles);
 
 const MENU = [
     {
@@ -28,13 +24,17 @@ const MENU = [
 
 function Header() {
     return (
-        <div className={cx('wrapper')}>
-            <Link to={routesConfig.home} className={cx('logo-link')}>
+        <div className="flex">
+            <Link to={routesConfig.home}>
                 <img src={images.logo} alt="VieTour" />
             </Link>
-            <div className={cx('menus')}>
+            <div className="w-full hidden sm:flex gap-8 justify-center items-center mr-32">
                 {MENU.map((menu, index) => (
-                    <NavLink key={index} className={cx('menu-link')} to={menu.to}>
+                    <NavLink
+                        key={index}
+                        className="text-white text-lg font-normal hover:border-b-[1px] hover:border-[var(--primary)]"
+                        to={menu.to}
+                    >
                         {menu.title}
                     </NavLink>
                 ))}

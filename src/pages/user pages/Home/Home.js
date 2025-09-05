@@ -1,5 +1,3 @@
-import classNames from 'classnames/bind';
-import styles from './Home.module.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Services from './components/Services/Services';
@@ -13,20 +11,16 @@ import { useCategories } from '~/hooks/useCategories';
 import { usePopularDestinations } from '~/hooks/useDestinations';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 import { useEffect, useState } from 'react';
-import { useTours } from '~/hooks/useTours';
 import { useTrendingTours } from '~/hooks/useTours';
-
-const cx = classNames.bind(styles);
 
 function Home() {
     // Fetch category
-    const { data: CategoriesData = [], isCategoriesLoading } = useCategories();
+    const { data: CategoriesData = [], isLoading: isCategoriesLoading } = useCategories();
     // Fetch Trending tour (8 slots)
-    const { data: trendingToursData, isTrendingTourLoading } = useTrendingTours();
-    console.log(trendingToursData)
+    const { data: trendingToursData, isLoading: isTrendingTourLoading } = useTrendingTours();
     const [popularDestinations, setPopularDestinations] = useState([]);
 
-    const { data: PopularDestinations = [], isPopularDestinationsLoading } = usePopularDestinations();
+    const { data: PopularDestinations = [], isLoading: isPopularDestinationsLoading } = usePopularDestinations();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +29,7 @@ function Home() {
         } else {
             setPopularDestinations([]);
         }
-    }, [PopularDestinations]);
+    }, [popularDestinations]);
 
     const handleTourClick = (item) => {
         navigate(`/tour/${item.id}`);
@@ -51,26 +45,34 @@ function Home() {
         navigate(`/tour?destinationId=${destinationId}`);
     }
 
-    if (isCategoriesLoading || isPopularDestinationsLoading || isTrendingTourLoading) {
-        return <LoadingSpinner />;
-    }
-
     return (
-        <div className={cx('wrapper')}>
+        <div>
             {/* SERVICES */}
             <Services />
 
             {/* CATEGORY */}
-            <Categories items={CategoriesData} onclick={handleCategoryClick} />
+            {isCategoriesLoading ? (
+                <LoadingSpinner text={'Loading categories'}></LoadingSpinner>
+            ) : (
+                <Categories items={CategoriesData} onclick={handleCategoryClick} />
+            )}
 
             {/* POPULAR DESTINATION */}
-            <Destination items={popularDestinations} onclick={handleDestinationClick} />
+            {isPopularDestinationsLoading ? (
+                <LoadingSpinner text={'Loading destinations'}></LoadingSpinner>
+            ) : (
+                <Destination items={popularDestinations} onclick={handleDestinationClick} />
+            )}
 
             {/* PROMOTION */}
             <Promotion />
 
             {/* TOURS */}
-            <Tours items={trendingToursData} onclick={handleTourClick} />
+            {isTrendingTourLoading ? (
+                <LoadingSpinner text={'Loading tours'}></LoadingSpinner>
+            ) : (
+                <Tours items={trendingToursData} onclick={handleTourClick} />
+            )}
 
             {/* GALLERY */}
             <Gallery />

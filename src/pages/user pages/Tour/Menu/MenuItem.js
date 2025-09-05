@@ -1,14 +1,10 @@
-import classNames from 'classnames/bind';
-import styles from './Menu.module.scss';
 import PropTypes from 'prop-types';
-
-const cx = classNames.bind(styles);
 
 function MenuItem({ icon: Icon, title }) {
     return (
-        <div className={cx('menu-item')}>
-            <Icon className={cx('icon')} />
-            <span className={cx('title')}>{title}</span>
+        <div className="flex justify-center items-center flex-1 gap-[14px] cursor-pointer">
+            <Icon className="text-black w-6 h-6" />
+            <span className="bg-black font-bold text-[20px]">{title}</span>
         </div>
     );
 }

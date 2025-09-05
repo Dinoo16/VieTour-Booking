@@ -1,18 +1,13 @@
-import classNames from 'classnames/bind';
-import styles from './SecuritySetting.module.scss';
 import icons from '~/assets/icons';
 import TextInput from '~/pages/admin pages/components/Input/TextInput';
-import TextareaField from '~/pages/admin pages/components/Input/TextareaField';
 import Button from '~/components/Button/Button';
-
-const cx = classNames.bind(styles);
 
 function SecuritySetting() {
     return (
-        <div className={cx('wrapper')}>
-            <div className={cx('header')}>
-                <icons.user />
-                <h2 className={cx('title')}>Security Setting</h2>
+        <div>
+            <div className="flex items-center gap-4 mb-9">
+                <icons.user className="text-black" />
+                <h2 className="text-[var(--title-color)] text-2xl text-medium">Security Setting</h2>
             </div>
 
             <TextInput label="Current Password" placeholder="Current Password" />
@@ -21,7 +16,7 @@ function SecuritySetting() {
 
             <TextInput label="Password Confirm" placeholder="Password Confirm" />
 
-            <div className={cx('save-btn')}>
+            <div className="flex justify-end pt-6">
                 <Button primary>Save Update</Button>
             </div>
         </div>
