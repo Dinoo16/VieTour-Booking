@@ -66,6 +66,8 @@ import { ReactComponent as WalletIcon } from './wallet.svg';
 import { ReactComponent as LikeIcon } from './like.svg';
 import { ReactComponent as CameraIcon } from './camera.svg';
 import { ReactComponent as ArrowIcon } from './arrow.svg';
+import { ReactComponent as TravelGuide } from './travel_guide.svg';
+import { ReactComponent as GroupUser } from './users-four-2.svg';
 
 const icons = {
     location: LocationIcon,
@@ -136,6 +138,8 @@ const icons = {
     wallet: WalletIcon,
     camera: CameraIcon,
     arrow: ArrowIcon,
+    travel_guide: TravelGuide,
+    group_user: GroupUser,
 };
 
 export default icons;

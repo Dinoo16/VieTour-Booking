@@ -9,6 +9,7 @@ const routes = {
     blog: '/blog',
     search: '/search',
     profile: '/profile',
+    schedule: '/schedule',
     admin: '/admin',
     adminDestination: '/admin/destination',
     adminAddDestination: '/admin/destination/add',

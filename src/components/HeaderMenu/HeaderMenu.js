@@ -30,7 +30,7 @@ function HeaderMenu({ color, border, isWrap }) {
               ]
             : []),
         { title: 'Profile', icon: icons.user, to: '/profile', action: 'profile' },
-        { title: 'Booking', icon: icons.booking, to: '/booking', action: 'booking' },
+        { title: 'Schedule', icon: icons.booking, to: '/schedule', action: 'booking' },
         { title: 'Logout', icon: icons.logout, action: 'logout', className: 'logout' },
     ];
 

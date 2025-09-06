@@ -11,6 +11,7 @@ import AuthLayout from '~/Layout/AuthLayout/AuthLayout';
 import Payment from '~/pages/user pages/Payment/Payment';
 import PaymentSuccess from '~/pages/user pages/Payment/PaymentSuccess';
 import Profile from '~/pages/user pages/Profile/Profile';
+import Schedule from '~/pages/user pages/Schedule/Schedule';
 import AdminDashboard from '~/pages/admin pages/AdminDashboard';
 import AdminLayout from '~/Layout/AdminLayout/AdminLayout';
 import AdminDestination from '~/pages/admin pages/Destination/Destination';
@@ -161,24 +162,22 @@ const publicRoutes = [
             </AuthLayout>
         ),
     },
-        {
-            path: routesConfig.signup,
-            component: SignUp,
-            layout: (page) => (
-                <AuthLayout
-                    banner={{
-                        image: images.signup_cover,
-                        title: 'Welcome!',
-                        subtitle: '"Create Your Account, Create Your Adventures."',
-                    }}
-                    onShowDialog={(message) => {
-                    
-                    }}
-                >
-                    {page}
-                </AuthLayout>
-            ),
-        },
+    {
+        path: routesConfig.signup,
+        component: SignUp,
+        layout: (page) => (
+            <AuthLayout
+                banner={{
+                    image: images.signup_cover,
+                    title: 'Welcome!',
+                    subtitle: '"Create Your Account, Create Your Adventures."',
+                }}
+                onShowDialog={(message) => {}}
+            >
+                {page}
+            </AuthLayout>
+        ),
+    },
     {
         path: routesConfig.signout,
         component: SignOut,
@@ -209,7 +208,23 @@ const privateRoutes = [
                 halfHeightBanner
                 hideSearchTour
                 noContentSpacing
-                hideExploreBtn
+            >
+                {page}
+            </DefaultLayout>
+        ),
+    },
+    {
+        path: routesConfig.schedule,
+        component: Schedule,
+        layout: (page) => (
+            <DefaultLayout
+                banner={{
+                    image: images.booking_gb,
+                    subtitle: 'TRIPS & SCHEDULES',
+                }}
+                halfHeightBanner
+                hideSearchTour
+                noContentSpacing
             >
                 {page}
             </DefaultLayout>

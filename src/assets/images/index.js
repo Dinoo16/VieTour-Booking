@@ -41,6 +41,9 @@ const images = {
     trips: require('~/assets/images/trips.png'),
     success: require('~/assets/images/success.png'),
     failed: require('~/assets/images/failed.png'),
+    no_result: require('~/assets/images/no_result.png'),
+    profile_bg: require('~/assets/images/profile_bg.png'),
+    booking_gb: require('~/assets/images/booking_bg.png'),
 };
 
 export default images;
