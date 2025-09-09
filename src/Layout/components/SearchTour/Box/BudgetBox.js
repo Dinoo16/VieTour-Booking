@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function BudgetBox({ onSelect }) {
     const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(1000);
+    const [maxPrice, setMaxPrice] = useState(1200);
     const handleConfirm = () => {
         if (onSelect) {
             onSelect({

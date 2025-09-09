@@ -10,7 +10,7 @@ function Categories({ items = [], onclick }) {
             <h4 className="text-[var(--primary)] font-bold text-2xl mb-[14px] uppercase">CATEGORY</h4>
 
             {/* Title */}
-            <h1 className="text-4xl sm:text-[48px] font-[var(--font-family-header)] text-[var(--header-color)] mb-14 tracking-[0.5px]">
+            <h1 className="text-4xl sm:text-[48px] font-header text-[var(--header-color)] mb-14 tracking-[0.5px]">
                 Tour Categories
             </h1>
 

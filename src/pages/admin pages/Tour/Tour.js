@@ -108,14 +108,6 @@ function Tour() {
                             <span className={cx('value')}>{activeTour.departure}</span>
                         </div>
                         <div className={cx('meta-item')}>
-                            <span className={cx('label')}>Departure Time</span>
-                            <span className={cx('value')}>{activeTour.departureTime}</span>
-                        </div>
-                        <div className={cx('meta-item')}>
-                            <span className={cx('label')}>Return Time</span>
-                            <span className={cx('value')}>{activeTour.returnTime}</span>
-                        </div>
-                        <div className={cx('meta-item')}>
                             <span className={cx('label')}>Category</span>
                             <span className={cx('value')}>{activeTour.categoryNames.map((cat) => cat).join(', ')}</span>
                         </div>
@@ -123,6 +115,17 @@ function Tour() {
                             <span className={cx('label')}>Duration</span>
                             <span className={cx('value')}>{activeTour.duration}</span>
                         </div>
+                        {/* <div className={cx('meta-item')}>
+                            <span className={cx('label')}>Available Dates</span>
+                            <span className={cx('value')}>{activeTour.availableDates}</span>
+                        </div> */}
+                        <div className={cx('meta-item')}>
+                            <span className={cx('label')}>Available Times</span>
+                            <span className={cx('value')}>
+                                {activeTour.availableTimes.map((t) => t.slice(0, 5)).join(', ')}
+                            </span>
+                        </div>
+
                         <div className={cx('meta-item')}>
                             <span className={cx('label')}>Price</span>
                             <span className={cx('value')}>${activeTour.price}/person</span>

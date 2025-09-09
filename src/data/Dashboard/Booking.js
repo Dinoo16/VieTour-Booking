@@ -12,15 +12,19 @@ export const BOOKING_COLUMNS = [
         accessor: 'tourId',
     },
     {
-        header: 'Number of People',
+        header: 'Num of people',
         accessor: 'numberOfPeople',
     },
     {
-        header: 'Date',
+        header: 'Departure Date',
         accessor: 'date',
     },
+    // {
+    //     header: 'Booking Time',
+    //     accessor: 'createdAt',
+    // },
     {
-        header: 'Total amout',
+        header: 'Total',
         accessor: 'totalAmount',
     },
     {

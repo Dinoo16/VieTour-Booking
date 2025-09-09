@@ -4,7 +4,6 @@ import images from '../../../assets/images';
 import { Link } from 'react-router-dom';
 import config from '../../../config/routes';
 import PropTypes from 'prop-types';
-import icons from '../../../assets/icons';
 
 function Sidebar({ onTitleChange, className }) {
     return (

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import icons from '~/assets/icons';
 import Button from '~/components/Button/Button';
-import Menu from './Menu/Menu';
 import MenuItem from './Menu/MenuItem';
 import boxMapping from './Box/BoxMapping';
 import { useNavigate } from 'react-router-dom';

@@ -40,7 +40,7 @@ function Profile() {
         return <LoadingSpinner />;
     }
     return (
-        <div className="relative top-0 -translate-y-[500px]">
+        <div className="relative top-0 -translate-y-[250px]">
             {!currentUser ? (
                 <div className="flex justify-center items-center h-[500px]">
                     <img src={images.no_result} alt="no result" className="w-[300px] h-auto" />

@@ -10,7 +10,7 @@ function Tours({ items = [], onclick }) {
             <div className="flex justify-between items-center mb-14">
                 <div>
                     <h4 className="text-[var(--primary)] font-bold text-2xl mb-[14px] uppercase">TOUR</h4>
-                    <h1 className="text-4xl sm:text-[48px] font-[var(--font-family-header)] text-[var(--header-color)] tracking-[0.5px]">
+                    <h1 className="text-4xl sm:text-[48px] font-header text-[var(--header-color)] tracking-[0.5px]">
                         Our Trending Tour Packages
                     </h1>
                 </div>

@@ -5,6 +5,7 @@ import { USERS, USER_COLUMNS } from '~/data/Dashboard/User';
 import Pagination from '~/pages/admin pages/components/Pagination/Pagination';
 import { useState } from 'react';
 import { useUsers } from '~/hooks/useUsers';
+import LoadingSpinner from '~/components/Loading/LoadingSpinner';
 
 const cx = classNames.bind(styles);
 
@@ -14,8 +15,14 @@ function Traveler() {
 
     return (
         <div className={cx('wrapper')}>
-            <Table columns={USER_COLUMNS} data={usersData} />
-            <Pagination currentPage={page} totalPages={5} onPageChange={setPage} />
+            {isUserLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <>
+                    <Table columns={USER_COLUMNS} data={usersData} />
+                    <Pagination currentPage={page} totalPages={5} onPageChange={setPage} />
+                </>
+            )}
         </div>
     );
 }

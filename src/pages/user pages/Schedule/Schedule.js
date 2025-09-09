@@ -65,12 +65,12 @@ function Schedule() {
                                 {/* time detail */}
                                 <div class="flex items-center gap-6 mx-6">
                                     <div class="text-center">
-                                        <p class="text-sm text-gray-600">Newark (EWR)</p>
+                                        <p class="text-sm text-[var(--text-color)]">Hanoi </p>
                                         <p class="text-xl font-semibold">12:00 pm</p>
                                     </div>
                                     <span class="text-gray-500 text-xl">—</span>
                                     <div class="text-center">
-                                        <p class="text-sm text-gray-600">Newark (EWR)</p>
+                                        <p class="text-sm text-[var(--text-color)]">Hanoi</p>
                                         <p class="text-xl font-semibold">6:00 pm</p>
                                     </div>
                                     <div class="border-l h-10 border-gray-300"></div>
@@ -93,8 +93,8 @@ function Schedule() {
                                             <icons.user className="w-5 h-5 text-[var(--primary)]" />
                                         </div>
                                         <div>
-                                            <p class="text-sm text-gray-600">Tour Guide</p>
-                                            <p class="font-semibold">Jonh Doe</p>
+                                            <p class="text-sm text-[var(--text-color)]">Tour Guide</p>
+                                            <p class="font-semibold">John Doe</p>
                                         </div>
                                     </div>
                                     {/* Time info*/}
@@ -103,7 +103,7 @@ function Schedule() {
                                             <icons.time className="w-5 h-5 text-[var(--primary)]" />
                                         </div>
                                         <div>
-                                            <p class="text-sm text-gray-600">Duration</p>
+                                            <p class="text-sm text-[var(--text-color)]">Duration</p>
                                             <p class="font-semibold">2 days</p>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@ function Schedule() {
                                             <icons.group_user className="w-5 h-5 text-[var(--primary)]" />
                                         </div>
                                         <div>
-                                            <p class="text-sm text-gray-600">People</p>
+                                            <p class="text-sm text-[var(--text-color)]">People</p>
                                             <p class="font-semibold">2</p>
                                         </div>
                                     </div>
@@ -121,8 +121,8 @@ function Schedule() {
                             </div>
 
                             {/* Actions */}
-                            <div className="">
-                                <Button primary>Dowload Ticket</Button>
+                            <div className="bg-[var(--primary)] px-4 py-3 text-white rounded-lg">
+                                <button>Dowload ticket</button>
                             </div>
                         </div>
                     </div>

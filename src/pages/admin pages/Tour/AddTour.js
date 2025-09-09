@@ -3,18 +3,15 @@ import styles from './Tour.module.scss';
 import { useNavigate } from 'react-router-dom';
 import TextInput from '../components/Input/TextInput';
 import TextareaField from '../components/Input/TextareaField';
-import FileDropzone from '../components/FileDropzone/FileDropzone';
 import Select from '../components/Select/Select';
 import Form from '../components/Form/Form';
-import TourPlan from '../components/TourPlan/TourPlan';
-import { CATEGORIES } from '~/data/Category/Category';
-import { DESTINATIONS } from '~/data/Dashboard/Destination';
 import { useEffect, useState } from 'react';
 import MultiSelect from '../components/Select/MultiSelec';
 import { useCreateTour } from '~/hooks/useTours';
 import { useDestinations } from '~/hooks/useDestinations';
 import { useCategories } from '~/hooks/useCategories';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
+import AvailableTimes from '../components/AvailableTimes/AvailableTimes';
 
 const cx = classNames.bind(styles);
 
@@ -51,8 +48,7 @@ function AddTour() {
     // Other tour fields
     const [title, setTitle] = useState('');
     const [departure, setDeparture] = useState('');
-    const [departureTime, setDepartureTime] = useState('');
-    const [returnTime, setReturnTime] = useState('');
+    const [availableTimes, setAvailableTimes] = useState([]);
     const [duration, setDuration] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -69,8 +65,7 @@ function AddTour() {
             title,
             description,
             departure,
-            departureTime,
-            returnTime,
+            availableTimes,
             duration,
             price,
             backgroundImage,
@@ -117,13 +112,6 @@ function AddTour() {
                     />
                 </>
             }
-            // bottomRightPanel={
-            //     <TourPlan title={'Tour Plan'}>
-            //         <TextInput label="Day" placeholder="Number" />
-            //         <TextInput label="Title" placeholder="Title" />
-            //         <TextareaField label="Content" placeholder="Enter content..." />
-            //     </TourPlan>
-            // }
         >
             <TextInput
                 label="Tour title"
@@ -137,20 +125,7 @@ function AddTour() {
                 value={departure}
                 onChange={(e) => setDeparture(e.target.value)}
             />
-            <div className={cx('timeRow')}>
-                <TextInput
-                    label="Departure Time"
-                    placeholder="Departure Time"
-                    value={departureTime}
-                    onChange={(e) => setDepartureTime(e.target.value)}
-                />
-                <TextInput
-                    label="Return Time"
-                    placeholder="Return Time"
-                    value={returnTime}
-                    onChange={(e) => setReturnTime(e.target.value)}
-                />
-            </div>
+            <AvailableTimes times={availableTimes} setTimes={setAvailableTimes} />
             <div className={cx('timeRow')}>
                 <TextInput label="Price" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
                 <TextInput

@@ -13,6 +13,7 @@ import { useUpdateTour } from '~/hooks/useTours';
 import { useDestinations } from '~/hooks/useDestinations';
 import { useCategories } from '~/hooks/useCategories';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
+import AvailableTimes from '../components/AvailableTimes/AvailableTimes';
 
 const cx = classNames.bind(styles);
 
@@ -34,8 +35,7 @@ function EditTour() {
     // Other tour fields
     const [title, setTitle] = useState('');
     const [departure, setDeparture] = useState('');
-    const [departureTime, setDepartureTime] = useState('');
-    const [returnTime, setReturnTime] = useState('');
+    const [availableTimes, setAvailableTimes] = useState([]);
     const [duration, setDuration] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
@@ -45,8 +45,7 @@ function EditTour() {
         if (tourData) {
             setTitle(tourData.title);
             setDeparture(tourData.departure);
-            setDepartureTime(tourData.departureTime);
-            setReturnTime(tourData.returnTime);
+            setAvailableTimes(tourData.availableTimes);
             setDuration(tourData.duration);
             setPrice(tourData.price);
             setDescription(tourData.description);
@@ -64,8 +63,7 @@ function EditTour() {
             title,
             description,
             departure,
-            departureTime,
-            returnTime,
+            availableTimes,
             duration,
             price,
             backgroundImage,
@@ -122,20 +120,7 @@ function EditTour() {
                 value={departure}
                 onChange={(e) => setDeparture(e.target.value)}
             />
-            <div className={cx('timeRow')}>
-                <TextInput
-                    label="Departure Time"
-                    placeholder="Departure Time"
-                    value={departureTime}
-                    onChange={(e) => setDepartureTime(e.target.value)}
-                />
-                <TextInput
-                    label="Return Time"
-                    placeholder="Return Time"
-                    value={returnTime}
-                    onChange={(e) => setReturnTime(e.target.value)}
-                />
-            </div>
+            <AvailableTimes times={availableTimes} setTimes={setAvailableTimes} />
             <div className={cx('timeRow')}>
                 <TextInput label="Price" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
                 <TextInput
