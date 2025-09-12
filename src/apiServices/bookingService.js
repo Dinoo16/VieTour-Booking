@@ -10,6 +10,55 @@ export const createBooking = async (userData) => {
     }
 };
 
+// Save pending order
+export const savePendingOrder = async (bookingId, orderId) => {
+    try {
+        const res = await httpRequest.post(`/user/bookings/${bookingId}/pending`, null, {
+            params: { orderId },
+        });
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Save pending order failed');
+    }
+};
+// Mark paid order
+export const markPaid = async (orderId, captureId) => {
+    try {
+        const res = await httpRequest.post(`/user/bookings/paid`, null, {
+            params: { orderId, captureId },
+        });
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Mark paid failed');
+    }
+};
+
+// Mark failed order
+export const markFailed = async (orderId) => {
+    try {
+        const res = await httpRequest.post(`/user/bookings/failed`, null, {
+            params: { orderId },
+        });
+        return res.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Mark failed failed');
+    }
+};
+
+
+// Update booking
+export const updateBooking = async (id, bookingData) => {
+    try {
+        return await httpRequest.put(`/user/bookings/${id}`, bookingData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Update Booking failed');
+    }
+};
+
 // Get all bookings (admin)
 export const getAllBookings = async () => {
     try {
@@ -40,4 +89,4 @@ export const userGetAllBookings = async () => {
     }
 };
 
-// User get tours from 
+// User get tours from

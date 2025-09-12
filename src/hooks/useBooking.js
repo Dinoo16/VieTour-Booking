@@ -1,6 +1,15 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { createBooking, getAllBookings, getBookingById, userGetAllBookings } from '~/apiServices/bookingService';
+import {
+    createBooking,
+    savePendingOrder,
+    markPaid,
+    markFailed,
+    updateBooking,
+    getAllBookings,
+    getBookingById,
+    userGetAllBookings,
+} from '~/apiServices/bookingService';
 
 // Hook create booking
 export const useCreateBooking = () => {
@@ -9,6 +18,51 @@ export const useCreateBooking = () => {
         mutationFn: createBooking,
         onSuccess: () => {
             queryClient.invalidateQueries(['bookings']);
+        },
+    });
+};
+
+// Hook save pending order
+export const useSavePendingOrder = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: ({ bookingId, orderId }) => savePendingOrder(bookingId, orderId),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['bookings']);
+        },
+    });
+};
+
+// Hook mark paid
+export const useMarkPaid = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: ({ orderId, captureId }) => markPaid(orderId, captureId),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['bookings']);
+        },
+    });
+};
+
+// Hook mark paid
+export const useMarkFailed = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (orderId) => markFailed(orderId),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['bookings']);
+        },
+    });
+};
+
+// Hook update booking (user)
+export const useUpdateBooking = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (updateData) => updateBooking(updateData.id, updateData),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries(['bookings']);
+            queryClient.invalidateQueries(['booking', variables.id]);
         },
     });
 };

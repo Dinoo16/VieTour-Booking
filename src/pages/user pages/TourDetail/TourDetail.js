@@ -1,10 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import { useEffect, useState } from 'react';
+import { isAuthenticated } from '~/utils/isAuthenticated';
 import Menu from './Menu/Menu';
 import icons from '~/assets/icons';
 import images from '~/assets/images';
-import BookTour from './components/BookTour';
 import { useTour } from '~/hooks/useTours';
+import DateCarousel from './components/DateCarousel';
+import SelectTime from './components/SelectTime';
+import Ticket from './components/Ticket';
+import { useCreateBooking } from '~/hooks/useBooking';
+import Popup from '~/components/Popup/Popup';
+import { addDays } from 'date-fns';
 
 const MENU_ITEMS = [
     { icon: icons.info, title: 'Information' },
@@ -16,12 +23,55 @@ const MENU_ITEMS = [
 function TourDetail() {
     const [activeMenu, setActiveMenu] = useState(MENU_ITEMS[0]);
     const { id } = useParams();
-    const { data: tourData, isTourLoading } = useTour(id);
-    const [tour, setTour] = useState(null);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (tourData) setTour(tourData);
-    }, [tourData]);
+    const { data: tour, isTourLoading } = useTour(id);
+
+    // Departure date and time state
+    const today = new Date();
+    const tomorrow = addDays(today, 1);
+    const [selectedDate, setSelectedDate] = useState(tomorrow);
+    const [selectedTime, setSelectedTime] = useState(null);
+
+    // Hook create booking api
+    const { mutate: createBooking, isLoading } = useCreateBooking();
+
+    // Pop up state
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
+
+    const handleBookTour = (bookingData) => {
+        if (!bookingData.date || !bookingData.time) {
+            setPopupMessage('Please fill all required fields before booking.');
+            setShowPopup(true);
+            return;
+        }
+
+        const finalBookingData = {
+            ...bookingData,
+            tourId: tour.id,
+        };
+
+        if (isAuthenticated()) {
+            createBooking(finalBookingData, {
+                onSuccess: (data) => {
+                    if (!data || !data.id) {
+                        setPopupMessage('Booking failed. Please try again.');
+                        setShowPopup(true);
+                        return;
+                    }
+                    navigate(`/payment/${data.id}`);
+                },
+                onError: (error) => {
+                    console.error('Create booking error: ', error);
+                    setPopupMessage(`Create failed: ${error.response?.data?.message || error.message}`);
+                    setShowPopup(true);
+                },
+            });
+        } else {
+            navigate('/signin');
+        }
+    };
 
     if (isTourLoading) return <div className="text-center py-10">Loading...</div>;
     if (!tour) return <div className="text-center py-10">Tour not found</div>;
@@ -95,24 +145,49 @@ function TourDetail() {
                                 </p>
                             </div>
                         </div>
-                        <BookTour item={tour} />
+
+                        <div className="flex flex-col">
+                            <DateCarousel selected={selectedDate} onChange={setSelectedDate} />
+                            <SelectTime tour={tour} selected={selectedTime} onChange={setSelectedTime} />
+                            <Ticket
+                                price={tour.price}
+                                tourId={tour.id}
+                                selectedDate={selectedDate}
+                                selectedTime={selectedTime}
+                                onCreateBooking={handleBookTour}
+                            />
+                        </div>
                     </>
                 )}
 
                 {activeMenu.title === 'Tour Plan' && (
                     <>
-                        <div className="pl-2">
+                        <div className="pl-2 w-full h-full">
                             <h1 className="text-[36px] font-header font-bold text-[var(--header-color)] mb-8">
                                 Tour Plan
                             </h1>
+
                             {tour.tourPlans.map((plan, idx) => (
-                                <div key={idx} className="relative flex items-start pb-[52px] min-h-[80px] pl-[52px]">
-                                    {/* Vertical dashed line */}
-                                    <div className="absolute left-0 top-0 translate-x-6 h-full border-l-2 border-dashed border-primary z-0 last:h-10"></div>
+                                <div
+                                    key={idx}
+                                    className={`
+                                    relative flex items-start min-h-[80px] pl-[52px] pb-[52px]
+                                    before:content-[''] before:absolute before:left-0 before:top-0 
+                                    before:translate-x-[24px] before:h-full before:border-l-2 before:border-dashed 
+                                    before:border-[var(--primary)] before:z-0
+                                    last:before:h-[40px]`}
+                                >
                                     {/* Day number */}
-                                    <div className="absolute left-0 top-0 w-12 h-12 bg-primary text-white font-bold text-[18px] rounded-xl flex items-center justify-center shadow-sm border-2 border-white z-10">
+                                    <div
+                                        className="
+                                        absolute left-0 top-0 w-[48px] h-[48px] bg-[var(--primary)] text-white 
+                                        font-bold text-[18px] rounded-[12px] flex items-center justify-center 
+                                        shadow-md z-[1] 
+                                        "
+                                    >
                                         {plan.day}
                                     </div>
+
                                     {/* Content */}
                                     <div className="ml-8">
                                         <h3 className="font-header text-[24px] font-semibold mb-2 text-[var(--header-color)]">
@@ -125,13 +200,18 @@ function TourDetail() {
                                 </div>
                             ))}
                         </div>
-                        <BookTour item={tour} />
+
+                        <div className="flex flex-col">
+                            {/* <DateCarousel />
+                            <SelectTime tour={tour} />
+                            <Ticket price={tour.price} /> */}
+                        </div>
                     </>
                 )}
 
                 {activeMenu.title === 'Location' && (
                     <>
-                        <div>
+                        <div className="w-full h-full">
                             <h1 className="text-[42px] font-header text-[var(--header-color)]">Location</h1>
                             <p className="text-[16px] py-6">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
@@ -147,13 +227,17 @@ function TourDetail() {
                                 <img src={images.halongbay} alt="halongbay" className="w-full h-[228px] object-cover" />
                             </div>
                         </div>
-                        <BookTour item={tour} />
+                        <div className="flex flex-col">
+                            {/* <DateCarousel />
+                            <SelectTime tour={tour} />
+                            <Ticket price={tour.price} /> */}
+                        </div>
                     </>
                 )}
 
                 {activeMenu.title === 'Gallery' && (
                     <>
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-6 w-full h-full">
                             {/* Box 1 */}
                             <div className="flex gap-6">
                                 <div className="flex flex-col gap-6">
@@ -205,10 +289,20 @@ function TourDetail() {
                                 </div>
                             )}
                         </div>
-                        <BookTour item={tour} />
+                        <div className="flex flex-col">
+                            {/* <DateCarousel />
+                            <SelectTime tour={tour} />
+                            <Ticket price={tour.price} /> */}
+                        </div>
                     </>
                 )}
             </div>
+
+            {showPopup &&
+                createPortal(
+                    <Popup title="Notification" message={popupMessage} onConfirm={() => setShowPopup(false)} />,
+                    document.body,
+                )}
         </div>
     );
 }

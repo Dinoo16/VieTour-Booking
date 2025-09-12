@@ -10,10 +10,10 @@ export const getAllTourSchedules = async () => {
     }
 };
 
-// User get tour schedule by id
+// Admin get tour schedule by id
 export const getTourScheduleById = async () => {
     try {
-        const res = await httpRequest.get('/user/tour-schedules');
+        const res = await httpRequest.get('/admin/schedules');
         return res;
     } catch (error) {
         console.log(error);
@@ -21,3 +21,12 @@ export const getTourScheduleById = async () => {
 };
 
 // User get all tour schedules
+
+export const userGetAllTourSchedule = async () => {
+    try {
+        const res = await httpRequest.get('/user/tour-schedules');
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+};

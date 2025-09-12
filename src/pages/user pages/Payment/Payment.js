@@ -1,24 +1,32 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import icons from '~/assets/icons';
-import Button from '~/components/Button/Button';
 import { useTour } from '~/hooks/useTours';
-import { useBooking } from '~/hooks/useBooking';
+import { useBooking, useSavePendingOrder, useMarkPaid, useMarkFailed } from '~/hooks/useBooking';
 import { useCreatePayment } from '~/hooks/usePayment';
 import TextInput from '~/pages/admin pages/components/Input/TextInput';
 import TextareaField from '~/pages/admin pages/components/Input/TextareaField';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
+import EditDetail from './components/EditDetail';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
 function Payment() {
     const { id: bookingId } = useParams();
     const [showError, setShowError] = useState(false);
 
+    const [showEdit, setShowEdit] = useState(false);
+
     const { data: bookingData, isBookingLoading } = useBooking(bookingId);
+    console.log(bookingData ? bookingData : '');
     const { data: tourData, isTourLoading } = useTour(bookingData?.tourId, {
         enabled: !!bookingData?.tourId,
     });
 
-    const { mutate: createPayment, isPending, error: paymentError } = useCreatePayment();
+    const { mutateAsync: createPayment, isPending, error: paymentError } = useCreatePayment();
+    const { mutateAsync: savePending } = useSavePendingOrder();
+    const { mutateAsync: markPaid } = useMarkPaid();
+    const { mutateAsync: markFailed } = useMarkFailed();
 
     useEffect(() => {
         if (paymentError) {
@@ -53,10 +61,18 @@ function Payment() {
             <div className="w-full p-8 lg:p-14">
                 <div className="flex flex-col md:flex-row w-full justify-between gap-10 lg:gap-14">
                     {/* Booking Info */}
-                    <div className="flex flex-col mt-0 s:mt-8 gap-3">
+                    <div className="flex flex-col mt-0 s:mt-8">
                         <h2 className="text-lg font-semibold text-[var(--header-color)]">Booking Information</h2>
 
-                        <h3 className="mt-4 text-lg font-semibold text-[var(--header-color)]">Your Details</h3>
+                        <div className="mt-4 flex justify-between">
+                            <h3 className="text-lg font-semibold text-[var(--header-color)]">Your Details</h3>
+                            <button
+                                onClick={() => setShowEdit(true)}
+                                className="text-blue-700 p-2 rounded-md hover:bg-blue-50"
+                            >
+                                Edit Detail
+                            </button>
+                        </div>
                         <TextInput label="Contact name" value={bookingData?.contactName} placeholder="Contact name" />
 
                         <div className="flex flex-col lg:flex-row justify-between gap-6">
@@ -74,15 +90,6 @@ function Payment() {
                                 label="Contact phone"
                                 value={bookingData?.contactPhone}
                                 placeholder="Contact phone"
-                            />
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row justify-between gap-6">
-                            <TextInput label="Date" value={bookingData?.date} placeholder="Date" />
-                            <TextInput
-                                label="Number of tickets"
-                                value={bookingData?.numberOfPeople}
-                                placeholder="Number"
                             />
                         </div>
 
@@ -143,41 +150,75 @@ function Payment() {
                             <span className="text-sm">Price include VAT</span>
                         </div>
                         <div>
-                            <Button
-                                className="w-full mt-8 flex items-center justify-center"
-                                primary
-                                onClick={handleCheckout}
-                                isLoading={isPending}
-                                disabled={isPending}
-                            >
-                                Check out
-                            </Button>
+                            <div className="mt-8">
+                                <PayPalButtons
+                                    style={{ layout: 'vertical' }}
+                                    createOrder={async () => {
+                                        try {
+                                            const orderId = await createPayment(bookingId);
+                                            await savePending({ bookingId, orderId });
+                                            return orderId;
+                                        } catch (err) {
+                                            console.error('Error creating order:', err);
+                                            setShowError(true);
+                                            throw err;
+                                        }
+                                    }}
+                                    onApprove={async (data, actions) => {
+                                        try {
+                                            const details = await actions.order.capture();
+                                            const captureId = details.purchase_units[0].payments.captures[0].id;
+
+                                            await markPaid({ orderId: data.orderID, captureId });
+                                            alert('Payment successful!');
+                                        } catch (err) {
+                                            console.error('Error capturing order:', err);
+                                            await markFailed(data.orderID);
+                                            setShowError(true);
+                                        }
+                                    }}
+                                    onError={async (err) => {
+                                        console.error('PayPal error:', err);
+                                        setShowError(true);
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            {/* Edit Popup */}
+            {showEdit &&
+                createPortal(
+                    <EditDetail bookingData={bookingData} onClose={() => setShowEdit(false)} />,
+                    document.body,
+                )}
+
             {/* Error Dialog */}
-            {showError && paymentError && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000]">
-                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-[300px] text-center animate-[fadeIn_0.2s_ease-in-out]">
-                        <h3 className="text-lg font-semibold">Notification</h3>
-                        <p className="mt-2 text-sm text-gray-700">
-                            {paymentError.response?.data?.error?.includes('Duplicate entry')
-                                ? 'This booking has already been paid. You cannot pay again.'
-                                : paymentError.response?.data?.message ||
-                                  paymentError.message ||
-                                  'Payment initialization failed. Please try again.'}
-                        </p>
-                        <button
-                            className="mt-4 px-4 py-2 bg-[var(--primary)] text-white rounded cursor-pointer"
-                            onClick={() => setShowError(false)}
-                        >
-                            OK
-                        </button>
-                    </div>
-                </div>
-            )}
+            {showError &&
+                paymentError &&
+                createPortal(
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[1000]">
+                        <div className="bg-white p-6 rounded-lg shadow-lg max-w-[300px] text-center animate-[fadeIn_0.2s_ease-in-out]">
+                            <h3 className="text-lg font-semibold">Notification</h3>
+                            <p className="mt-2 text-sm text-gray-700">
+                                {paymentError.response?.data?.error?.includes('Duplicate entry')
+                                    ? 'This booking has already been paid. You cannot pay again.'
+                                    : paymentError.response?.data?.message ||
+                                      paymentError.message ||
+                                      'Payment initialization failed. Please try again.'}
+                            </p>
+                            <button
+                                className="mt-4 px-4 py-2 bg-[var(--primary)] text-white rounded cursor-pointer"
+                                onClick={() => setShowError(false)}
+                            >
+                                OK
+                            </button>
+                        </div>
+                    </div>,
+                    document.body,
+                )}
         </div>
     );
 }

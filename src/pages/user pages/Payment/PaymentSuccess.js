@@ -1,13 +1,9 @@
-import classNames from 'classnames/bind';
-import styles from './Payment.module.scss';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useCapturePayment } from '~/hooks/usePayment';
 import Button from '~/components/Button/Button';
 import images from '~/assets/images';
 import LoadingSpinner from '~/components/Loading/LoadingSpinner';
-
-const cx = classNames.bind(styles);
 
 function PaymentSuccess() {
     const [searchParams] = useSearchParams();
@@ -49,54 +45,47 @@ function PaymentSuccess() {
 
     if (status === 'processing' || isLoading) {
         return (
-            <div className={cx('container')}>
-                <div className={cx('processing')}>
-                    <LoadingSpinner />
-                    <h2>Processing Your Payment</h2>
-                    <p>Please wait while we confirm your payment with PayPal...</p>
-                </div>
+            <div className="flex flex-col items-center mt-6">
+                <LoadingSpinner />
+                <h2>Processing Your Payment</h2>
+                <p>Please wait while we confirm your payment with PayPal...</p>
             </div>
         );
     }
     if (status === 'success') {
         return (
-            <div className={cx('container')}>
-                <div className={cx('success')}>
-                    <h2 className={cx('payment-status')}>Payment Successful!</h2>
-                    <div className={cx('payment-messsage')}>
-                        <img className={cx('img-status')} src={images.success} />
-                        <p>Your payment has been processed successfully. Thank you for your booking!</p>
-                    </div>
-                    <div className={cx('actions')}>
-                        <Button primary onClick={() => navigate('/my-bookings')}>
-                            View My Bookings
-                        </Button>
-                        <Button secondary onClick={() => navigate('/')}>
-                            Back to Home
-                        </Button>
-                    </div>
+            <div className="flex flex-col items-center mt-6">
+                <h2 className="my-3 text-[var(--header-color)]">Payment Successful!</h2>
+                <div className="flex items-center gap-3 mb-6 ">
+                    <img className="w-6 h-6" src={images.success} />
+                    <p>Your payment has been processed successfully. Thank you for your booking!</p>
+                </div>
+                <div className="mt-6">
+                    <Button primary onClick={() => navigate('/schedule')}>
+                        View My Bookings
+                    </Button>
+                    <Button outline onClick={() => navigate('/')}>
+                        Back to Home
+                    </Button>
                 </div>
             </div>
         );
     }
     if (status === 'error') {
         return (
-            <div className={cx('container')}>
-                <div className={cx('error')}>
-                    <div className={cx('icon')}></div>
-                    <h2 className={cx('payment-status')}>Payment Failed</h2>
-                    <div className={cx('payment-messsage')}>
-                        <img className={cx('img-status')} src={images.failed} />
-                        <p>{errorMessage}</p>
-                    </div>
-                    <div className={cx('actions')}>
-                        <Button primary onClick={() => navigate(`/payment/${bookingId}`)}>
-                            Try Again
-                        </Button>
-                        <Button secondary onClick={() => navigate('/')}>
-                            Back to Home
-                        </Button>
-                    </div>
+            <div className="flex flex-col items-center mt-6">
+                <h2 className="my-3 text-[var(--header-color)]">Payment Failed</h2>
+                <div className="flex items-center gap-3 mb-">
+                    <img className="w-6 h-6" src={images.failed} />
+                    <p>{errorMessage}</p>
+                </div>
+                <div className="mt-6">
+                    <Button primary onClick={() => navigate(`/payment/${bookingId}`)}>
+                        Try Again
+                    </Button>
+                    <Button outline onClick={() => navigate('/')}>
+                        Back to Home
+                    </Button>
                 </div>
             </div>
         );
